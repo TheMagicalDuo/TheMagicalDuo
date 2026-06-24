@@ -47,6 +47,7 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           style={{ y: backgroundY }}
           className="absolute inset-0 w-full h-[130%] -top-[15%] object-cover"
+          loading="eager"
         />
       </AnimatePresence>
       
@@ -55,21 +56,21 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-black/40 z-0" />
 
       {/* Main Content Area */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 flex flex-col items-center justify-center h-full pt-28 pb-10">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 flex flex-col items-center justify-center h-full pt-24 pb-16">
         
         {/* Fixed Hero Title (Overarching concept) */}
-        <div className="flex flex-col items-center text-center mb-8 z-40 pointer-events-none mt-auto">
+        <div className="flex flex-col items-center text-center mb-8 sm:mb-12 lg:mb-16 z-40 pointer-events-none mt-2 sm:mt-4">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-2xl mb-4">
-              Dejá de buscar.<br />
-              <span className="font-light text-white/90 italic">Nosotros lo organizamos por vos.</span>
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1] drop-shadow-2xl mb-2 sm:mb-4">
+              Tu viaje soñado,<br />
+              <span className="font-light text-white/90 italic">a un mensaje de distancia.</span>
             </h1>
-            <p className="text-white/80 text-sm sm:text-base tracking-widest uppercase">
-              Descubrí tu próximo viaje
+            <p className="text-white/80 text-[10px] sm:text-xs tracking-[0.25em] uppercase font-bold">
+              Agentes de Viajes Especializados
             </p>
           </motion.div>
         </div>
@@ -80,7 +81,7 @@ export default function Hero() {
         </div>
 
         {/* 3D Coverflow Carousel */}
-        <div className="relative w-full h-[55vh] flex items-center justify-center mb-auto" style={{ perspective: '1200px' }}>
+        <div className="relative w-full h-[50vh] flex items-center justify-center mb-auto" style={{ perspective: '1200px' }}>
            {destinations.map((dest, i) => {
               // Calcular distancia más corta asumiendo un carrusel circular
               let diff = i - active
@@ -116,7 +117,7 @@ export default function Hero() {
                   dragConstraints={{ left: 0, right: 0 }}
                   onDragEnd={onDragEnd}
                 >
-                  <img src={dest.image} alt={dest.title} className="w-full h-full object-cover pointer-events-none" />
+                  <img src={dest.image} alt={dest.title} className="w-full h-full object-cover pointer-events-none" loading="eager" />
                   
                   {/* Inner dark gradient for contrast */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
@@ -125,7 +126,7 @@ export default function Hero() {
            })}
            
            {/* Dynamic Destination Title Overlay */}
-           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-20">
+           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-20 mt-16">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}

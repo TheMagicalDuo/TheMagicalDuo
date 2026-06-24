@@ -81,11 +81,16 @@ export default function AboutUs() {
             </div>
 
             <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-dark mb-4 leading-tight">
-              Hola, somos <span className="italic font-normal text-bordeaux">Tobi & Abi</span>
+              <span className="italic font-normal text-bordeaux">Tobias & Abril</span>
             </h2>
-            <p className="text-dark/40 font-bold text-xs uppercase tracking-wider mb-10">
-              Agentes de Viajes Certificados · Buenos Aires
+            <p className="text-dark/50 font-bold text-xs uppercase tracking-[0.2em] mb-6">
+              Agentes de Viajes Certificados · Buenos Aires, Argentina
             </p>
+            
+            <div className="text-dark/70 text-sm leading-relaxed mb-10 space-y-4 pr-4">
+              <p>Somos Tobias y Abril, una pareja argentina apasionada por los viajes y por hacer realidad los sueños de quienes confían en nosotros. Hace un año creamos The Magical Duo con una misión clara: brindar una atención 100% personalizada, honesta y cercana.</p>
+              <p>Estamos disponibles 24/7 para acompañarte en cada etapa de tu viaje, desde la primera consulta hasta que llegás a casa. Porque para nosotros, tu experiencia no termina cuando comprás el paquete.</p>
+            </div>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-10">
               <div className="bg-white p-5 rounded-3xl border border-neutral-100 shadow-sm flex flex-col gap-3 hover:shadow-md transition-shadow">

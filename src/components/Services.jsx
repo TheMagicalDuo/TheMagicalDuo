@@ -17,20 +17,19 @@ const services = [
     items: [
       'Guías especializados en español',
       'Grupos reducidos y atención personalizada',
-      'Itinerarios en Europa, Japón, Emiratos y más',
-      'Planes flexibles y a medida',
+      'Europa clásica, Japón, Emiratos y más',
+      'Itinerarios flexibles y a medida',
     ],
   },
   {
     Icon: Utensils,
     iconBg: 'bg-terracota/10',
     iconColor: 'text-terracota',
-    title: 'All Inclusive',
+    title: 'All Inclusive Resorts',
     items: [
-      'Cadenas Sandals & Beaches, Karisma, Club Med',
-      'Resorts Palladium, RIU, Excellence Group',
-      'Destinos en el Caribe, Bahamas y más',
-      'Tarifas preferenciales garantizadas',
+      'Sandals & Beaches · Karisma · Club Med',
+      'Palladium · RIU · Excellence Group',
+      'Caribe, Bahamas y más',
     ],
   },
   {
@@ -40,9 +39,9 @@ const services = [
     title: 'Hoteles',
     items: [
       'Reservas en cualquier destino del mundo',
-      'Hoteles Good Neighbor y resorts oficiales',
-      'Habitaciones familiares y suites especiales',
-      'Hoteles boutique y cadenas de lujo',
+      'Mejor precio garantizado',
+      'Habitaciones familiares y suites',
+      'Hoteles boutique y cadenas internacionales',
     ],
   },
   {
@@ -51,10 +50,10 @@ const services = [
     iconColor: 'text-sage',
     title: 'Alquiler de autos',
     items: [
-      'Convenios con agencias internacionales líder',
-      'Tarifas con seguros y coberturas incluidas',
-      'Entrega en aeropuertos y hoteles de destino',
-      'Asesoramiento en el tipo de vehículo ideal',
+      'Las mejores agencias internacionales',
+      'Precios competitivos garantizados',
+      'Entrega en aeropuerto y hoteles',
+      'Asesoramiento en coberturas y seguros',
     ],
   },
   {
@@ -63,10 +62,11 @@ const services = [
     iconColor: 'text-terracota',
     title: 'Assist Card',
     items: [
-      'Cobertura médica internacional integral',
-      'Asistencia telefónica y presencial 24/7',
-      'Protección contra cancelación y demoras',
-      'Tarifas especiales para grupos y familias',
+      'Cobertura médica internacional',
+      'Asistencia de emergencia 24/7',
+      'Cancelación y demora de vuelos',
+      'Planes para todas las edades y destinos',
+      'Promos exclusivas',
     ],
   },
 ]

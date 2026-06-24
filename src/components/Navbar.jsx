@@ -23,6 +23,18 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Bloquear scroll en mobile cuando el menú está abierto
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [menuOpen])
+
   // Spy Scroll Logic
   useEffect(() => {
     const handleScrollSpy = () => {
@@ -143,7 +155,7 @@ export default function Navbar() {
       {/* Mobile Menu Dropdown Drawer */}
       <AnimatePresence>
         {menuOpen && (
-          <div className="fixed inset-x-0 top-24 z-40 lg:hidden px-4">
+          <div className="fixed inset-x-0 top-[5.5rem] z-40 lg:hidden px-4">
             <motion.div
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}

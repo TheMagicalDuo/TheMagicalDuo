@@ -45,17 +45,17 @@ export default function Footer() {
       >
         {/* Left Links */}
         <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-          <a href="mailto:hola@themagicalduo.com" className="flex items-center gap-2.5 text-dark/60 hover:text-bordeaux transition-colors text-sm font-medium group">
+          <a href="mailto:themagicalduo.agentes@gmail.com" className="flex items-center gap-2.5 text-dark/60 hover:text-bordeaux transition-colors text-sm font-medium group">
             <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center group-hover:bg-bordeaux/10 transition-colors">
               <Mail size={14} className="text-dark/40 group-hover:text-bordeaux" />
             </div>
-            hola@themagicalduo.com
+            themagicalduo.agentes@gmail.com
           </a>
           <a href="#cotizar" className="flex items-center gap-2.5 text-dark/60 hover:text-bordeaux transition-colors text-sm font-medium group">
             <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center group-hover:bg-bordeaux/10 transition-colors">
               <Phone size={14} className="text-dark/40 group-hover:text-bordeaux" />
             </div>
-            Llamanos
+            WhatsApp
           </a>
         </div>
 
@@ -68,11 +68,11 @@ export default function Footer() {
 
         {/* Right Social & Legal */}
         <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-          <a href="https://instagram.com/themagicalduo" target="_blank" rel="noreferrer" className="flex items-center gap-2.5 text-dark/60 hover:text-bordeaux transition-colors text-sm font-medium group">
+          <a href="https://instagram.com/themagicalduo_" target="_blank" rel="noreferrer" className="flex items-center gap-2.5 text-dark/60 hover:text-bordeaux transition-colors text-sm font-medium group">
             <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center group-hover:bg-bordeaux/10 transition-colors">
               <InstagramIcon size={14} className="text-dark/40 group-hover:text-bordeaux" />
             </div>
-            @themagicalduo
+            @themagicalduo_
           </a>
           <div className="flex items-center gap-4 text-dark/30 text-[10px] uppercase tracking-widest font-bold">
             <a href="#" className="hover:text-dark transition-colors">Legal</a>

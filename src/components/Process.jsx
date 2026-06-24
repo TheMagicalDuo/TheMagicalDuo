@@ -13,40 +13,40 @@ const steps = [
     n: '01',
     Icon: WhatsAppIcon,
     title: 'Contactanos',
-    desc: 'Escribinos por WhatsApp, Instagram o email. Siempre respondemos en menos de 24hs.',
+    desc: 'Escribinos por WhatsApp, Instagram o email. Siempre respondemos dentro de las 24hs — ¡generalmente mucho antes!',
   },
   {
     n: '02',
     Icon: Lightbulb,
     title: 'Contanos tu idea',
-    desc: 'Decinos a dónde querés ir, con quién, fechas aproximadas y tu presupuesto estimado.',
+    desc: 'Cuéntanos a dónde querés ir, con quién viajás, las fechas aproximadas y tu presupuesto. ¡No hay idea descabellada!',
   },
   {
     n: '03',
     Icon: Calculator,
     title: 'Recibís tu cotización',
-    desc: 'Te enviamos una propuesta detallada con precios oficiales directos del proveedor.',
+    desc: 'En base a lo que nos contás, preparamos una propuesta personalizada con opciones y precios oficiales, sin costos ocultos.',
   },
   {
     n: '04',
     Icon: Sliders,
     title: 'Ajustamos juntos',
-    desc: 'Modificamos hoteles, fechas o actividades las veces que sea necesario hasta que esté perfecto.',
+    desc: 'Si querés cambiar algo— fechas, categoría de hotel, extras — lo modificamos hasta que el paquete sea perfecto para vos.',
   },
   {
     n: '05',
     Icon: Ticket,
     title: '¡A reservar!',
-    desc: 'Confirmamos la reserva, coordinamos los pagos directos y te preparamos para despegar.',
+    desc: 'Confirmamos la reserva, coordinamos los pagos y empezamos a preparar tu viaje soñado.',
   },
 ]
 
 const infoItems = [
-  'Destino o tipo de viaje (Disney, crucero, playa, etc.)',
-  'Fechas tentativas de salida y duración',
-  'Cantidad de pasajeros y edades de los menores',
-  'Presupuesto aproximado por pasajero',
-  'Preferencias especiales (hoteles dentro/fuera del parque, etc.)',
+  'Destino o tipo de viaje',
+  'Fechas de viaje',
+  'Cantidad de pasajeros y edades',
+  'Presupuesto aproximado',
+  'Preferencias especiales',
 ]
 
 export default function Process() {
@@ -75,10 +75,10 @@ export default function Process() {
             El camino a tu viaje
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-dark mb-5 leading-tight">
-            Cómo pedir tu <span className="italic font-normal text-bordeaux">cotización personalizada</span>
+            ¿Cómo pedir tu <span className="italic font-normal text-bordeaux">cotización?</span>
           </h2>
           <p className="text-dark/65 text-lg max-w-xl mx-auto">
-            Planificar tu viaje con nosotros es simple, rápido y completamente gratuito.
+            El proceso es simple, rápido y completamente sin costo
           </p>
         </motion.div>
 

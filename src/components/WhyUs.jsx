@@ -8,42 +8,42 @@ const reasons = [
     Icon: Tag,
     iconBg: 'bg-bordeaux/8',
     iconColor: 'text-bordeaux',
-    title: 'Precios oficiales',
-    desc: 'Trabajamos exclusivamente con precios oficiales. No vas a pagar ninguna diferencia respecto a lo que encontrás por tu cuenta. ¡Y te asesoramos sin cargo!',
+    title: 'Precios Oficiales',
+    desc: 'Trabajamos exclusivamente con precios oficiales. No vas a pagar ninguna diferencia respecto a lo que encontrás por tu cuenta. ¡Y además te asesoramos sin cargo!',
   },
   {
     Icon: UserCheck,
     iconBg: 'bg-sage/10',
     iconColor: 'text-sage',
-    title: 'Atención personalizada',
+    title: 'Atención Personalizada',
     desc: 'Cada viaje es único. No somos un portal de reservas: somos personas reales que se involucran con tu viaje y te acompañan en cada paso.',
   },
   {
     Icon: Clock,
     iconBg: 'bg-terracota/10',
     iconColor: 'text-terracota',
-    title: 'Siempre disponibles',
-    desc: 'Antes, durante y después de tu viaje, estamos disponibles para responder tus dudas, resolver imprevistos o simplemente compartir tu emoción.',
+    title: 'Siempre Disponibles',
+    desc: 'Tanto antes, durante y después de tu viaje, estamos disponibles para responder tus dudas, resolver imprevistos o simplemente compartir tu emoción.',
   },
   {
     Icon: CreditCard,
     iconBg: 'bg-bordeaux/8',
     iconColor: 'text-bordeaux',
-    title: 'Pagos en cuotas',
+    title: 'Pagos en Cuotas',
     desc: 'Para Disney y Universal, podemos gestionar el pago de tu paquete en cómodas cuotas, haciendo que tu sueño sea mucho más accesible.',
   },
   {
     Icon: Lock,
     iconBg: 'bg-sage/10',
     iconColor: 'text-sage',
-    title: 'Pagos 100% seguros',
-    desc: 'Todos los pagos se realizan directamente al proveedor: Disney, Universal, la naviera o la plataforma correspondiente. Tu dinero nunca pasa por nosotros.',
+    title: 'Pagos 100% Seguros',
+    desc: 'Todos los pagos se realizan directamente al proveedor: Disney, Universal, la naviera o la plataforma correspondiente. Tu dinero nunca pasa por nosotros. Total transparencia y seguridad garantizada.',
   },
   {
     Icon: Globe,
     iconBg: 'bg-terracota/10',
     iconColor: 'text-terracota',
-    title: 'Experiencia propia',
+    title: 'Experiencia Propia',
     desc: 'Somos viajeros antes que agentes. Conocemos de primera mano los destinos que vendemos, y esa experiencia la ponemos al servicio de tu viaje.',
   },
 ]
@@ -66,12 +66,8 @@ export default function WhyUs() {
             Por qué elegirnos
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-dark mb-4 leading-tight">
-            La diferencia que{' '}
-            <em className="text-bordeaux not-italic italic">marca la diferencia</em>
+            ¿Por qué <em className="text-bordeaux not-italic italic">elegirnos?</em>
           </h2>
-          <p className="text-dark/55 text-lg max-w-xl mx-auto">
-            No solo organizamos viajes — creamos experiencias que recordás toda la vida.
-          </p>
         </motion.div>
 
         {/* Mobile Auto-Carousel */}
