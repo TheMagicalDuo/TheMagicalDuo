@@ -45,7 +45,7 @@ export default function Testimonials() {
 
   return (
     <section className="py-20 lg:py-28 bg-[#FBF8F3]/50 border-y border-neutral-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 justify-between">
+      <div className="max-w-5xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 justify-center">
         
         {/* Left: Text Content */}
         <motion.div
@@ -53,7 +53,7 @@ export default function Testimonials() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center lg:text-left flex-1"
+          className="text-center lg:text-left w-full lg:w-1/2"
         >
           <div className="inline-flex items-center gap-2 border border-terracota/25 text-terracota bg-terracota/5 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-5">
             Experiencias Reales
@@ -73,9 +73,9 @@ export default function Testimonials() {
         </motion.div>
 
         {/* Right: Interactive Card Stack */}
-        <div className="flex-1 w-full flex justify-center lg:justify-end relative">
+        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
 
-          <div className="relative h-[500px] sm:h-[550px] w-full max-w-[320px] sm:max-w-[340px] perspective-1000 mt-4 lg:mt-0 lg:mr-10">
+          <div className="relative h-[500px] sm:h-[550px] w-full max-w-[320px] sm:max-w-[340px] perspective-1000 mt-4 lg:mt-0 lg:mr-4">
             <AnimatePresence>
               {testimonials.map((t, index) => {
                 const offset = (index - active + testimonials.length) % testimonials.length
