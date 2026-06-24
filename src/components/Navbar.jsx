@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Sparkles } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import Logo from './Logo'
 
 const navLinks = [
@@ -77,10 +77,10 @@ export default function Navbar() {
           />
         </a>
 
-        {/* Mobile Current Section Indicator (Magical Touch) */}
-        <div className="absolute left-1/2 -translate-x-1/2 flex lg:hidden items-center justify-center px-4 py-1.5 rounded-full text-[11px] uppercase font-bold tracking-widest gap-2 shadow-sm transition-colors duration-500 z-0
+        {/* Mobile Current Section Indicator */}
+        <div className="absolute left-1/2 -translate-x-1/2 flex lg:hidden items-center justify-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide gap-2 shadow-sm transition-colors duration-500 z-0
           bg-white/90 border border-neutral-100 backdrop-blur-md text-bordeaux">
-          <Sparkles size={12} className="text-terracota animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-terracota animate-pulse" />
           {activeLabel}
         </div>
 
@@ -107,16 +107,7 @@ export default function Navbar() {
                     className={`absolute inset-0 rounded-full shadow-sm ${scrolled ? 'bg-bordeaux' : 'bg-white'}`}
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     style={{ zIndex: -1 }}
-                  >
-                    {/* Magical floating sparkle on the active link */}
-                    <motion.div 
-                      animate={{ rotate: [0, 15, -15, 0], scale: [1, 1.2, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                      className={`absolute -top-2 -right-2 ${scrolled ? 'text-terracota' : 'text-cream/80'}`}
-                    >
-                      <Sparkles size={14} fill="currentColor" />
-                    </motion.div>
-                  </motion.div>
+                  />
                 )}
                 <span className="relative z-10">{link.label}</span>
               </a>
@@ -129,14 +120,13 @@ export default function Navbar() {
           <a
             href="#cotizar"
             onClick={(e) => scrollToSection(e, '#cotizar')}
-            className={`relative overflow-hidden hidden sm:flex px-6 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-md hover:-translate-y-1 group ${
+            className={`hidden sm:flex px-6 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-md hover:-translate-y-1 ${
               scrolled 
-                ? 'bg-gradient-to-r from-bordeaux to-terracota text-white shadow-bordeaux/30'
+                ? 'bg-terracota text-white hover:bg-bordeaux shadow-terracota/20'
                 : 'bg-white text-dark hover:bg-white/90 shadow-black/20'
             }`}
           >
-            <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
-            <span className="relative z-10">COTIZAR</span>
+            COTIZAR
           </a>
 
           {/* Mobile Menu Button */}
