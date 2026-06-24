@@ -71,8 +71,8 @@ export default function Cruises() {
           </p>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* Grid (List view on mobile, Grid on desktop) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
           {cruises.map((c, i) => (
             <motion.div
               key={c.name}
@@ -80,17 +80,24 @@ export default function Cruises() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="bg-white rounded-2xl p-7 border border-neutral-100 shadow-sm hover:shadow-xl hover:border-neutral-200/50 transition-all duration-300 flex flex-col justify-between group"
+              className="bg-white rounded-2xl p-4 sm:p-7 border border-neutral-100 shadow-sm hover:shadow-xl hover:border-neutral-200/50 transition-all duration-300 flex flex-row sm:flex-col items-center sm:items-start text-left justify-between group gap-4 sm:gap-0"
             >
-              <div>
-                <div className={`w-12 h-12 rounded-2xl ${c.bg} flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-105`}>
-                  <c.Icon size={20} className={`${c.color}`} />
-                </div>
-                <h3 className="font-serif font-bold text-dark text-xl mb-3">{c.name}</h3>
-                <p className="text-dark/70 text-sm leading-relaxed mb-6">{c.desc}</p>
+              <div className={`shrink-0 w-12 h-12 rounded-2xl ${c.bg} flex items-center justify-center sm:mb-6 transition-all duration-300 group-hover:scale-105`}>
+                <c.Icon size={20} className={`${c.color}`} />
               </div>
-              <div className="text-xs font-semibold text-terracota group-hover:text-bordeaux transition-colors flex items-center gap-1">
-                Ver itinerarios y barcos &rarr;
+              
+              <div className="flex-1">
+                <h3 className="font-serif font-bold text-dark text-base sm:text-xl mb-0.5 sm:mb-3">{c.name}</h3>
+                {/* Desktop description */}
+                <p className="hidden sm:block text-dark/70 text-sm leading-relaxed mb-6">{c.desc}</p>
+                {/* Mobile description (truncated) */}
+                <p className="sm:hidden text-dark/50 text-[11px] line-clamp-1 leading-snug pr-4">{c.desc}</p>
+              </div>
+
+              {/* Arrow Icon for Mobile, Text for Desktop */}
+              <div className="shrink-0 text-terracota group-hover:text-bordeaux transition-colors flex items-center gap-1">
+                <span className="hidden sm:inline text-xs font-semibold">Ver itinerarios &rarr;</span>
+                <span className="sm:hidden">&rarr;</span>
               </div>
             </motion.div>
           ))}

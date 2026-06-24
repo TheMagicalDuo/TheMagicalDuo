@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
-import { Check, Map, Utensils, Building2, Car, HeartPulse } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Check, Map, Utensils, Building2, Car, HeartPulse, ChevronDown } from 'lucide-react'
 
 const WhatsAppIcon = ({ size = 24, className }) => (
   <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -71,6 +72,8 @@ const services = [
 ]
 
 export default function Services() {
+  const [openIndex, setOpenIndex] = useState(null)
+
   return (
     <section id="servicios" className="py-20 lg:py-28 bg-white relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -94,31 +97,47 @@ export default function Services() {
           </p>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {services.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="bg-white border border-neutral-100 rounded-3xl p-7 hover:shadow-xl hover:border-neutral-200/50 transition-all duration-300 flex flex-col justify-start group"
-            >
-              <div className={`w-12 h-12 rounded-2xl ${s.iconBg} flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-105`}>
-                <s.Icon size={20} className={s.iconColor} />
-              </div>
-              <h3 className="font-serif font-bold text-dark text-xl mb-4">{s.title}</h3>
-              <ul className="space-y-3">
-                {s.items.map(item => (
-                  <li key={item} className="flex items-start gap-2.5 text-[0.9rem] text-dark/70">
-                    <Check size={15} className="text-sage mt-0.5 shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+        {/* Grid (Accordion on Mobile) */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
+          {services.map((s, i) => {
+            const isOpen = openIndex === i
+            return (
+              <motion.div
+                key={s.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                onClick={() => {
+                  if (window.innerWidth < 640) {
+                    setOpenIndex(isOpen ? null : i)
+                  }
+                }}
+                className="bg-white border border-neutral-100 rounded-2xl sm:rounded-3xl p-5 sm:p-7 hover:shadow-xl hover:border-neutral-200/50 transition-all duration-300 flex flex-col justify-start group cursor-pointer sm:cursor-default"
+              >
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-4 sm:block sm:gap-0">
+                    <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl ${s.iconBg} flex items-center justify-center sm:mb-6 transition-all duration-300 group-hover:scale-105 shrink-0`}>
+                      <s.Icon size={18} className={`${s.iconColor} sm:w-5 sm:h-5`} />
+                    </div>
+                    <h3 className="font-serif font-bold text-dark text-lg sm:text-xl sm:mb-4">{s.title}</h3>
+                  </div>
+                  <ChevronDown size={18} className={`sm:hidden text-dark/40 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                </div>
+                
+                <div className={`${isOpen ? 'block' : 'hidden'} sm:block mt-4 sm:mt-0`}>
+                  <ul className="space-y-3 pt-3 sm:pt-0 border-t border-neutral-100 sm:border-transparent">
+                    {s.items.map(item => (
+                      <li key={item} className="flex items-start gap-2.5 text-[0.85rem] sm:text-[0.9rem] text-dark/70">
+                        <Check size={15} className="text-sage mt-0.5 shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            )
+          })}
 
           {/* CTA card - Luggage tag style */}
           <motion.div

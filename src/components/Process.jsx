@@ -69,10 +69,13 @@ export default function Process() {
 
         {/* Timeline Path (Desktop horizontal, mobile vertical) */}
         <div className="relative mb-20">
-          {/* Connector Line (Desktop only) */}
+          {/* Connector Line (Desktop horizontal) */}
           <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-neutral-100 -translate-y-1/2 z-0 hidden lg:block" />
+          
+          {/* Connector Line (Mobile vertical) */}
+          <div className="absolute top-0 bottom-0 left-[23px] w-[2px] bg-neutral-100 z-0 lg:hidden" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-8 relative z-10">
             {steps.map((step, i) => (
               <motion.div
                 key={step.n}
@@ -80,15 +83,15 @@ export default function Process() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="flex lg:flex-col items-start lg:items-center text-left lg:text-center group"
+                className="flex flex-row lg:flex-col items-start lg:items-center text-left lg:text-center group relative"
               >
                 {/* Number Circle */}
-                <div className="shrink-0 w-12 h-12 rounded-2xl bg-white border-2 border-neutral-100 text-bordeaux group-hover:border-bordeaux group-hover:bg-bordeaux group-hover:text-white flex items-center justify-center font-serif font-bold text-sm shadow-sm transition-all duration-300 mr-5 lg:mr-0 lg:mb-6">
+                <div className="shrink-0 w-12 h-12 rounded-2xl lg:rounded-full bg-white border-2 border-neutral-100 text-bordeaux group-hover:border-bordeaux group-hover:bg-bordeaux group-hover:text-white flex items-center justify-center font-serif font-bold text-sm shadow-sm transition-all duration-300 mr-5 lg:mr-0 lg:mb-6 relative z-10">
                   {step.n}
                 </div>
 
                 {/* Step Info */}
-                <div>
+                <div className="pt-2.5 lg:pt-0 pb-4 lg:pb-0">
                   <h3 className="font-serif font-bold text-dark text-lg mb-2">{step.title}</h3>
                   <p className="text-dark/60 text-sm leading-relaxed max-w-[220px] lg:mx-auto">{step.desc}</p>
                 </div>
