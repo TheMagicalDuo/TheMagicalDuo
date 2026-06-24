@@ -15,37 +15,7 @@ const WhatsAppIcon = ({ size = 24, className }) => (
   </svg>
 )
 
-const contacts = [
-  {
-    icon: InstagramIcon,
-    label: 'Instagram',
-    value: '@themagicalduo_',
-    sub: 'Seguinos y mantenete al día de todas nuestras novedades',
-    href: 'https://www.instagram.com/themagicalduo_',
-    color: 'bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400',
-    hoverBorder: 'hover:border-pink-500/40',
-  },
-  {
-    icon: WhatsAppIcon,
-    label: 'WhatsApp',
-    value: 'Abi: +54 9 11 6959-1710',
-    value2: 'Tobi: +54 9 11 5343-5751',
-    sub: 'Escribinos para planificar tu itinerario personalizado.',
-    href: 'https://wa.me/5491169591710?text=Hola!%20Quiero%20planificar%20un%20viaje',
-    href2: 'https://wa.me/5491153435751?text=Hola!%20Quiero%20planificar%20un%20viaje',
-    color: 'bg-emerald-500',
-    hoverBorder: 'hover:border-emerald-500/40',
-  },
-  {
-    icon: Mail,
-    label: 'Email',
-    value: 'themagicalduo.agentes@gmail.com',
-    sub: 'Envianos tus consultas detalladas por correo',
-    href: 'mailto:themagicalduo.agentes@gmail.com',
-    color: 'bg-bordeaux',
-    hoverBorder: 'hover:border-bordeaux/40',
-  },
-]
+// Replaced contact cards with minimalist links
 
 export default function Footer() {
   return (
@@ -59,86 +29,72 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
-        {/* CTA Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-cream mb-5 leading-tight">
-            ¿Listo para hacer realidad <span className="italic font-normal text-terracota">tu viaje soñado?</span>
-          </h2>
-          <p className="text-white/60 text-lg max-w-xl mx-auto font-medium">
-            Estamos disponibles para responder tus preguntas y acompañarte. ¡Escribinos hoy mismo!
-          </p>
-        </motion.div>
-
-        {/* Contact channels */}
-        <div className="grid sm:grid-cols-3 gap-6 lg:gap-8 mb-16">
-          {contacts.map((c, i) => (
-            <motion.div
-              key={c.label}
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-16 mb-24">
+          <div className="max-w-2xl">
+            <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.1 }}
-              className={`bg-white/5 border border-white/10 rounded-3xl p-7 transition-all duration-300 ${c.hoverBorder} hover:bg-white/10 flex flex-col justify-between group`}
+              transition={{ duration: 0.6 }}
+              className="font-serif text-6xl sm:text-7xl lg:text-8xl font-bold text-cream leading-[1.05] tracking-tight mb-10"
             >
-              <div>
-                <div className={`w-12 h-12 rounded-2xl ${c.color} flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-105`}>
-                  <c.icon size={20} className="text-white" />
-                </div>
-                <p className="text-white/40 text-[10px] font-bold uppercase tracking-wider mb-2">{c.label}</p>
+              Empecemos tu <span className="italic font-light text-terracota">viaje.</span>
+            </motion.h2>
+            <motion.a 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              href="#cotizar" 
+              className="inline-flex items-center justify-center gap-3 bg-white text-dark px-10 py-5 rounded-full font-bold text-[13px] tracking-[0.2em] uppercase hover:bg-cream hover:-translate-y-1 transition-all duration-300"
+            >
+              Solicitar Cotización <ArrowRight size={18} />
+            </motion.a>
+          </div>
 
-                {c.href2 ? (
-                  <div className="space-y-2 mb-4">
-                    <a href={c.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-white font-bold text-base hover:text-terracota transition-colors">
-                      {c.value}
-                      <ArrowRight size={14} className="opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-terracota" />
-                    </a>
-                    <a href={c.href2} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-white font-bold text-base hover:text-terracota transition-colors">
-                      {c.value2}
-                      <ArrowRight size={14} className="opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-terracota" />
-                    </a>
-                  </div>
-                ) : (
-                  <a href={c.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-white font-bold text-base mb-4 hover:text-terracota transition-colors break-all">
-                    {c.value}
-                    <ArrowRight size={14} className="opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 text-terracota shrink-0" />
-                  </a>
-                )}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex flex-col gap-10 lg:text-right"
+          >
+            <div>
+              <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-3">Email</p>
+              <a href="mailto:themagicalduo.agentes@gmail.com" className="text-xl sm:text-2xl font-serif text-white hover:text-terracota transition-colors">themagicalduo.agentes@gmail.com</a>
+            </div>
+            <div>
+              <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-3">WhatsApp</p>
+              <div className="flex flex-col lg:items-end gap-2">
+                <a href="https://wa.me/5491169591710" className="text-xl sm:text-2xl font-serif text-white hover:text-terracota transition-colors">Abi: +54 9 11 6959-1710</a>
+                <a href="https://wa.me/5491153435751" className="text-xl sm:text-2xl font-serif text-white hover:text-terracota transition-colors">Tobi: +54 9 11 5343-5751</a>
               </div>
-
-              <p className="text-white/50 text-xs leading-relaxed border-t border-white/5 pt-4">{c.sub}</p>
-            </motion.div>
-          ))}
+            </div>
+            <div>
+              <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-3">Social</p>
+              <a href="https://www.instagram.com/themagicalduo_" target="_blank" rel="noopener noreferrer" className="text-xl sm:text-2xl font-serif text-white hover:text-terracota transition-colors flex items-center lg:justify-end gap-2">
+                Instagram <ArrowRight size={16} className="-rotate-45" />
+              </a>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-white/10 pt-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <img
-                src="/logo/logo-redondo-sin-borde.png"
-                alt="The Magical Duo"
-                className="h-12 w-auto"
-              />
-              <span className="font-serif font-bold text-lg text-cream tracking-wide">The Magical Duo</span>
-            </div>
-            <p className="text-white/40 text-xs sm:text-sm flex items-center gap-1.5 font-medium">
-              Hecho con <Heart size={12} className="text-bordeaux fill-bordeaux" /> para viajeros soñadores · © 2026 The Magical Duo
-            </p>
-            <a
-              href="https://www.instagram.com/themagicalduo_"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/40 text-sm hover:text-white transition-colors font-semibold"
-            >
-              @themagicalduo_
-            </a>
-          </div>
+        {/* Huge Brand Text spanning the width */}
+        <div className="w-full flex justify-center border-t border-white/10 pt-16 mb-10 overflow-hidden">
+          <motion.h1 
+            initial={{ y: 40, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-[12vw] lg:text-[14vw] font-serif font-black text-white/5 uppercase tracking-tighter leading-none select-none text-center"
+          >
+            THE MAGICAL DUO
+          </motion.h1>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-white/30 text-[11px] sm:text-xs font-bold tracking-widest uppercase">
+          <p>© 2026 The Magical Duo.</p>
+          <p className="flex items-center gap-2">Hecho con <Heart size={14} className="text-bordeaux fill-bordeaux" /> para viajeros soñadores</p>
         </div>
       </div>
     </footer>
