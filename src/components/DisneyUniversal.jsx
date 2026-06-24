@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { Check, Star, Sparkles, Globe, Zap } from 'lucide-react'
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 
 const disneyItems = [
   'Walt Disney World (Orlando)',
@@ -77,6 +79,8 @@ const columns = [
 ]
 
 export default function DisneyUniversal() {
+  const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start' }, [Autoplay({ delay: 4000, stopOnInteraction: true })])
+
   return (
     <section id="especialidad" className="py-20 lg:py-28 bg-white relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -102,68 +106,72 @@ export default function DisneyUniversal() {
           </p>
         </motion.div>
 
-        {/* Columns */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {columns.map((col, i) => (
-            <motion.div
-              key={col.title}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white border border-neutral-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-[0_20px_40px_rgba(140,42,66,0.1)] hover:border-bordeaux/20 transition-all duration-500 flex flex-col group relative"
-            >
-              {/* Glare effect on hover */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 -translate-x-[150%] group-hover:translate-x-[150%] transition-all duration-[1200ms] ease-in-out pointer-events-none z-30 mix-blend-overlay" />
-              
-              {/* Card Photo Header */}
-              <div className="h-44 relative overflow-hidden">
-                <img
-                  src={col.image}
-                  alt={col.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/40 to-transparent" />
-                <div className="absolute bottom-4 left-6 right-6 flex items-center justify-between text-white z-10">
-                  <div>
-                    <h3 className="font-serif font-bold text-2xl">{col.title}</h3>
-                    <p className="text-white/70 text-xs tracking-wide mt-0.5">{col.tagline}</p>
+        {/* Carousel */}
+        <motion.div 
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="overflow-hidden mb-16 cursor-grab active:cursor-grabbing" 
+          ref={emblaRef}
+        >
+          <div className="flex touch-pan-y -ml-4 sm:-ml-6 lg:-ml-8">
+            {columns.map((col, i) => (
+              <div key={col.title} className="flex-[0_0_85%] min-w-0 sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-4 sm:pl-6 lg:pl-8">
+                <div className="bg-white border border-neutral-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-[0_20px_40px_rgba(140,42,66,0.1)] hover:border-bordeaux/20 transition-all duration-500 flex flex-col group relative h-full">
+                  {/* Glare effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 -translate-x-[150%] group-hover:translate-x-[150%] transition-all duration-[1200ms] ease-in-out pointer-events-none z-30 mix-blend-overlay" />
+                  
+                  {/* Card Photo Header */}
+                  <div className="h-44 relative overflow-hidden shrink-0">
+                    <img
+                      src={col.image}
+                      alt={col.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/40 to-transparent" />
+                    <div className="absolute bottom-4 left-6 right-6 flex items-center justify-between text-white z-10">
+                      <div>
+                        <h3 className="font-serif font-bold text-2xl">{col.title}</h3>
+                        <p className="text-white/70 text-xs tracking-wide mt-0.5">{col.tagline}</p>
+                      </div>
+                      <div className="w-10 h-10 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/20">
+                        <col.Icon size={18} className="text-white" />
+                      </div>
+                    </div>
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/20">
-                    <col.Icon size={18} className="text-white" />
+
+                  {/* Card Content */}
+                  <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                    <div>
+                      <p className="text-[11px] font-semibold text-dark/40 uppercase tracking-wider mb-3">Destinos y servicios</p>
+                      <ul className="space-y-3 mb-6">
+                        {col.items.map(item => (
+                          <li key={item} className="flex items-start gap-2.5 text-sm text-dark/70">
+                            <div className={`w-1.5 h-1.5 rounded-full ${col.dotColor} mt-2 shrink-0`} />
+                            <span className="font-medium">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="border-t border-neutral-100 pt-5 mt-auto">
+                      <p className="text-[11px] font-semibold text-dark/40 uppercase tracking-wider mb-3">Tu viaje incluye</p>
+                      <ul className="space-y-2.5">
+                        {col.includes.map(item => (
+                          <li key={item} className="flex items-start gap-2.5 text-xs text-dark/65">
+                            <Check size={14} className="text-sage mt-0.5 shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              {/* Card Content */}
-              <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
-                <div>
-                  <p className="text-[11px] font-semibold text-dark/40 uppercase tracking-wider mb-3">Destinos y servicios</p>
-                  <ul className="space-y-3 mb-6">
-                    {col.items.map(item => (
-                      <li key={item} className="flex items-start gap-2.5 text-sm text-dark/70">
-                        <div className={`w-1.5 h-1.5 rounded-full ${col.dotColor} mt-2 shrink-0`} />
-                        <span className="font-medium">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="border-t border-neutral-100 pt-5">
-                  <p className="text-[11px] font-semibold text-dark/40 uppercase tracking-wider mb-3">Tu viaje incluye</p>
-                  <ul className="space-y-2.5">
-                    {col.includes.map(item => (
-                      <li key={item} className="flex items-start gap-2.5 text-xs text-dark/65">
-                        <Check size={14} className="text-sage mt-0.5 shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Exclusive advantage (Caja destacada) */}
         <motion.div

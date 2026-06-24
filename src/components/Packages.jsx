@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Waves, Sparkles, Anchor, Sun, Zap } from 'lucide-react'
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 
 const WhatsAppIcon = ({ size = 24, className }) => (
   <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -29,6 +31,7 @@ const getPackageImage = (pkg) => {
 
 export default function Packages() {
   const [activeTab, setActiveTab] = useState('todos')
+  const [emblaRef] = useEmblaCarousel({ loop: false, align: 'start' }, [Autoplay({ delay: 3500, stopOnInteraction: true })])
 
   const filteredPackages = packages.filter(pkg => {
     const title = pkg.title.toLowerCase()
@@ -88,26 +91,28 @@ export default function Packages() {
           ))}
         </div>
 
-        {/* Grid of cards */}
+        {/* Grid of cards -> Carousel */}
         <motion.div
           layout
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="overflow-hidden cursor-grab active:cursor-grabbing pb-8"
+          ref={emblaRef}
         >
-          <AnimatePresence mode="popLayout">
-            {filteredPackages.map((pkg, i) => {
-              const Icon = iconMap[pkg.iconName] ?? Anchor
-              const imagePath = getPackageImage(pkg)
-              return (
-                <motion.div
-                  layout
-                  key={pkg.id}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4 }}
-                  whileHover={{ y: -8 }}
-                  className="bg-white rounded-3xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-[0_20px_40px_rgba(140,42,66,0.1)] hover:border-bordeaux/20 transition-all duration-500 flex flex-col group relative"
-                >
+          <div className="flex touch-pan-y -ml-4 sm:-ml-6 lg:-ml-8">
+            <AnimatePresence mode="popLayout">
+              {filteredPackages.map((pkg, i) => {
+                const Icon = iconMap[pkg.iconName] ?? Anchor
+                const imagePath = getPackageImage(pkg)
+                return (
+                  <motion.div
+                    layout
+                    key={pkg.id}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.4 }}
+                    className="flex-[0_0_85%] min-w-0 sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-4 sm:pl-6 lg:pl-8"
+                  >
+                    <div className="bg-white rounded-3xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-[0_20px_40px_rgba(140,42,66,0.1)] hover:border-bordeaux/20 transition-all duration-500 flex flex-col group relative h-full">
                   {/* Glare effect on hover */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 -translate-x-[150%] group-hover:translate-x-[150%] transition-all duration-[1200ms] ease-in-out pointer-events-none z-30 mix-blend-overlay" />
                   
@@ -160,10 +165,12 @@ export default function Packages() {
                       </a>
                     </div>
                   </div>
-                </motion.div>
+                </div>
+              </motion.div>
               )
             })}
           </AnimatePresence>
+          </div>
         </motion.div>
 
         {/* Personalized Trip CTA footer */}

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { MapPin, Heart, Check } from 'lucide-react'
+import { MapPin, Heart, Sparkles, Clock } from 'lucide-react'
 
 const destPhotos = [
   { image: '/destinations/disney.png', label: 'Magic Kingdom', angle: 'rotate-[1.5deg]' },
@@ -77,47 +77,50 @@ export default function AboutUs() {
           >
             <div className="inline-flex items-center gap-2 border border-bordeaux/25 text-bordeaux bg-bordeaux/5 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-6">
               <Heart size={12} fill="currentColor" className="text-bordeaux" />
-              Sobre nosotros
+              Conocenos
             </div>
 
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-dark mb-4 leading-tight">
-              Hola, somos <span className="italic font-normal text-bordeaux">Tobías & Abril</span>
+            <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-dark mb-4 leading-tight">
+              Hola, somos <span className="italic font-normal text-bordeaux">Tobi & Abi</span>
             </h2>
-            <p className="text-dark/40 font-bold text-xs uppercase tracking-wider mb-7">
-              Agentes de Viajes Certificados · Buenos Aires, Argentina
+            <p className="text-dark/40 font-bold text-xs uppercase tracking-wider mb-10">
+              Agentes de Viajes Certificados · Buenos Aires
             </p>
 
-            <div className="space-y-6 text-dark/75 leading-loose text-[0.95rem] font-medium">
-              <p>
-                Somos una pareja apasionada por explorar el mundo y hacer realidad los viajes de quienes confían en nosotros. Hace un año creamos <strong className="text-dark font-bold text-base">The Magical Duo</strong> con una misión muy clara.
-              </p>
-              
-              <ul className="space-y-4 my-6">
-                <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-bordeaux/10 text-bordeaux flex items-center justify-center shrink-0 mt-1">
-                    <Check size={14} strokeWidth={3} />
-                  </div>
-                  <span><strong className="text-dark">100% Personalizado:</strong> No somos un portal automático; diseñamos tu itinerario a la medida de tu familia.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-terracota/10 text-terracota flex items-center justify-center shrink-0 mt-1">
-                    <Check size={14} strokeWidth={3} />
-                  </div>
-                  <span><strong className="text-dark">Atención Honesta:</strong> Te compartimos nuestros atajos, secretos y cuidamos tu presupuesto.</span>
-                </li>
-              </ul>
-
-              <div className="bg-white border border-neutral-100 shadow-sm p-6 rounded-2xl relative mt-8">
-                <div className="absolute -top-3 -left-3 text-terracota opacity-20">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            <div className="grid sm:grid-cols-2 gap-4 mb-10">
+              <div className="bg-white p-5 rounded-3xl border border-neutral-100 shadow-sm flex flex-col gap-3 hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-full bg-bordeaux/10 text-bordeaux flex items-center justify-center">
+                  <Sparkles size={18} />
                 </div>
-                <p className="text-dark/90 italic font-serif text-[1.1rem] leading-relaxed relative z-10">
-                  "Nuestra experiencia no termina cuando comprás el paquete. Estamos disponibles 24/7 para acompañarte desde la primera consulta hasta que llegás a casa."
-                </p>
+                <div>
+                  <h3 className="font-bold text-dark mb-1">Viajes a Medida</h3>
+                  <p className="text-dark/60 text-sm leading-relaxed">Itinerarios únicos diseñados a la medida de tu familia. Cero plantillas automáticas.</p>
+                </div>
+              </div>
+
+              <div className="bg-white p-5 rounded-3xl border border-neutral-100 shadow-sm flex flex-col gap-3 hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-full bg-terracota/10 text-terracota flex items-center justify-center">
+                  <Heart size={18} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-dark mb-1">Honestidad Real</h3>
+                  <p className="text-dark/60 text-sm leading-relaxed">Te compartimos atajos, secretos y cuidamos tu presupuesto para que aproveches al máximo.</p>
+                </div>
+              </div>
+
+              <div className="bg-white p-6 rounded-3xl border border-neutral-100 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:col-span-2 relative overflow-hidden hover:shadow-md transition-shadow">
+                <div className="absolute right-0 top-0 w-32 h-32 bg-sage/5 rounded-full blur-3xl pointer-events-none" />
+                <div className="w-12 h-12 rounded-full bg-sage/10 text-sage flex items-center justify-center shrink-0">
+                  <Clock size={22} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-dark mb-1">Acompañamiento 24/7</h3>
+                  <p className="text-dark/60 text-sm leading-relaxed">No nos borramos al vender. Estamos disponibles por WhatsApp antes, durante y después del viaje.</p>
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 mt-10">
+            <div className="flex flex-col sm:flex-row gap-4 mt-2">
               <a
                 href="https://www.instagram.com/themagicalduo_"
                 target="_blank"

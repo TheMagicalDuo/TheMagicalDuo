@@ -5,10 +5,10 @@ import Logo from './Logo'
 
 const navLinks = [
   { id: 'inicio', label: 'Inicio', href: '#inicio' },
+  { id: 'nosotros', label: 'Nosotros', href: '#nosotros' },
   { id: 'especialidad', label: 'Disney & Universal', href: '#especialidad' },
   { id: 'cruceros', label: 'Cruceros', href: '#cruceros' },
   { id: 'paquetes', label: 'Paquetes', href: '#paquetes' },
-  { id: 'nosotros', label: 'Nosotros', href: '#nosotros' },
 ]
 
 export default function Navbar() {
@@ -131,8 +131,8 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className={`lg:hidden p-2 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
+            onClick={() => setMenuOpen(prev => !prev)}
+            className={`lg:hidden p-2 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center relative z-50 ${
               scrolled ? 'text-dark bg-neutral-100 hover:bg-neutral-200' : 'text-white bg-white/10 hover:bg-white/20'
             }`}
             aria-label="Menú"
@@ -146,11 +146,11 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-[110%] left-0 right-0 bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] border border-neutral-100 overflow-hidden lg:hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="absolute top-[110%] left-0 right-0 bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] border border-neutral-100 overflow-hidden lg:hidden z-40"
           >
             <div className="flex flex-col gap-2 p-6">
               {navLinks.map(link => {
