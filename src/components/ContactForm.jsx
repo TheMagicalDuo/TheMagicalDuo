@@ -212,6 +212,7 @@ function CustomSelect({ options, value, onChange, placeholder, hasError }) {
 }
 
 export default function ContactForm() {
+  const [step, setStep] = useState(1)
   const [form, setForm] = useState({
     nombre: '', email: '', telefono: '', destino: '',
     fechas: '', pasajeros: '', presupuesto: '', comentarios: '',
@@ -221,17 +222,6 @@ export default function ContactForm() {
   const [edades, setEdades] = useState('')
   const [status, setStatus] = useState('idle') // idle | sending | success
   const [errors, setErrors] = useState({})
-
-  const validate = () => {
-    const e = {}
-    if (!form.nombre.trim()) e.nombre = 'Obligatorio'
-    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Email inválido'
-    if (!form.telefono.trim()) e.telefono = 'Obligatorio'
-    if (!form.destino) e.destino = 'Seleccioná un destino arriba'
-    if (!form.fechas) e.fechas = 'Obligatorio'
-    if (!form.pasajeros) e.pasajeros = 'Obligatorio'
-    return e
-  }
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -247,12 +237,43 @@ export default function ContactForm() {
   const selectDestino = (destId) => {
     setForm(f => ({ ...f, destino: destId }))
     if (errors.destino) setErrors(ev => ({ ...ev, destino: undefined }))
+    // Auto-advance after a small delay
+    setTimeout(() => {
+      setStep(2)
+      setErrors({})
+    }, 400)
+  }
+
+  const validateStep2 = () => {
+    const e = {}
+    if (!form.fechas) e.fechas = 'Obligatorio'
+    if (!form.pasajeros) e.pasajeros = 'Obligatorio'
+    if (Object.keys(e).length > 0) {
+      setErrors(e)
+      return false
+    }
+    return true
+  }
+
+  const validateStep3 = () => {
+    const e = {}
+    if (!form.nombre.trim()) e.nombre = 'Obligatorio'
+    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Email inválido'
+    if (!form.telefono.trim()) e.telefono = 'Obligatorio'
+    if (Object.keys(e).length > 0) {
+      setErrors(e)
+      return false
+    }
+    return true
+  }
+
+  const handleNext = () => {
+    if (step === 2 && validateStep2()) setStep(3)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const errs = validate()
-    if (Object.keys(errs).length) { setErrors(errs); return }
+    if (!validateStep3()) return
 
     setStatus('sending')
 
@@ -271,6 +292,7 @@ export default function ContactForm() {
 
     setTimeout(() => {
       setStatus('success')
+      setStep(1)
       setForm({ nombre: '', email: '', telefono: '', destino: '', fechas: '', pasajeros: '', presupuesto: '', comentarios: '' })
       setHayChicos(false)
       setFechasFlexibles(false)
@@ -279,7 +301,7 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="cotizar" className="py-20 lg:py-28 bg-cream relative overflow-hidden">
+    <section id="cotizar" className="py-20 lg:py-28 bg-[#FBF8F3]/50 border-t border-neutral-100 relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
@@ -288,213 +310,252 @@ export default function ContactForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <div className="inline-flex items-center gap-2 text-terracota text-xs font-bold uppercase tracking-[0.2em] mb-6">
-            <Sparkles size={14} />
-            Es gratis y sin compromiso
+          <div className="inline-flex items-center gap-2 border border-terracota/25 text-terracota bg-terracota/5 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-5">
+            <Sparkles size={14} className="animate-pulse" />
+            Sin compromiso de compra
           </div>
-          <h2 className="text-5xl sm:text-6xl font-serif text-dark mb-6">
-            Cotizá tu <span className="italic font-light text-terracota">viaje</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-dark mb-4 leading-tight">
+            Empecemos a <span className="italic font-normal text-terracota">planear</span>
           </h2>
-          <p className="text-dark/60 text-lg font-light">
-            Completá el formulario y te escribo por WhatsApp con todos los detalles.
+          <p className="text-dark/60 text-lg max-w-xl mx-auto">
+            Completá estos rápidos pasos y nos pondremos en contacto con una propuesta a medida.
           </p>
         </motion.div>
+
+        {/* Wizard Progress */}
+        {status !== 'success' && (
+          <div className="flex justify-between items-center mb-10 max-w-md mx-auto relative px-2">
+            <div className="absolute top-1/2 left-0 right-0 h-1 bg-neutral-200 -translate-y-1/2 z-0 rounded-full" />
+            <motion.div 
+              className="absolute top-1/2 left-0 h-1 bg-bordeaux -translate-y-1/2 z-0 rounded-full transition-all duration-500 ease-out"
+              style={{ width: step === 1 ? '0%' : step === 2 ? '50%' : '100%' }}
+            />
+            
+            {[1, 2, 3].map(s => (
+              <div 
+                key={s} 
+                className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-500 ${
+                  step >= s ? 'bg-bordeaux text-white shadow-lg shadow-bordeaux/20' : 'bg-white text-dark/30 border-2 border-neutral-200'
+                }`}
+              >
+                {step > s ? <CheckCircle size={18} /> : s}
+              </div>
+            ))}
+          </div>
+        )}
 
         <AnimatePresence mode="wait">
           {status === 'success' ? (
             <motion.div
+              key="success"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-white rounded-[2rem] p-10 sm:p-14 text-center shadow-xl shadow-black/5"
+              className="bg-white rounded-3xl p-10 sm:p-14 text-center shadow-2xl shadow-black/5 border border-neutral-100"
             >
-              <CheckCircle size={64} className="text-sage mx-auto mb-6" />
+              <div className="w-24 h-24 bg-sage/10 rounded-full flex items-center justify-center mx-auto mb-8">
+                <CheckCircle size={48} className="text-sage" />
+              </div>
               <h3 className="font-serif text-3xl font-bold text-dark mb-4">¡Te estamos esperando en WhatsApp!</h3>
               <p className="text-dark/60 text-lg leading-relaxed mb-8 max-w-lg mx-auto">
-                Abrimos la ventana de chat para que nos mandes tu consulta. Abi o Tobi te responderán a la brevedad.
+                Abrimos la ventana de chat para que nos mandes tu consulta. Abi o Tobi te responderán a la brevedad con toda la información.
               </p>
               <button
                 onClick={() => setStatus('idle')}
                 className="text-bordeaux font-bold text-sm tracking-widest uppercase hover:text-bordeaux/80 transition-colors"
               >
-                ENVIAR OTRA CONSULTA
+                Hacer otra consulta
               </button>
             </motion.div>
           ) : (
-            <motion.form
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              onSubmit={handleSubmit}
-              className="space-y-10"
+            <motion.div
+              key={step}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl shadow-black/5 border border-neutral-100"
             >
               
-              {/* Destinations Grid */}
-              <div className="relative z-0">
-                <label className="block text-sm font-bold text-dark/50 uppercase tracking-widest mb-4 text-center sm:text-left">
-                  ¿A dónde querés ir?
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                  {destinations.map(d => {
-                    const isSelected = form.destino === d.id
-                    const Icon = d.icon
-                    return (
-                      <button
-                        type="button"
-                        key={d.id}
-                        onClick={() => selectDestino(d.id)}
-                        className={`flex flex-col items-center justify-center p-4 rounded-2xl transition-all duration-300 border-2 ${
-                          isSelected 
-                            ? 'bg-white border-bordeaux shadow-lg shadow-bordeaux/10 scale-[1.02]' 
-                            : 'bg-white border-transparent shadow-sm hover:shadow-md hover:border-neutral-200 text-dark/70'
-                        }`}
-                      >
-                        <Icon size={32} strokeWidth={1.5} className={`mb-3 transition-colors ${isSelected ? 'text-bordeaux' : 'text-dark/40'}`} />
-                        <span className={`text-[11px] sm:text-xs font-bold tracking-widest uppercase text-center ${isSelected ? 'text-dark' : 'text-dark/60'}`}>
-                          {d.label}
-                        </span>
-                      </button>
-                    )
-                  })}
+              {/* STEP 1: DESTINATION */}
+              {step === 1 && (
+                <div className="space-y-6 relative z-0">
+                  <div className="text-center mb-8">
+                    <h3 className="font-serif text-2xl font-bold text-dark mb-2">¿A dónde querés viajar?</h3>
+                    <p className="text-dark/50 text-sm">Seleccioná tu destino principal para empezar</p>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                    {destinations.map(d => {
+                      const isSelected = form.destino === d.id
+                      const Icon = d.icon
+                      return (
+                        <button
+                          type="button"
+                          key={d.id}
+                          onClick={() => selectDestino(d.id)}
+                          className={`flex flex-col items-center justify-center p-5 rounded-2xl transition-all duration-300 border-2 ${
+                            isSelected 
+                              ? 'bg-bordeaux/5 border-bordeaux shadow-md shadow-bordeaux/10 scale-105' 
+                              : 'bg-white border-neutral-100 shadow-sm hover:border-neutral-300 text-dark/70 hover:text-dark'
+                          }`}
+                        >
+                          <Icon size={32} strokeWidth={1.5} className={`mb-3 transition-colors ${isSelected ? 'text-bordeaux' : 'text-dark/40'}`} />
+                          <span className={`text-[11px] sm:text-xs font-bold tracking-widest uppercase text-center ${isSelected ? 'text-bordeaux' : 'text-dark/60'}`}>
+                            {d.label}
+                          </span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                  {errors.destino && <p className="text-red-500 text-sm font-bold text-center mt-4">{errors.destino}</p>}
                 </div>
-                {errors.destino && <p className="text-red-500 text-xs font-bold mt-3 text-center sm:text-left">{errors.destino}</p>}
-              </div>
+              )}
 
-              {/* General Fields */}
-              <div className="grid sm:grid-cols-2 gap-6 pt-4 relative z-20">
-                <div>
-                  <label className={labelClass}>Tu nombre *</label>
-                  <input name="nombre" value={form.nombre} onChange={handleChange} placeholder="Ej: María" className={fieldClass} />
-                  {errors.nombre && <p className="text-red-500 text-[10px] uppercase font-bold mt-1.5">{errors.nombre}</p>}
-                </div>
-                <div>
-                  <label className={labelClass}>Tu celular (Para contactarte) *</label>
-                  <input name="telefono" value={form.telefono} onChange={handleChange} placeholder="Ej: +54 9 11 1234-5678" className={fieldClass} />
-                  {errors.telefono && <p className="text-red-500 text-[10px] uppercase font-bold mt-1.5">{errors.telefono}</p>}
-                </div>
-              </div>
+              {/* STEP 2: TRIP DETAILS */}
+              {step === 2 && (
+                <div className="space-y-8">
+                  <div className="text-center mb-8">
+                    <h3 className="font-serif text-2xl font-bold text-dark mb-2">Detalles del Viaje</h3>
+                    <p className="text-dark/50 text-sm">Contanos un poco más sobre tu idea</p>
+                  </div>
 
-              <div className="grid sm:grid-cols-2 gap-6 relative z-30">
-                <div>
-                  <label className={labelClass}>¿En qué mes pensás viajar? *</label>
-                  <MonthPicker 
-                    value={form.fechas} 
-                    onChange={(v) => handleSelect('fechas', v)} 
-                    placeholder="Seleccioná un mes"
-                    hasError={!!errors.fechas}
-                  />
-                  {errors.fechas && <p className="text-red-500 text-[10px] uppercase font-bold mt-1.5">{errors.fechas}</p>}
-                  
-                  {/* Fechas flexibles checkbox */}
-                  <div className="mt-3">
-                    <label className="flex items-center gap-2.5 cursor-pointer group w-fit">
-                      <div className={`w-5 h-5 rounded flex items-center justify-center transition-colors ${fechasFlexibles ? 'bg-sage border-sage' : 'bg-transparent border border-neutral-300 group-hover:border-sage'}`}>
-                        {fechasFlexibles && <CheckCircle size={12} className="text-white" strokeWidth={3} />}
-                      </div>
-                      <span className="text-[11px] font-bold text-dark/50 uppercase tracking-widest">
-                        Mis fechas son flexibles
-                      </span>
-                      <input 
-                        type="checkbox" 
-                        className="hidden" 
-                        checked={fechasFlexibles} 
-                        onChange={(e) => setFechasFlexibles(e.target.checked)} 
+                  <div className="grid sm:grid-cols-2 gap-6 relative z-30">
+                    <div>
+                      <label className={labelClass}>¿En qué mes pensás viajar? *</label>
+                      <MonthPicker 
+                        value={form.fechas} 
+                        onChange={(v) => handleSelect('fechas', v)} 
+                        placeholder="Seleccioná un mes"
+                        hasError={!!errors.fechas}
                       />
-                    </label>
-                  </div>
-                </div>
-
-                <div>
-                  <label className={labelClass}>¿Cuántas personas son? *</label>
-                  <CustomSelect 
-                    options={passengersList} 
-                    value={form.pasajeros} 
-                    onChange={(v) => handleSelect('pasajeros', v)} 
-                    placeholder="Seleccioná la cantidad"
-                    hasError={!!errors.pasajeros}
-                  />
-                  {errors.pasajeros && <p className="text-red-500 text-[10px] uppercase font-bold mt-1.5">{errors.pasajeros}</p>}
-                </div>
-              </div>
-
-              {/* Dynamic Kids Fields */}
-              <div className="bg-white/50 rounded-2xl p-4 sm:p-5 border border-neutral-100 flex flex-col gap-4 relative z-10">
-                <label className="flex items-center gap-3 cursor-pointer group w-fit">
-                  <div className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${hayChicos ? 'bg-bordeaux' : 'bg-white border border-neutral-300 group-hover:border-bordeaux'}`}>
-                    {hayChicos && <CheckCircle size={14} className="text-white" strokeWidth={3} />}
-                  </div>
-                  <span className="text-xs font-bold text-dark/60 uppercase tracking-widest">
-                    Sí, hay chicos en el grupo
-                  </span>
-                  <input 
-                    type="checkbox" 
-                    className="hidden" 
-                    checked={hayChicos} 
-                    onChange={(e) => setHayChicos(e.target.checked)} 
-                  />
-                </label>
-
-                <AnimatePresence>
-                  {hayChicos && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="pt-2">
-                        <label className={labelClass}>¿Qué edades tienen?</label>
-                        <input value={edades} onChange={(e) => setEdades(e.target.value)} placeholder="Ej: 8 y 5 años" className={fieldClass} />
+                      {errors.fechas && <p className="text-red-500 text-[10px] uppercase font-bold mt-1.5">{errors.fechas}</p>}
+                      <div className="mt-3">
+                        <label className="flex items-center gap-2.5 cursor-pointer group w-fit">
+                          <div className={`w-5 h-5 rounded flex items-center justify-center transition-colors ${fechasFlexibles ? 'bg-sage border-sage' : 'bg-transparent border border-neutral-300 group-hover:border-sage'}`}>
+                            {fechasFlexibles && <CheckCircle size={12} className="text-white" strokeWidth={3} />}
+                          </div>
+                          <span className="text-[11px] font-bold text-dark/50 uppercase tracking-widest">
+                            Mis fechas son flexibles
+                          </span>
+                          <input type="checkbox" className="hidden" checked={fechasFlexibles} onChange={(e) => setFechasFlexibles(e.target.checked)} />
+                        </label>
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                    </div>
 
-              <div className="grid sm:grid-cols-2 gap-6 relative z-10">
-                <div>
-                  <label className={labelClass}>Tu Email *</label>
-                  <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="tu@email.com" className={fieldClass} />
-                  {errors.email && <p className="text-red-500 text-[10px] uppercase font-bold mt-1.5">{errors.email}</p>}
+                    <div>
+                      <label className={labelClass}>¿Cuántas personas son? *</label>
+                      <CustomSelect 
+                        options={passengersList} 
+                        value={form.pasajeros} 
+                        onChange={(v) => handleSelect('pasajeros', v)} 
+                        placeholder="Seleccioná la cantidad"
+                        hasError={!!errors.pasajeros}
+                      />
+                      {errors.pasajeros && <p className="text-red-500 text-[10px] uppercase font-bold mt-1.5">{errors.pasajeros}</p>}
+                    </div>
+                  </div>
+
+                  {/* Kids Fields */}
+                  <div className="bg-neutral-50 rounded-2xl p-5 border border-neutral-100 flex flex-col gap-4 relative z-10">
+                    <label className="flex items-center gap-3 cursor-pointer group w-fit">
+                      <div className={`w-6 h-6 rounded flex items-center justify-center transition-colors ${hayChicos ? 'bg-bordeaux' : 'bg-white border border-neutral-300 group-hover:border-bordeaux'}`}>
+                        {hayChicos && <CheckCircle size={14} className="text-white" strokeWidth={3} />}
+                      </div>
+                      <span className="text-xs font-bold text-dark/60 uppercase tracking-widest">
+                        Sí, hay menores en el grupo
+                      </span>
+                      <input type="checkbox" className="hidden" checked={hayChicos} onChange={(e) => setHayChicos(e.target.checked)} />
+                    </label>
+                    <AnimatePresence>
+                      {hayChicos && (
+                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                          <div className="pt-2">
+                            <label className={labelClass}>¿Qué edades tienen?</label>
+                            <input value={edades} onChange={(e) => setEdades(e.target.value)} placeholder="Ej: 8 y 5 años" className={fieldClass} />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  <div className="relative z-20">
+                    <label className={labelClass}>Presupuesto estimado <span className="lowercase font-normal opacity-70">(opcional)</span></label>
+                    <CustomSelect 
+                      options={budgetRanges} 
+                      value={form.presupuesto} 
+                      onChange={(v) => handleSelect('presupuesto', v)} 
+                      placeholder="Seleccioná un rango"
+                    />
+                  </div>
                 </div>
-                <div className="relative z-20">
-                  <label className={labelClass}>Presupuesto <span className="lowercase font-normal opacity-70">(opcional)</span></label>
-                  <CustomSelect 
-                    options={budgetRanges} 
-                    value={form.presupuesto} 
-                    onChange={(v) => handleSelect('presupuesto', v)} 
-                    placeholder="Seleccioná un rango"
-                  />
+              )}
+
+              {/* STEP 3: USER DATA */}
+              {step === 3 && (
+                <div className="space-y-6 relative z-10">
+                  <div className="text-center mb-8">
+                    <h3 className="font-serif text-2xl font-bold text-dark mb-2">Tus Datos</h3>
+                    <p className="text-dark/50 text-sm">Para enviarte la propuesta final</p>
+                  </div>
+                  
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <div>
+                      <label className={labelClass}>Tu nombre *</label>
+                      <input name="nombre" value={form.nombre} onChange={handleChange} placeholder="Ej: María" className={fieldClass} />
+                      {errors.nombre && <p className="text-red-500 text-[10px] uppercase font-bold mt-1.5">{errors.nombre}</p>}
+                    </div>
+                    <div>
+                      <label className={labelClass}>Tu celular *</label>
+                      <input name="telefono" value={form.telefono} onChange={handleChange} placeholder="Ej: +54 9 11 1234-5678" className={fieldClass} />
+                      {errors.telefono && <p className="text-red-500 text-[10px] uppercase font-bold mt-1.5">{errors.telefono}</p>}
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label className={labelClass}>Tu Email *</label>
+                    <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="tu@email.com" className={fieldClass} />
+                    {errors.email && <p className="text-red-500 text-[10px] uppercase font-bold mt-1.5">{errors.email}</p>}
+                  </div>
+
+                  <div>
+                    <label className={labelClass}>¿Algo más que quieras contarnos? <span className="lowercase font-normal opacity-70">(opcional)</span></label>
+                    <textarea
+                      name="comentarios"
+                      value={form.comentarios}
+                      onChange={handleChange}
+                      rows={3}
+                      placeholder="Ej: es el primer viaje de mis hijos, busco hotel dentro del parque..."
+                      className={`${fieldClass} resize-none`}
+                    />
+                  </div>
                 </div>
+              )}
+
+              {/* Wizard Navigation */}
+              <div className="flex justify-between items-center mt-10 pt-6 border-t border-neutral-100">
+                {step > 1 ? (
+                  <button type="button" onClick={() => setStep(s => s - 1)} className="text-dark/50 hover:text-dark font-bold text-xs tracking-widest uppercase transition-colors px-4 py-2 flex items-center gap-2">
+                    <ChevronLeft size={16} /> Atrás
+                  </button>
+                ) : (
+                  <div /> // Placeholder to keep Next button aligned right
+                )}
+
+                {step < 3 ? (
+                  <button type="button" onClick={step === 1 ? () => { if(!form.destino) setErrors({destino: 'Seleccioná un destino'}); else setStep(2) } : handleNext} className="bg-dark text-white px-8 py-3.5 rounded-full font-bold text-xs tracking-[0.15em] uppercase hover:bg-black transition-colors shadow-lg flex items-center gap-2">
+                    Continuar <ChevronRight size={16} />
+                  </button>
+                ) : (
+                  <button type="button" onClick={handleSubmit} disabled={status === 'sending'} className="bg-bordeaux text-white px-8 py-3.5 rounded-full font-bold text-xs tracking-[0.15em] uppercase hover:bg-bordeaux/90 transition-colors shadow-lg shadow-bordeaux/20 flex items-center gap-2">
+                    <WhatsAppIcon className="w-5 h-5" />
+                    {status === 'sending' ? 'Cargando...' : 'Finalizar'}
+                  </button>
+                )}
               </div>
 
-              <div className="relative z-0">
-                <label className={labelClass}>¿Algo más que quieras contarme? <span className="lowercase font-normal opacity-70">(opcional)</span></label>
-                <textarea
-                  name="comentarios"
-                  value={form.comentarios}
-                  onChange={handleChange}
-                  rows={4}
-                  placeholder="Ej: es el primer viaje de mis hijos, busco hotel dentro del parque..."
-                  className={`${fieldClass} resize-none`}
-                />
-              </div>
-
-              <div className="pt-4 relative z-0">
-                <button
-                  type="submit"
-                  disabled={status === 'sending'}
-                  className="w-full sm:w-auto mx-auto flex items-center justify-center gap-3 bg-bordeaux text-white px-10 py-5 rounded-full font-bold text-[15px] tracking-widest hover:bg-bordeaux/90 transition-all duration-300 disabled:opacity-75 shadow-xl shadow-bordeaux/20 hover:shadow-2xl hover:shadow-bordeaux/30 hover:-translate-y-1 uppercase"
-                >
-                  <WhatsAppIcon className="w-6 h-6" />
-                  {status === 'sending' ? 'Cargando...' : 'Quiero que me contacten'}
-                </button>
-              </div>
-
-            </motion.form>
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
