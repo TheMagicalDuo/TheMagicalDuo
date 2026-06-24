@@ -147,9 +147,9 @@ export default function Packages() {
                     </div>
 
                     <div className="border-t border-neutral-100 pt-5">
-                      <div className="flex items-center justify-between gap-2 mb-5">
-                        <span className="text-[11px] text-dark/50 font-semibold uppercase tracking-wider">Precio estimado</span>
-                        <span className="text-bordeaux font-bold text-xl font-serif">{pkg.price}</span>
+                      <div className="mb-5">
+                        <p className="text-[11px] text-dark/40 font-semibold uppercase tracking-wider mb-1">Precio estimado</p>
+                        <p className="text-bordeaux font-bold text-2xl font-serif">{pkg.price}</p>
                       </div>
 
                       <a
