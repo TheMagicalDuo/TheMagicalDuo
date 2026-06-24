@@ -1,5 +1,13 @@
 import { motion } from 'framer-motion'
-import { Instagram, Mail, Phone, ArrowUpRight } from 'lucide-react'
+import { Mail, Phone, ArrowUpRight } from 'lucide-react'
+
+const InstagramIcon = ({ size = 24, className }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+    <circle cx="12" cy="12" r="4"/>
+    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" strokeWidth="0"/>
+  </svg>
+)
 
 export default function Footer() {
   return (
@@ -62,7 +70,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
           <a href="https://instagram.com/themagicalduo" target="_blank" rel="noreferrer" className="flex items-center gap-2.5 text-dark/60 hover:text-bordeaux transition-colors text-sm font-medium group">
             <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center group-hover:bg-bordeaux/10 transition-colors">
-              <Instagram size={14} className="text-dark/40 group-hover:text-bordeaux" />
+              <InstagramIcon size={14} className="text-dark/40 group-hover:text-bordeaux" />
             </div>
             @themagicalduo
           </a>
