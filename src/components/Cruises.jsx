@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
-import { Anchor, Sparkles, Waves, Star, Music, Wind } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Anchor, Sparkles, Waves, Star, Music, Wind, X } from 'lucide-react'
 
 const cruises = [
   {
@@ -47,6 +48,8 @@ const cruises = [
 ]
 
 export default function Cruises() {
+  const [selectedCruise, setSelectedCruise] = useState(null)
+
   return (
     <section id="cruceros" className="py-20 lg:py-28 bg-[#FBF8F3]/40 border-y border-neutral-100/60 relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -80,7 +83,10 @@ export default function Cruises() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="bg-white rounded-2xl p-4 sm:p-7 border border-neutral-100 shadow-sm hover:shadow-xl hover:border-neutral-200/50 transition-all duration-300 flex flex-row sm:flex-col items-center sm:items-start text-left justify-between group gap-4 sm:gap-0"
+              onClick={() => {
+                if (window.innerWidth < 640) setSelectedCruise(c)
+              }}
+              className="bg-white rounded-2xl p-4 sm:p-7 border border-neutral-100 shadow-sm hover:shadow-xl hover:border-neutral-200/50 transition-all duration-300 flex flex-row sm:flex-col items-center sm:items-start text-left justify-between group gap-4 sm:gap-0 cursor-pointer sm:cursor-default"
             >
               <div className={`shrink-0 w-12 h-12 rounded-2xl ${c.bg} flex items-center justify-center sm:mb-6 transition-all duration-300 group-hover:scale-105`}>
                 <c.Icon size={20} className={`${c.color}`} />
@@ -124,6 +130,50 @@ export default function Cruises() {
             Consultar por mi crucero ideal
           </a>
         </motion.div>
+
+        {/* Mobile Popup Modal */}
+        <AnimatePresence>
+          {selectedCruise && (
+            <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:hidden">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedCruise(null)}
+                className="absolute inset-0 bg-dark/40 backdrop-blur-sm"
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="relative bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl overflow-hidden"
+              >
+                <button
+                  onClick={() => setSelectedCruise(null)}
+                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-neutral-100 text-dark/50 rounded-full"
+                >
+                  <X size={18} />
+                </button>
+                <div className={`w-14 h-14 rounded-2xl ${selectedCruise.bg} flex items-center justify-center mb-5`}>
+                  <selectedCruise.Icon size={24} className={selectedCruise.color} />
+                </div>
+                <h3 className="font-serif font-bold text-dark text-2xl mb-3">{selectedCruise.name}</h3>
+                <p className="text-dark/70 text-[0.95rem] leading-relaxed mb-6">
+                  {selectedCruise.desc}
+                </p>
+                <a
+                  href={`https://wa.me/5491169591710?text=Hola!%20Quiero%20consultar%20sobre%20${encodeURIComponent(selectedCruise.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-bordeaux text-white py-3.5 rounded-2xl font-bold text-sm"
+                >
+                  Consultar itinerarios
+                </a>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+
       </div>
     </section>
   )
