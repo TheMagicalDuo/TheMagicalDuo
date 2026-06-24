@@ -60,34 +60,33 @@ export default function Navbar() {
   const activeLabel = navLinks.find(l => l.id === activeSection)?.label || 'Inicio'
 
   return (
-    <nav className="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[96%] max-w-6xl transition-all duration-500">
-      <div 
-        className={`relative transition-all duration-700 w-full rounded-full px-4 sm:px-6 h-16 sm:h-[4.5rem] flex items-center justify-between ${
-          scrolled
-            ? 'bg-white/80 backdrop-blur-[20px] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40'
-            : 'bg-black/20 backdrop-blur-md border border-white/20'
-        }`}
-      >
+    <nav 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
+        scrolled 
+          ? 'bg-white/95 backdrop-blur-xl shadow-sm border-neutral-200/50 py-2' 
+          : 'bg-gradient-to-b from-dark/60 to-transparent border-transparent py-4 sm:py-6'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
+        
         {/* Logo */}
         <a href="#inicio" onClick={(e) => scrollToSection(e, '#inicio')} className="flex items-center group relative flex-shrink-0 z-10">
           <Logo
-            className={`h-20 sm:h-24 w-auto -my-6 sm:-my-8 translate-y-1 transition-all duration-300 group-hover:scale-105 ${
+            className={`h-16 sm:h-20 w-auto transition-all duration-300 group-hover:scale-105 ${
               scrolled ? 'text-bordeaux' : 'text-cream'
             }`}
           />
         </a>
 
         {/* Mobile Current Section Indicator */}
-        <div className="absolute left-1/2 -translate-x-1/2 flex lg:hidden items-center justify-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide gap-2 shadow-sm transition-colors duration-500 z-0
-          bg-white/90 border border-neutral-100 backdrop-blur-md text-bordeaux">
-          <span className="w-1.5 h-1.5 rounded-full bg-terracota animate-pulse" />
+        <div className={`absolute left-1/2 -translate-x-1/2 flex lg:hidden items-center justify-center text-[10px] uppercase font-bold tracking-[0.2em] transition-colors duration-500 z-0 ${
+          scrolled ? 'text-dark' : 'text-white/90'
+        }`}>
           {activeLabel}
         </div>
 
-        {/* Desktop Links (Nested Pill) */}
-        <div className={`hidden lg:flex items-center rounded-full px-2 py-1.5 transition-all duration-500 ${
-          scrolled ? 'bg-neutral-100/50 border border-neutral-200/50' : 'bg-black/20 border border-white/10'
-        }`}>
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center gap-8">
           {navLinks.map(link => {
             const isActive = activeSection === link.id
             return (
@@ -95,35 +94,34 @@ export default function Navbar() {
                 key={link.id}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className={`relative px-5 py-2 text-xs font-bold tracking-widest uppercase transition-colors duration-300 rounded-full ${
+                className={`relative py-2 text-xs font-bold tracking-[0.15em] uppercase transition-colors duration-300 ${
                   isActive 
-                    ? (scrolled ? 'text-white' : 'text-dark')
-                    : (scrolled ? 'text-dark/60 hover:text-bordeaux' : 'text-white/80 hover:text-white')
+                    ? (scrolled ? 'text-bordeaux' : 'text-white')
+                    : (scrolled ? 'text-dark/60 hover:text-dark' : 'text-white/70 hover:text-white')
                 }`}
               >
+                <span className="relative z-10">{link.label}</span>
                 {isActive && (
                   <motion.div
-                    layoutId="active-pill"
-                    className={`absolute inset-0 rounded-full shadow-sm ${scrolled ? 'bg-bordeaux' : 'bg-white'}`}
+                    layoutId="nav-underline"
+                    className={`absolute bottom-0 left-0 right-0 h-[2px] ${scrolled ? 'bg-bordeaux' : 'bg-white'}`}
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                    style={{ zIndex: -1 }}
                   />
                 )}
-                <span className="relative z-10">{link.label}</span>
               </a>
             )
           })}
         </div>
 
         {/* CTA & Mobile Toggle */}
-        <div className="flex items-center gap-3 z-10">
+        <div className="flex items-center gap-4 z-10">
           <a
             href="#cotizar"
             onClick={(e) => scrollToSection(e, '#cotizar')}
-            className={`hidden sm:flex px-6 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-md hover:-translate-y-1 ${
+            className={`hidden sm:flex px-7 py-3 rounded-sm border text-xs font-bold tracking-[0.15em] uppercase transition-all duration-300 ${
               scrolled 
-                ? 'bg-terracota text-white hover:bg-bordeaux shadow-terracota/20'
-                : 'bg-white text-dark hover:bg-white/90 shadow-black/20'
+                ? 'bg-dark text-white border-dark hover:bg-transparent hover:text-dark'
+                : 'bg-white text-dark border-white hover:bg-transparent hover:text-white'
             }`}
           >
             COTIZAR
@@ -132,12 +130,12 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMenuOpen(prev => !prev)}
-            className={`lg:hidden p-2 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center relative z-50 ${
-              scrolled ? 'text-dark bg-neutral-100 hover:bg-neutral-200' : 'text-white bg-white/10 hover:bg-white/20'
+            className={`lg:hidden p-2 transition-colors flex items-center justify-center relative z-50 ${
+              scrolled ? 'text-dark' : 'text-white'
             }`}
             aria-label="Menú"
           >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? <X size={28} strokeWidth={1.5} /> : <Menu size={28} strokeWidth={1.5} />}
           </button>
         </div>
       </div>
@@ -146,38 +144,48 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="absolute top-[110%] left-0 right-0 bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] border border-neutral-100 overflow-hidden lg:hidden z-40"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: '100vh' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="absolute top-full left-0 right-0 bg-white lg:hidden z-40 overflow-hidden"
           >
-            <div className="flex flex-col gap-2 p-6">
-              {navLinks.map(link => {
+            <div className="flex flex-col p-8 pt-12 h-full">
+              {navLinks.map((link, i) => {
                 const isActive = activeSection === link.id
                 return (
-                  <a
+                  <motion.a
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.05 + 0.1 }}
                     key={link.id}
                     href={link.href}
                     onClick={(e) => scrollToSection(e, link.href)}
-                    className={`py-3.5 px-5 rounded-2xl text-[15px] font-bold tracking-wide transition-all duration-200 flex items-center gap-3 ${
+                    className={`py-4 text-2xl font-serif transition-all duration-200 ${
                       isActive 
-                        ? 'bg-bordeaux/5 text-bordeaux border-l-4 border-bordeaux' 
-                        : 'text-dark/70 border-l-4 border-transparent hover:bg-neutral-50 hover:text-dark'
+                        ? 'text-bordeaux font-bold' 
+                        : 'text-dark/70 hover:text-dark'
                     }`}
                   >
                     {link.label}
-                  </a>
+                  </motion.a>
                 )
               })}
-              <hr className="border-neutral-100 my-2" />
-              <a
-                href="#cotizar"
-                onClick={(e) => scrollToSection(e, '#cotizar')}
-                className="w-full bg-terracota text-white px-6 py-4 rounded-2xl text-sm font-bold tracking-widest uppercase text-center hover:bg-bordeaux transition-colors shadow-lg shadow-terracota/20"
+              
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="mt-12"
               >
-                COTIZAR VIAJE
-              </a>
+                <a
+                  href="#cotizar"
+                  onClick={(e) => scrollToSection(e, '#cotizar')}
+                  className="w-full inline-block bg-dark text-white px-6 py-5 rounded-sm text-sm font-bold tracking-[0.2em] uppercase text-center hover:bg-dark/90 transition-colors"
+                >
+                  COTIZAR VIAJE
+                </a>
+              </motion.div>
             </div>
           </motion.div>
         )}
