@@ -75,12 +75,12 @@ export default function Packages() {
         </motion.div>
 
         {/* Category Tabs */}
-        <div className="flex justify-center mb-12 overflow-x-auto pb-3 hide-scrollbar gap-2 sm:gap-4">
+        <div className="flex justify-start md:justify-center mb-12 overflow-x-auto pb-4 hide-scrollbar gap-2 sm:gap-4 snap-x -mx-6 px-6 lg:mx-0 lg:px-0">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-300 ${
+              className={`snap-center shrink-0 px-5 py-2.5 rounded-full text-[13px] sm:text-sm font-semibold whitespace-nowrap transition-all duration-300 ${
                 activeTab === tab.id
                   ? 'bg-bordeaux text-white shadow-md shadow-bordeaux/15'
                   : 'bg-neutral-50 border border-neutral-200/50 text-dark/70 hover:bg-neutral-100 hover:text-dark'
