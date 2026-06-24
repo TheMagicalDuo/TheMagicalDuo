@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { MapPin, Heart } from 'lucide-react'
+import { MapPin, Heart, Check } from 'lucide-react'
 
 const destPhotos = [
   { image: '/destinations/disney.png', label: 'Magic Kingdom', angle: 'rotate-[1.5deg]' },
@@ -87,16 +87,34 @@ export default function AboutUs() {
               Agentes de Viajes Certificados · Buenos Aires, Argentina
             </p>
 
-            <div className="space-y-5 text-dark/75 leading-relaxed text-base font-medium">
+            <div className="space-y-6 text-dark/75 leading-loose text-[0.95rem] font-medium">
               <p>
-                Somos una pareja argentina apasionada por explorar el mundo y, sobre todo, por hacer realidad los viajes de quienes confían en nosotros.
+                Somos una pareja apasionada por explorar el mundo y hacer realidad los viajes de quienes confían en nosotros. Hace un año creamos <strong className="text-dark font-bold text-base">The Magical Duo</strong> con una misión muy clara.
               </p>
-              <p>
-                Hace un año creamos <strong className="text-dark font-bold">The Magical Duo</strong> con una misión clara: brindar una atención <strong className="text-bordeaux font-bold">100% personalizada, honesta y cercana</strong>. No somos un portal automático de reservas; nos involucramos en tu viaje de principio a fin.
-              </p>
-              <p className="text-dark/80 italic font-serif text-lg border-l-2 border-terracota/40 pl-4 py-1">
-                "Nuestra experiencia no termina cuando comprás el paquete. Estamos disponibles 24/7 para acompañarte desde la primera consulta hasta que llegás a casa."
-              </p>
+              
+              <ul className="space-y-4 my-6">
+                <li className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-bordeaux/10 text-bordeaux flex items-center justify-center shrink-0 mt-1">
+                    <Check size={14} strokeWidth={3} />
+                  </div>
+                  <span><strong className="text-dark">100% Personalizado:</strong> No somos un portal automático; diseñamos tu itinerario a la medida de tu familia.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-terracota/10 text-terracota flex items-center justify-center shrink-0 mt-1">
+                    <Check size={14} strokeWidth={3} />
+                  </div>
+                  <span><strong className="text-dark">Atención Honesta:</strong> Te compartimos nuestros atajos, secretos y cuidamos tu presupuesto.</span>
+                </li>
+              </ul>
+
+              <div className="bg-white border border-neutral-100 shadow-sm p-6 rounded-2xl relative mt-8">
+                <div className="absolute -top-3 -left-3 text-terracota opacity-20">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                </div>
+                <p className="text-dark/90 italic font-serif text-[1.1rem] leading-relaxed relative z-10">
+                  "Nuestra experiencia no termina cuando comprás el paquete. Estamos disponibles 24/7 para acompañarte desde la primera consulta hasta que llegás a casa."
+                </p>
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-10">

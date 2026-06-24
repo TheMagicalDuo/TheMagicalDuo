@@ -16,7 +16,7 @@ import CustomCursor from './components/CustomCursor'
 
 export default function App() {
   return (
-    <div className="min-h-screen font-sans text-dark bg-white cursor-none">
+    <main className="min-h-screen font-sans text-dark bg-white">
       <CustomCursor />
       <Navbar />
       <Hero />
@@ -32,6 +32,6 @@ export default function App() {
       <ContactForm />
       <WhyUs />
       <Footer />
-    </div>
+    </main>
   )
 }

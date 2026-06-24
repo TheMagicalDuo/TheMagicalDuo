@@ -71,9 +71,9 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Index Indicator (bottom left) */}
-        <div className="absolute bottom-10 left-8 sm:left-16 z-30 font-bold text-white text-2xl sm:text-4xl tracking-widest drop-shadow-md">
-          0{active + 1} <span className="text-white/40 text-lg sm:text-2xl font-light">/ 0{destinations.length}</span>
+        {/* Index Indicator */}
+        <div className="absolute bottom-28 sm:bottom-10 left-6 sm:left-16 z-30 font-bold text-white text-xl sm:text-4xl tracking-widest drop-shadow-md">
+          0{active + 1} <span className="text-white/40 text-sm sm:text-2xl font-light">/ 0{destinations.length}</span>
         </div>
 
         {/* 3D Coverflow Carousel */}
@@ -150,7 +150,8 @@ export default function Hero() {
         <div className="absolute left-2 sm:left-8 top-[60%] -translate-y-1/2 z-30">
            <button 
              onClick={handlePrev}
-             className="p-2 sm:p-4 rounded-full text-white/80 hover:text-white transition-all hidden sm:block hover:scale-110 active:scale-95"
+             aria-label="Destino anterior"
+             className="p-2 sm:p-4 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-white/80 hover:text-white transition-all hidden sm:block hover:scale-110 active:scale-95"
            >
              <ChevronLeft size={48} strokeWidth={1.5} />
            </button>
@@ -158,7 +159,8 @@ export default function Hero() {
         <div className="absolute right-2 sm:right-8 top-[60%] -translate-y-1/2 z-30">
            <button 
              onClick={handleNext}
-             className="p-2 sm:p-4 rounded-full text-white/80 hover:text-white transition-all hidden sm:block hover:scale-110 active:scale-95"
+             aria-label="Destino siguiente"
+             className="p-2 sm:p-4 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-white/80 hover:text-white transition-all hidden sm:block hover:scale-110 active:scale-95"
            >
              <ChevronRight size={48} strokeWidth={1.5} />
            </button>
@@ -169,9 +171,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="absolute bottom-10 right-8 sm:right-16 z-30"
+          className="absolute bottom-8 sm:bottom-10 left-6 right-6 sm:left-auto sm:right-16 z-30"
         >
-          <a href="#cotizar" className="px-8 py-4 bg-[#E07A5F] text-white rounded-full font-bold text-sm tracking-widest hover:bg-[#D46B50] transition-all shadow-xl hover:-translate-y-1 block">
+          <a href="#cotizar" className="flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-[#E07A5F] text-white rounded-full font-bold text-sm tracking-widest hover:bg-[#D46B50] transition-all shadow-xl hover:-translate-y-1 min-h-[44px]">
             COTIZAR VIAJE
           </a>
         </motion.div>
