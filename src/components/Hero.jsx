@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import MagicalParticles from './MagicalParticles'
 
 const destinations = [
   { id: 0, title: 'DISNEY WORLD - ORLANDO', subtitle: 'La magia te espera', image: '/destinations/disney.png' },
@@ -12,6 +11,10 @@ const destinations = [
 
 export default function Hero() {
   const [active, setActive] = useState(0)
+  
+  // Parallax effect
+  const { scrollY } = useScroll()
+  const backgroundY = useTransform(scrollY, [0, 1000], ['0%', '30%'])
 
   // Auto-play interval
   useEffect(() => {
@@ -33,7 +36,7 @@ export default function Hero() {
   return (
     <section id="inicio" className="relative h-screen w-full overflow-hidden bg-[#111] flex flex-col items-center justify-center">
       
-      {/* Background Image */}
+      {/* Background Image with Parallax */}
       <AnimatePresence mode="wait">
         <motion.img
           key={active}
@@ -42,14 +45,14 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute inset-0 w-full h-full object-cover scale-105"
+          style={{ y: backgroundY }}
+          className="absolute inset-0 w-full h-[130%] -top-[15%] object-cover"
         />
       </AnimatePresence>
       
       {/* Glassmorphism Overlay */}
       <div className="absolute inset-0 bg-black/20 backdrop-blur-lg z-0" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-black/40 z-0" />
-      <MagicalParticles />
 
       {/* Main Content Area */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 flex flex-col items-center justify-center h-full pt-28 pb-10">
