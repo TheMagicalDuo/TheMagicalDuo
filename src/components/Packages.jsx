@@ -139,19 +139,17 @@ export default function Packages() {
                   {/* Body Content */}
                   <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between">
                     <div>
+                      <div className="inline-flex items-center bg-sage/10 text-sage text-[10px] font-bold uppercase px-3 py-1 rounded-full mb-3">
+                        Asesoría Gratis
+                      </div>
                       <h3 className="font-serif font-bold text-dark text-xl mb-2">{pkg.title}</h3>
                       <p className="text-dark/60 text-sm mb-6 leading-relaxed">{pkg.subtitle}</p>
                     </div>
 
                     <div className="border-t border-neutral-100 pt-5">
-                      <div className="flex items-center justify-between gap-4 mb-5">
-                        <div>
-                          <p className="text-[10px] text-dark/40 font-semibold uppercase tracking-wider">Precio estimado</p>
-                          <p className="text-bordeaux font-bold text-lg font-serif mt-0.5">{pkg.price}</p>
-                        </div>
-                        <div className="text-[11px] bg-sage/10 text-sage font-bold uppercase px-2.5 py-1 rounded">
-                          Asesoría Gratis
-                        </div>
+                      <div className="flex items-center justify-between gap-2 mb-5">
+                        <span className="text-[11px] text-dark/50 font-semibold uppercase tracking-wider">Precio estimado</span>
+                        <span className="text-bordeaux font-bold text-xl font-serif">{pkg.price}</span>
                       </div>
 
                       <a
