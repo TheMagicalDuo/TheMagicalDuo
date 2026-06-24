@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FileText, ArrowRight, HelpCircle, Check } from 'lucide-react'
+import { FileText, ArrowRight, HelpCircle, Check, MessageCircle, Lightbulb, Calculator, Sliders, Ticket } from 'lucide-react'
 
 const WhatsAppIcon = ({ size = 24, className }) => (
   <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -11,26 +11,31 @@ const WhatsAppIcon = ({ size = 24, className }) => (
 const steps = [
   {
     n: '01',
+    Icon: MessageCircle,
     title: 'Contactanos',
     desc: 'Escribinos por WhatsApp, Instagram o email. Siempre respondemos en menos de 24hs.',
   },
   {
     n: '02',
+    Icon: Lightbulb,
     title: 'Contanos tu idea',
     desc: 'Decinos a dónde querés ir, con quién, fechas aproximadas y tu presupuesto estimado.',
   },
   {
     n: '03',
+    Icon: Calculator,
     title: 'Recibís tu cotización',
     desc: 'Te enviamos una propuesta detallada con precios oficiales directos del proveedor.',
   },
   {
     n: '04',
+    Icon: Sliders,
     title: 'Ajustamos juntos',
     desc: 'Modificamos hoteles, fechas o actividades las veces que sea necesario hasta que esté perfecto.',
   },
   {
     n: '05',
+    Icon: Ticket,
     title: '¡A reservar!',
     desc: 'Confirmamos la reserva, coordinamos los pagos directos y te preparamos para despegar.',
   },
@@ -89,15 +94,21 @@ export default function Process() {
               className="absolute inset-0 bg-white rounded-[2rem] border border-neutral-100 shadow-xl p-8 sm:p-10 lg:p-12 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10 overflow-hidden group cursor-pointer"
               onClick={() => setActiveStep((prev) => (prev + 1) % steps.length)}
             >
-              {/* Massive background number */}
-              <div className="absolute -right-4 -bottom-8 text-[160px] sm:text-[200px] font-serif font-black text-neutral-50 leading-none pointer-events-none select-none z-0 transition-transform duration-700 group-hover:scale-105">
-                {steps[activeStep].n}
+              {/* Massive background icon */}
+              <div className="absolute -right-10 -bottom-10 text-neutral-50/50 pointer-events-none select-none z-0 transition-transform duration-700 group-hover:scale-105">
+                {(() => {
+                  const ActiveIcon = steps[activeStep].Icon
+                  return <ActiveIcon size={280} strokeWidth={0.5} />
+                })()}
               </div>
 
               {/* Foreground Content */}
               <div className="relative z-10 flex-1">
-                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-bordeaux/10 text-bordeaux font-serif font-bold text-lg sm:text-xl mb-6 border border-bordeaux/20">
-                  {steps[activeStep].n}
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-bordeaux/10 text-bordeaux mb-6 border border-bordeaux/20">
+                  {(() => {
+                    const ActiveIcon = steps[activeStep].Icon
+                    return <ActiveIcon size={24} strokeWidth={2} />
+                  })()}
                 </div>
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-dark mb-4">{steps[activeStep].title}</h3>
                 <p className="text-dark/70 text-base sm:text-lg leading-relaxed max-w-lg">{steps[activeStep].desc}</p>
