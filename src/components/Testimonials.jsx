@@ -45,7 +45,7 @@ export default function Testimonials() {
 
   return (
     <section className="py-20 lg:py-28 bg-[#FBF8F3]/50 border-y border-neutral-100 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 justify-between">
         
         {/* Left: Text Content */}
         <motion.div
@@ -74,14 +74,8 @@ export default function Testimonials() {
 
         {/* Right: Interactive Card Stack */}
         <div className="flex-1 w-full flex justify-center lg:justify-end relative">
-          
-          {/* Mobile swipe hint */}
-          <div className="absolute -top-10 left-1/2 -translate-x-1/2 flex lg:hidden items-center gap-2 text-bordeaux font-bold text-xs uppercase tracking-widest z-50 bg-white/80 backdrop-blur px-4 py-1.5 rounded-full border border-bordeaux/10">
-            <Hand size={14} className="animate-bounce-horizontal" />
-            Deslizá para ver más
-          </div>
 
-          <div className="relative h-[500px] sm:h-[550px] w-full max-w-[320px] sm:max-w-[340px] perspective-1000">
+          <div className="relative h-[500px] sm:h-[550px] w-full max-w-[320px] sm:max-w-[340px] perspective-1000 mt-4 lg:mt-0 lg:mr-10">
             <AnimatePresence>
               {testimonials.map((t, index) => {
                 const offset = (index - active + testimonials.length) % testimonials.length
