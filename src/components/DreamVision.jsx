@@ -68,21 +68,23 @@ export default function DreamVision() {
       </div>
 
       {/* Trust Badges Section */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
-        <div className="grid md:grid-cols-3 gap-12 lg:gap-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
           
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center group"
+            className="flex items-start gap-5 group bg-white border border-neutral-100 p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow"
           >
-            <div className="w-20 h-20 bg-bordeaux/5 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-bordeaux/10 transition-colors">
-              <Award className="w-10 h-10 text-bordeaux" strokeWidth={1.5} />
+            <div className="shrink-0 w-12 h-12 bg-bordeaux/5 rounded-2xl flex items-center justify-center group-hover:bg-bordeaux/10 transition-colors">
+              <Award className="w-6 h-6 text-bordeaux" strokeWidth={1.5} />
             </div>
-            <h4 className="font-serif font-bold text-2xl text-dark mb-3">Agentes Certificados</h4>
-            <p className="text-dark/60 text-base leading-relaxed font-medium">Graduados oficiales. Conocemos cada secreto, atajo y beneficio oculto de los parques para optimizar tu tiempo y presupuesto.</p>
+            <div>
+              <h4 className="font-serif font-bold text-xl text-dark mb-2">Agentes Certificados</h4>
+              <p className="text-dark/60 text-[0.9rem] leading-relaxed font-medium">Graduados oficiales. Conocemos cada secreto, atajo y beneficio oculto para optimizar tu presupuesto.</p>
+            </div>
           </motion.div>
 
           <motion.div 
@@ -90,13 +92,15 @@ export default function DreamVision() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-center group"
+            className="flex items-start gap-5 group bg-white border border-neutral-100 p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow"
           >
-            <div className="w-20 h-20 bg-terracota/5 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-terracota/10 transition-colors">
-              <Clock className="w-10 h-10 text-terracota" strokeWidth={1.5} />
+            <div className="shrink-0 w-12 h-12 bg-terracota/5 rounded-2xl flex items-center justify-center group-hover:bg-terracota/10 transition-colors">
+              <Clock className="w-6 h-6 text-terracota" strokeWidth={1.5} />
             </div>
-            <h4 className="font-serif font-bold text-2xl text-dark mb-3">Soporte 24/7 en Viaje</h4>
-            <p className="text-dark/60 text-base leading-relaxed font-medium">No te dejamos solo después de venderte. Estamos a un mensaje de WhatsApp de distancia ante cualquier duda o imprevisto allá.</p>
+            <div>
+              <h4 className="font-serif font-bold text-xl text-dark mb-2">Soporte 24/7</h4>
+              <p className="text-dark/60 text-[0.9rem] leading-relaxed font-medium">No te dejamos solo al venderte. Estamos a un mensaje de distancia ante cualquier duda allá.</p>
+            </div>
           </motion.div>
 
           <motion.div 
@@ -104,13 +108,15 @@ export default function DreamVision() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-center group"
+            className="flex items-start gap-5 group bg-white border border-neutral-100 p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow"
           >
-            <div className="w-20 h-20 bg-sage/5 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-sage/10 transition-colors">
-              <Sparkles className="w-10 h-10 text-sage" strokeWidth={1.5} />
+            <div className="shrink-0 w-12 h-12 bg-sage/5 rounded-2xl flex items-center justify-center group-hover:bg-sage/10 transition-colors">
+              <Sparkles className="w-6 h-6 text-sage" strokeWidth={1.5} />
             </div>
-            <h4 className="font-serif font-bold text-2xl text-dark mb-3">Itinerarios a Medida</h4>
-            <p className="text-dark/60 text-base leading-relaxed font-medium">No vendemos paquetes genéricos "enlatados". Diseñamos un plan exclusivo y detallado día por día según los gustos de tu familia.</p>
+            <div>
+              <h4 className="font-serif font-bold text-xl text-dark mb-2">Itinerarios a Medida</h4>
+              <p className="text-dark/60 text-[0.9rem] leading-relaxed font-medium">No vendemos enlatados. Diseñamos un plan detallado día por día según los gustos de tu familia.</p>
+            </div>
           </motion.div>
 
         </div>
