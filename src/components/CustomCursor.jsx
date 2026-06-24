@@ -105,7 +105,7 @@ export default function CustomCursor() {
             }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="fixed top-0 left-0 pointer-events-none z-[9998] text-[#E09D5C]"
+            className="fixed top-0 left-0 pointer-events-none z-[9998] text-terracota/80"
             style={{ x: t.x + t.offsetX, y: t.y + t.offsetY }}
           >
             <StarSVG size={t.size} />
