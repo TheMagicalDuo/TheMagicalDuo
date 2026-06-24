@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { Tag, UserCheck, Clock, CreditCard, Lock, Globe } from 'lucide-react'
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 
 const reasons = [
   {
@@ -47,6 +49,8 @@ const reasons = [
 ]
 
 export default function WhyUs() {
+  const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start' }, [Autoplay({ delay: 3500, stopOnInteraction: true })])
+
   return (
     <section className="py-20 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
@@ -70,8 +74,25 @@ export default function WhyUs() {
           </p>
         </motion.div>
 
-        {/* Mobile Horizontal Slider, Desktop Grid */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-5 pb-6 -mx-5 px-5 lg:mx-0 lg:px-0 lg:grid lg:grid-cols-3 lg:overflow-visible">
+        {/* Mobile Auto-Carousel */}
+        <div className="lg:hidden overflow-hidden -mx-5 px-5 pb-6 cursor-grab active:cursor-grabbing" ref={emblaRef}>
+          <div className="flex touch-pan-y gap-4">
+            {reasons.map((r) => (
+              <div key={r.title} className="flex-[0_0_85%] sm:flex-[0_0_45%] shrink-0">
+                <div className="bg-white border border-dark/7 rounded-2xl p-7 hover:shadow-md hover:border-dark/12 transition-all duration-300 h-full flex flex-col justify-start">
+                  <div className={`w-11 h-11 rounded-xl ${r.iconBg} flex items-center justify-center mb-5 shrink-0`}>
+                    <r.Icon size={19} className={r.iconColor} />
+                  </div>
+                  <h3 className="font-serif font-bold text-dark text-lg mb-2.5">{r.title}</h3>
+                  <p className="text-dark/55 text-sm leading-relaxed">{r.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Grid */}
+        <div className="hidden lg:grid lg:grid-cols-3 gap-5">
           {reasons.map((r, i) => (
             <motion.div
               key={r.title}
@@ -80,7 +101,7 @@ export default function WhyUs() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.07 }}
               whileHover={{ y: -3 }}
-              className="bg-white border border-dark/7 rounded-2xl p-7 hover:shadow-md hover:border-dark/12 transition-all duration-300 snap-center shrink-0 w-[85vw] sm:w-[45vw] lg:w-auto flex flex-col justify-start"
+              className="bg-white border border-dark/7 rounded-2xl p-7 hover:shadow-md hover:border-dark/12 transition-all duration-300 flex flex-col justify-start"
             >
               <div className={`w-11 h-11 rounded-xl ${r.iconBg} flex items-center justify-center mb-5 shrink-0`}>
                 <r.Icon size={19} className={r.iconColor} />
