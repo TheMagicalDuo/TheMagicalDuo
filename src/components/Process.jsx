@@ -11,7 +11,7 @@ const WhatsAppIcon = ({ size = 24, className }) => (
 const steps = [
   {
     n: '01',
-    Icon: MessageCircle,
+    Icon: WhatsAppIcon,
     title: 'Contactanos',
     desc: 'Escribinos por WhatsApp, Instagram o email. Siempre respondemos en menos de 24hs.',
   },
