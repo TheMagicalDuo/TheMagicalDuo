@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Star, ChevronRight, Hand } from 'lucide-react'
 
@@ -35,6 +35,13 @@ export default function Testimonials() {
   const handleNext = () => {
     setActive((prev) => (prev + 1) % testimonials.length)
   }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext()
+    }, 4000)
+    return () => clearInterval(timer)
+  }, [])
 
   return (
     <section className="py-20 lg:py-28 bg-[#FBF8F3]/50 border-y border-neutral-100 overflow-hidden">
@@ -84,11 +91,12 @@ export default function Testimonials() {
                   <motion.div
                     key={index}
                     animate={{
-                      scale: 1 - offset * 0.05,
-                      y: offset * 30,
-                      rotateZ: isFront ? (index % 2 === 0 ? -2 : 2) : 0,
+                      scale: 1 - offset * 0.04,
+                      y: offset === 0 ? 0 : offset === 1 ? 15 : 30,
+                      x: offset === 0 ? 0 : offset === 1 ? 30 : -30,
+                      rotateZ: offset === 0 ? (index % 2 === 0 ? -2 : 2) : offset === 1 ? 5 : -5,
                       zIndex: testimonials.length - offset,
-                      opacity: 1 - offset * 0.2
+                      opacity: 1 - offset * 0.15
                     }}
                     transition={{ duration: 0.5, type: 'spring', stiffness: 300, damping: 25 }}
                     className={`absolute top-0 left-0 w-full cursor-grab active:cursor-grabbing ${isFront ? 'shadow-2xl shadow-black/10' : ''}`}
