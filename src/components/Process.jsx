@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FileText, ArrowRight, HelpCircle } from 'lucide-react'
+import { FileText, ArrowRight, HelpCircle, Check } from 'lucide-react'
 
 const WhatsAppIcon = ({ size = 24, className }) => (
   <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -50,7 +50,7 @@ export default function Process() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % steps.length)
-    }, 4500)
+    }, 6500)
     return () => clearInterval(timer)
   }, [])
 
@@ -110,18 +110,33 @@ export default function Process() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Progress Indicator Dots */}
-          <div className="absolute -bottom-14 left-0 right-0 flex justify-center gap-3">
-            {steps.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveStep(i)}
-                className={`h-2.5 rounded-full transition-all duration-500 ${
-                  activeStep === i ? 'w-10 bg-bordeaux shadow-sm' : 'w-2.5 bg-bordeaux/20 hover:bg-bordeaux/40'
-                }`}
-                aria-label={`Ir al paso ${i + 1}`}
-              />
-            ))}
+          {/* Progress Indicator Steps */}
+          <div className="absolute -bottom-14 left-0 right-0 flex justify-center items-center gap-2 sm:gap-4 px-4">
+            {steps.map((_, i) => {
+              const isPast = i < activeStep
+              const isActive = i === activeStep
+              return (
+                <div key={i} className="flex items-center">
+                  <button
+                    onClick={() => setActiveStep(i)}
+                    className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm transition-all duration-500 border-2 shrink-0 ${
+                      isPast 
+                        ? 'bg-bordeaux text-white border-bordeaux' 
+                        : isActive
+                          ? 'bg-white text-bordeaux border-bordeaux scale-110 shadow-md'
+                          : 'bg-white text-dark/30 border-neutral-200 hover:border-bordeaux/30'
+                    }`}
+                    aria-label={`Ir al paso ${i + 1}`}
+                  >
+                    {isPast ? <Check size={16} strokeWidth={3} /> : i + 1}
+                  </button>
+                  {/* Connector Line */}
+                  {i < steps.length - 1 && (
+                    <div className={`w-3 sm:w-8 h-[2px] ml-2 sm:ml-4 transition-colors duration-500 ${isPast ? 'bg-bordeaux' : 'bg-neutral-200'}`} />
+                  )}
+                </div>
+              )
+            })}
           </div>
         </div>
 
