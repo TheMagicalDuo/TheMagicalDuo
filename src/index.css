@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bordeaux: #8C2A42;
+  --color-terracota: #B5694A;
+  --color-sage: #3D6E5E;
+  --color-cream: #FBF8F3;
+  --color-cream-dark: #F4EFEA;
+  --color-dark: #2E2620;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: #FFFFFF;
+  color: #2E2620;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+}
+
+/* Washi tape decoration */
+.washi-tape-terracota {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 70px;
+  height: 18px;
+  background-color: rgba(181, 105, 74, 0.2);
+  backdrop-blur: 1px;
+  border-left: 1.5px dashed rgba(181, 105, 74, 0.4);
+  border-right: 1.5px dashed rgba(181, 105, 74, 0.4);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  z-index: 10;
+}
+
+.washi-tape-sage {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(3deg);
+  width: 70px;
+  height: 18px;
+  background-color: rgba(61, 110, 94, 0.2);
+  backdrop-blur: 1px;
+  border-left: 1.5px dashed rgba(61, 110, 94, 0.4);
+  border-right: 1.5px dashed rgba(61, 110, 94, 0.4);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  z-index: 10;
+}
+
+/* Custom scrollbar for horizontal carousels */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "title": "Punta Cana All Inclusive",
+    "subtitle": "Grand Bavaro Princess · 7 noches",
+    "category": "Caribe · 7 noches",
+    "accentColor": "#3D6E5E",
+    "iconName": "Waves",
+    "price": "Desde USD 1.200",
+    "whatsappNumber": "5491169591710",
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Punta Cana All Inclusive 7 noches en Grand Bavaro Princess"
+  },
+  {
+    "id": 2,
+    "title": "Walt Disney World",
+    "subtitle": "Orlando · Paquete Clásico Magic Kingdom + Epcot",
+    "category": "Disney · 5 días",
+    "accentColor": "#8C2A42",
+    "iconName": "Sparkles",
+    "price": "Desde USD 1.800",
+    "whatsappNumber": "5491169591710",
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Disney World 5 días con Magic Kingdom y Epcot"
+  },
+  {
+    "id": 3,
+    "title": "Crucero Caribe",
+    "subtitle": "Royal Caribbean · Itinerario Caribe Este",
+    "category": "Crucero · 4 noches",
+    "accentColor": "#1A3A5C",
+    "iconName": "Anchor",
+    "price": "Desde USD 950",
+    "whatsappNumber": "5491153435751",
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Crucero Caribe Royal Caribbean 4 noches"
+  },
+  {
+    "id": 4,
+    "title": "Cancún All Inclusive",
+    "subtitle": "Hotel Zona Hotelera · 6 noches",
+    "category": "México · 6 noches",
+    "accentColor": "#B5694A",
+    "iconName": "Sun",
+    "price": "Desde USD 1.100",
+    "whatsappNumber": "5491169591710",
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Cancún All Inclusive 6 noches"
+  },
+  {
+    "id": 5,
+    "title": "Universal Orlando",
+    "subtitle": "Universal Studios + Islands of Adventure",
+    "category": "Universal · 4 días",
+    "accentColor": "#B5694A",
+    "iconName": "Zap",
+    "price": "Desde USD 1.400",
+    "whatsappNumber": "5491153435751",
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Universal Orlando 4 días"
+  },
+  {
+    "id": 6,
+    "title": "Disney Cruise Line",
+    "subtitle": "La magia de Disney en altamar · Caribe",
+    "category": "Disney Cruise · 7 noches",
+    "accentColor": "#2E2620",
+    "iconName": "Anchor",
+    "price": "Desde USD 2.200",
+    "whatsappNumber": "5491169591710",
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Disney Cruise Line 7 noches"
+  }
+]
