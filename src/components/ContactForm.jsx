@@ -245,10 +245,10 @@ function CountrySelect({ value, onChange }) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`h-full bg-white border border-neutral-200 rounded-xl px-3 py-3.5 text-sm font-medium flex justify-between items-center gap-2 transition-all duration-200 ${isOpen ? 'border-bordeaux ring-4 ring-bordeaux/10' : ''}`}
+        className={`flex items-center gap-2 px-4 py-3.5 transition-colors hover:bg-neutral-50 rounded-l-xl`}
       >
         <span className="text-base leading-none">{selectedCountry.label}</span>
-        <span className="text-dark font-bold">{selectedCountry.code}</span>
+        <span className="text-dark font-bold text-sm">{selectedCountry.code}</span>
         <ChevronDown size={14} className={`text-dark/40 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
@@ -259,7 +259,7 @@ function CountrySelect({ value, onChange }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="absolute z-50 left-0 top-full mt-2 w-48 bg-white border border-neutral-100 rounded-xl shadow-xl shadow-black/5 max-h-60 overflow-y-auto hide-scrollbar"
+            className="absolute z-50 left-0 top-full mt-2 w-[220px] bg-white border border-neutral-100 rounded-xl shadow-xl shadow-black/5 max-h-60 overflow-y-auto hide-scrollbar"
           >
             {countryCodes.map((opt) => (
               <button
@@ -269,7 +269,7 @@ function CountrySelect({ value, onChange }) {
                 className={`w-full text-left px-4 py-2.5 text-sm transition-colors flex items-center gap-3 ${value === opt.code ? 'bg-bordeaux/5 text-bordeaux' : 'text-dark/70 hover:bg-neutral-50 hover:text-dark'}`}
               >
                 <span className="text-base leading-none">{opt.label}</span>
-                <span className="font-medium text-dark/50 w-8">{opt.code}</span>
+                <span className="font-medium text-dark/50 w-10">{opt.code}</span>
                 <span className="font-bold">{opt.title}</span>
               </button>
             ))}
@@ -577,11 +577,12 @@ export default function ContactForm() {
                     </div>
                     <div>
                       <label className={labelClass}>Tu celular *</label>
-                      <div className="flex gap-2">
+                      <div className={`flex items-center bg-white border ${errors.telefono ? 'border-red-500 ring-2 ring-red-500/20' : 'border-neutral-200 focus-within:border-bordeaux focus-within:ring-4 focus-within:ring-bordeaux/10'} rounded-xl transition-all duration-200 relative z-40`}>
                         <CountrySelect
                           value={form.codigoPais}
                           onChange={(val) => handleSelect('codigoPais', val)}
                         />
+                        <div className="w-px h-6 bg-neutral-200"></div>
                         <input 
                           name="telefono" 
                           value={form.telefono} 
@@ -597,7 +598,7 @@ export default function ContactForm() {
                             if (errors.telefono) setErrors(ev => ({ ...ev, telefono: undefined }))
                           }} 
                           placeholder="Ej: 11 1234-5678" 
-                          className={fieldClass} 
+                          className="flex-1 bg-transparent px-4 py-3.5 text-dark text-sm placeholder:text-dark/30 focus:outline-none font-medium w-full"
                           maxLength={13}
                         />
                       </div>
