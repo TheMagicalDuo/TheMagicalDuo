@@ -70,3 +70,10 @@ body {
   scrollbar-width: none;
 }
 
+/* Ocultar el cursor por defecto en desktop para usar el CustomCursor */
+@media (min-width: 769px) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
