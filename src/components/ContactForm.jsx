@@ -214,7 +214,7 @@ function CustomSelect({ options, value, onChange, placeholder, hasError }) {
 export default function ContactForm() {
   const [step, setStep] = useState(1)
   const [form, setForm] = useState({
-    nombre: '', email: '', telefono: '', destino: '',
+    nombre: '', email: '', telefono: '', codigoPais: '+54', destino: '',
     fechas: '', pasajeros: '', presupuesto: '', comentarios: '',
   })
   const [hayChicos, setHayChicos] = useState(false)
@@ -280,7 +280,7 @@ export default function ContactForm() {
     const msg = `Hola! Quiero solicitar una cotización:%0A%0A` +
       `👤 *Nombre:* ${form.nombre}%0A` +
       `📧 *Email:* ${form.email}%0A` +
-      `📱 *Teléfono:* ${form.telefono}%0A` +
+      `📱 *Teléfono:* ${form.codigoPais} ${form.telefono}%0A` +
       `✈️ *Destino:* ${form.destino}%0A` +
       `📅 *Mes de viaje:* ${form.fechas} ${fechasFlexibles ? '(Tengo flexibilidad)' : ''}%0A` +
       `👥 *Pasajeros:* ${form.pasajeros}%0A` +
@@ -508,7 +508,41 @@ export default function ContactForm() {
                     </div>
                     <div>
                       <label className={labelClass}>Tu celular *</label>
-                      <input name="telefono" value={form.telefono} onChange={handleChange} placeholder="Ej: +54 9 11 1234-5678" className={fieldClass} />
+                      <div className="flex gap-2">
+                        <select
+                          name="codigoPais"
+                          value={form.codigoPais}
+                          onChange={handleChange}
+                          className="w-28 bg-white border border-neutral-200 rounded-xl px-2 py-3.5 text-dark text-sm focus:outline-none focus:border-bordeaux focus:ring-4 focus:ring-bordeaux/10 transition-all duration-200 font-medium cursor-pointer"
+                        >
+                          <option value="+54">🇦🇷 +54</option>
+                          <option value="+598">🇺🇾 +598</option>
+                          <option value="+56">🇨🇱 +56</option>
+                          <option value="+57">🇨🇴 +57</option>
+                          <option value="+52">🇲🇽 +52</option>
+                          <option value="+51">🇵🇪 +51</option>
+                          <option value="+1">🇺🇸 +1</option>
+                          <option value="+34">🇪🇸 +34</option>
+                        </select>
+                        <input 
+                          name="telefono" 
+                          value={form.telefono} 
+                          onChange={(e) => {
+                            const digits = e.target.value.replace(/\D/g, '')
+                            let formatted = digits
+                            if (digits.length > 2 && digits.length <= 6) {
+                              formatted = `${digits.slice(0,2)} ${digits.slice(2)}`
+                            } else if (digits.length > 6) {
+                              formatted = `${digits.slice(0,2)} ${digits.slice(2,6)}-${digits.slice(6,10)}`
+                            }
+                            setForm(f => ({ ...f, telefono: formatted }))
+                            if (errors.telefono) setErrors(ev => ({ ...ev, telefono: undefined }))
+                          }} 
+                          placeholder="Ej: 11 1234-5678" 
+                          className={fieldClass} 
+                          maxLength={13}
+                        />
+                      </div>
                       {errors.telefono && <p className="text-red-500 text-[10px] uppercase font-bold mt-1.5">{errors.telefono}</p>}
                     </div>
                   </div>
