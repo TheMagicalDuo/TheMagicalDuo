@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { FileText, ArrowRight, HelpCircle } from 'lucide-react'
 
 const WhatsAppIcon = ({ size = 24, className }) => (
@@ -44,6 +45,15 @@ const infoItems = [
 ]
 
 export default function Process() {
+  const [activeStep, setActiveStep] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % steps.length)
+    }, 4500)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <section className="py-20 lg:py-28 bg-[#FBF8F3]/30 border-y border-neutral-100/60 relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -67,35 +77,50 @@ export default function Process() {
           </p>
         </motion.div>
 
-        {/* Timeline Path (Desktop horizontal, mobile vertical) */}
-        <div className="relative mb-20">
-          {/* Connector Line (Desktop horizontal) */}
-          <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-neutral-100 -translate-y-1/2 z-0 hidden lg:block" />
-          
-          {/* Connector Line (Mobile vertical) */}
-          <div className="absolute top-0 bottom-0 left-[23px] w-[2px] bg-neutral-100 z-0 lg:hidden" />
+        {/* Animated Auto-passing Cards */}
+        <div className="relative mb-28 max-w-4xl mx-auto h-[320px] sm:h-[260px] lg:h-[240px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeStep}
+              initial={{ opacity: 0, x: 40, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -40, scale: 0.95 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="absolute inset-0 bg-white rounded-[2rem] border border-neutral-100 shadow-xl p-8 sm:p-10 lg:p-12 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10 overflow-hidden group cursor-pointer"
+              onClick={() => setActiveStep((prev) => (prev + 1) % steps.length)}
+            >
+              {/* Massive background number */}
+              <div className="absolute -right-4 -bottom-8 text-[160px] sm:text-[200px] font-serif font-black text-neutral-50 leading-none pointer-events-none select-none z-0 transition-transform duration-700 group-hover:scale-105">
+                {steps[activeStep].n}
+              </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-8 relative z-10">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.n}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="flex flex-row lg:flex-col items-start lg:items-center text-left lg:text-center group relative"
-              >
-                {/* Number Circle */}
-                <div className="shrink-0 w-12 h-12 rounded-2xl lg:rounded-full bg-white border-2 border-neutral-100 text-bordeaux group-hover:border-bordeaux group-hover:bg-bordeaux group-hover:text-white flex items-center justify-center font-serif font-bold text-sm shadow-sm transition-all duration-300 mr-5 lg:mr-0 lg:mb-6 relative z-10">
-                  {step.n}
+              {/* Foreground Content */}
+              <div className="relative z-10 flex-1">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-bordeaux/10 text-bordeaux font-serif font-bold text-lg sm:text-xl mb-6 border border-bordeaux/20">
+                  {steps[activeStep].n}
                 </div>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-dark mb-4">{steps[activeStep].title}</h3>
+                <p className="text-dark/70 text-base sm:text-lg leading-relaxed max-w-lg">{steps[activeStep].desc}</p>
+              </div>
+              
+              {/* Tap indicator for mobile */}
+              <div className="absolute bottom-6 right-8 text-bordeaux/40 text-xs font-bold uppercase tracking-wider hidden sm:block z-10">
+                Siguiente &rarr;
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
-                {/* Step Info */}
-                <div className="pt-2.5 lg:pt-0 pb-4 lg:pb-0">
-                  <h3 className="font-serif font-bold text-dark text-lg mb-2">{step.title}</h3>
-                  <p className="text-dark/60 text-sm leading-relaxed max-w-[220px] lg:mx-auto">{step.desc}</p>
-                </div>
-              </motion.div>
+          {/* Progress Indicator Dots */}
+          <div className="absolute -bottom-14 left-0 right-0 flex justify-center gap-3">
+            {steps.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveStep(i)}
+                className={`h-2.5 rounded-full transition-all duration-500 ${
+                  activeStep === i ? 'w-10 bg-bordeaux shadow-sm' : 'w-2.5 bg-bordeaux/20 hover:bg-bordeaux/40'
+                }`}
+                aria-label={`Ir al paso ${i + 1}`}
+              />
             ))}
           </div>
         </div>
