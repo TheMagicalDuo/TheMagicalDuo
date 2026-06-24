@@ -31,6 +31,17 @@ const budgetRanges = [
 
 const passengersList = ['1 persona', '2 personas', '3 personas', '4 personas', '5 personas', '6 personas', '7 personas', '8 personas', '9 o más']
 
+const countryCodes = [
+  { code: '+54', label: '🇦🇷', title: 'Argentina' },
+  { code: '+598', label: '🇺🇾', title: 'Uruguay' },
+  { code: '+56', label: '🇨🇱', title: 'Chile' },
+  { code: '+57', label: '🇨🇴', title: 'Colombia' },
+  { code: '+52', label: '🇲🇽', title: 'México' },
+  { code: '+51', label: '🇵🇪', title: 'Perú' },
+  { code: '+1', label: '🇺🇸', title: 'USA' },
+  { code: '+34', label: '🇪🇸', title: 'España' },
+]
+
 const monthNames = [
   { short: 'Ene', full: 'Enero' },
   { short: 'Feb', full: 'Febrero' },
@@ -202,6 +213,64 @@ function CustomSelect({ options, value, onChange, placeholder, hasError }) {
                 className={`w-full text-left px-5 py-3 text-sm transition-colors ${value === opt ? 'bg-bordeaux/5 text-bordeaux font-bold' : 'text-dark/70 hover:bg-neutral-50 hover:text-dark'}`}
               >
                 {opt}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+function CountrySelect({ value, onChange }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false)
+      }
+    }
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isOpen])
+
+  const selectedCountry = countryCodes.find(c => c.code === value) || countryCodes[0]
+
+  return (
+    <div className="relative" ref={dropdownRef}>
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className={`h-full bg-white border border-neutral-200 rounded-xl px-3 py-3.5 text-sm font-medium flex justify-between items-center gap-2 transition-all duration-200 ${isOpen ? 'border-bordeaux ring-4 ring-bordeaux/10' : ''}`}
+      >
+        <span className="text-base leading-none">{selectedCountry.label}</span>
+        <span className="text-dark font-bold">{selectedCountry.code}</span>
+        <ChevronDown size={14} className={`text-dark/40 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.15 }}
+            className="absolute z-50 left-0 top-full mt-2 w-48 bg-white border border-neutral-100 rounded-xl shadow-xl shadow-black/5 max-h-60 overflow-y-auto hide-scrollbar"
+          >
+            {countryCodes.map((opt) => (
+              <button
+                type="button"
+                key={opt.code + opt.title}
+                onClick={() => { onChange(opt.code); setIsOpen(false) }}
+                className={`w-full text-left px-4 py-2.5 text-sm transition-colors flex items-center gap-3 ${value === opt.code ? 'bg-bordeaux/5 text-bordeaux' : 'text-dark/70 hover:bg-neutral-50 hover:text-dark'}`}
+              >
+                <span className="text-base leading-none">{opt.label}</span>
+                <span className="font-medium text-dark/50 w-8">{opt.code}</span>
+                <span className="font-bold">{opt.title}</span>
               </button>
             ))}
           </motion.div>
@@ -509,21 +578,10 @@ export default function ContactForm() {
                     <div>
                       <label className={labelClass}>Tu celular *</label>
                       <div className="flex gap-2">
-                        <select
-                          name="codigoPais"
+                        <CountrySelect
                           value={form.codigoPais}
-                          onChange={handleChange}
-                          className="w-28 bg-white border border-neutral-200 rounded-xl px-2 py-3.5 text-dark text-sm focus:outline-none focus:border-bordeaux focus:ring-4 focus:ring-bordeaux/10 transition-all duration-200 font-medium cursor-pointer"
-                        >
-                          <option value="+54">🇦🇷 +54</option>
-                          <option value="+598">🇺🇾 +598</option>
-                          <option value="+56">🇨🇱 +56</option>
-                          <option value="+57">🇨🇴 +57</option>
-                          <option value="+52">🇲🇽 +52</option>
-                          <option value="+51">🇵🇪 +51</option>
-                          <option value="+1">🇺🇸 +1</option>
-                          <option value="+34">🇪🇸 +34</option>
-                        </select>
+                          onChange={(val) => handleSelect('codigoPais', val)}
+                        />
                         <input 
                           name="telefono" 
                           value={form.telefono} 
