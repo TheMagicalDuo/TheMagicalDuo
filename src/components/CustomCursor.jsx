@@ -79,7 +79,7 @@ export default function CustomCursor() {
     <>
       {/* Destello principal (sigue al mouse exacto) */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] text-bordeaux drop-shadow-md"
+        className={`fixed top-0 left-0 pointer-events-none z-[9999] drop-shadow-md transition-colors duration-300 ${isHovering ? 'text-[#FBF8F3]' : 'text-bordeaux'}`}
         animate={{
           x: mousePosition.x - 12,
           y: mousePosition.y - 12,
