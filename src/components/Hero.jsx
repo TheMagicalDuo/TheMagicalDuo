@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 const destinations = [
   { id: 0, title: 'DISNEY WORLD - ORLANDO', subtitle: 'La magia te espera', image: '/destinations/disney.png' },
   { id: 1, title: 'UNIVERSAL - STUDIOS', subtitle: 'Acción y aventura sin límites', image: '/destinations/universal.png' },
-  { id: 2, title: 'CRUCEROS - DEL CARIBE', subtitle: 'Lujo y relax en alta mar', image: '/destinations/cruise.png' },
+  { id: 2, title: 'CRUCEROS', subtitle: 'Lujo y relax en alta mar', image: '/destinations/cruise.png' },
   { id: 3, title: 'PLAYAS - ALL INCLUSIVE', subtitle: 'Un pedazo de cielo', image: '/destinations/caribbean.png' },
 ]
 

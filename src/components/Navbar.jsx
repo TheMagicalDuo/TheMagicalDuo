@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Home, Users, Sparkles, Ship, Package } from 'lucide-react'
 import Logo from './Logo'
 
 const navLinks = [
@@ -143,51 +143,52 @@ export default function Navbar() {
       {/* Mobile Menu Dropdown Drawer */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: '100vh' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="absolute top-full left-0 right-0 bg-white lg:hidden z-40 overflow-hidden"
-          >
-            <div className="flex flex-col p-8 pt-12 h-full">
-              {navLinks.map((link, i) => {
+          <div className="fixed inset-x-0 top-24 z-40 lg:hidden px-4">
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="bg-dark/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] rounded-3xl p-5 flex flex-col gap-2.5"
+            >
+              {[
+                { id: 'inicio', label: 'Inicio', icon: Home },
+                { id: 'nosotros', label: 'Nosotros', icon: Users },
+                { id: 'especialidad', label: 'Disney & Universal', icon: Sparkles },
+                { id: 'cruceros', label: 'Cruceros', icon: Ship },
+                { id: 'paquetes', label: 'Paquetes', icon: Package }
+              ].map((link) => {
                 const isActive = activeSection === link.id
+                const Icon = link.icon
                 return (
-                  <motion.a
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 + 0.1 }}
+                  <button
                     key={link.id}
-                    href={link.href}
-                    onClick={(e) => scrollToSection(e, link.href)}
-                    className={`py-4 text-2xl font-serif transition-all duration-200 ${
+                    onClick={(e) => scrollToSection(e, `#${link.id}`)}
+                    className={`w-full py-3.5 rounded-2xl text-left px-4 text-sm font-medium flex items-center gap-3 transition-all duration-200 ${
                       isActive 
-                        ? 'text-bordeaux font-bold' 
-                        : 'text-dark/70 hover:text-dark'
+                        ? 'bg-white/10 border-l-4 border-terracota text-terracota font-bold shadow-inner shadow-black/20' 
+                        : 'text-cream/70 border-l-4 border-transparent hover:bg-white/5 hover:text-white hover:border-white/20'
                     }`}
                   >
+                    <Icon className={`w-4 h-4 ${isActive ? 'text-terracota' : 'text-cream/50'}`} />
                     {link.label}
-                  </motion.a>
+                  </button>
                 )
               })}
               
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="mt-12"
+              <hr className="border-white/10 my-2" />
+              
+              <a
+                href="#cotizar"
+                onClick={(e) => scrollToSection(e, '#cotizar')}
+                className="w-full inline-block"
               >
-                <a
-                  href="#cotizar"
-                  onClick={(e) => scrollToSection(e, '#cotizar')}
-                  className="w-full inline-block bg-dark text-white px-6 py-5 rounded-sm text-sm font-bold tracking-[0.2em] uppercase text-center hover:bg-dark/90 transition-colors"
-                >
-                  COTIZAR VIAJE
-                </a>
-              </motion.div>
-            </div>
-          </motion.div>
+                <div className="w-full bg-terracota text-white shadow-terracota/20 shadow-lg rounded-2xl py-3.5 text-sm font-semibold flex justify-center items-center hover:bg-terracota/90 transition-colors">
+                  Reservar Turno
+                </div>
+              </a>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </nav>
