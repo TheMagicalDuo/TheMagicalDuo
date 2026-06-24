@@ -79,12 +79,11 @@ export default function CustomCursor() {
     <>
       {/* Destello principal (sigue al mouse exacto) */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] text-terracota mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-[9999] text-bordeaux drop-shadow-md"
         animate={{
           x: mousePosition.x - 12,
           y: mousePosition.y - 12,
-          scale: isHovering ? 1.6 : 1,
-          rotate: isHovering ? 90 : 0
+          scale: isHovering ? 1.2 : 1,
         }}
         transition={{ type: "spring", stiffness: 400, damping: 25, mass: 0.2 }}
       >
@@ -105,7 +104,7 @@ export default function CustomCursor() {
             }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="fixed top-0 left-0 pointer-events-none z-[9998] text-terracota/80"
+            className="fixed top-0 left-0 pointer-events-none z-[9998] text-bordeaux/80"
             style={{ x: t.x + t.offsetX, y: t.y + t.offsetY }}
           >
             <StarSVG size={t.size} />
