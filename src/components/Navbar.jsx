@@ -60,14 +60,14 @@ export default function Navbar() {
   const activeLabel = navLinks.find(l => l.id === activeSection)?.label || 'Inicio'
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
-        scrolled 
-          ? 'bg-white/95 backdrop-blur-xl shadow-sm border-neutral-200/50 py-2' 
-          : 'bg-gradient-to-b from-dark/60 to-transparent border-transparent py-4 sm:py-6'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
+    <nav className="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[96%] max-w-6xl transition-all duration-500">
+      <div 
+        className={`relative transition-all duration-700 w-full rounded-full px-4 sm:px-8 h-16 sm:h-[4.5rem] flex items-center justify-between ${
+          scrolled 
+            ? 'bg-white/95 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-neutral-200/60' 
+            : 'bg-black/25 backdrop-blur-md border border-white/20'
+        }`}
+      >
         
         {/* Logo */}
         <a href="#inicio" onClick={(e) => scrollToSection(e, '#inicio')} className="flex items-center group relative flex-shrink-0 z-10">
@@ -118,9 +118,9 @@ export default function Navbar() {
           <a
             href="#cotizar"
             onClick={(e) => scrollToSection(e, '#cotizar')}
-            className={`hidden sm:flex px-7 py-3 rounded-sm border text-xs font-bold tracking-[0.15em] uppercase transition-all duration-300 ${
+            className={`hidden sm:flex px-7 py-2.5 rounded-full border text-xs font-bold tracking-[0.15em] uppercase transition-all duration-300 ${
               scrolled 
-                ? 'bg-dark text-white border-dark hover:bg-transparent hover:text-dark'
+                ? 'bg-dark text-white border-dark hover:bg-white hover:text-dark'
                 : 'bg-white text-dark border-white hover:bg-transparent hover:text-white'
             }`}
           >
@@ -135,7 +135,7 @@ export default function Navbar() {
             }`}
             aria-label="Menú"
           >
-            {menuOpen ? <X size={28} strokeWidth={1.5} /> : <Menu size={28} strokeWidth={1.5} />}
+            {menuOpen ? <X size={26} strokeWidth={1.5} /> : <Menu size={26} strokeWidth={1.5} />}
           </button>
         </div>
       </div>
