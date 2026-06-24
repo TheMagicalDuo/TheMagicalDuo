@@ -59,7 +59,7 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 flex flex-col items-center justify-center h-full pt-24 pb-16">
         
         {/* Fixed Hero Title (Overarching concept) */}
-        <div className="flex flex-col items-center text-center mb-8 sm:mb-12 lg:mb-16 z-40 pointer-events-none mt-2 sm:mt-4">
+        <div className="flex flex-col items-center text-center mb-2 sm:mb-12 lg:mb-16 z-40 pointer-events-none mt-16 sm:mt-4">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
