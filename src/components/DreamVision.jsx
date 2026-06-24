@@ -31,10 +31,9 @@ export default function DreamVision() {
         {backgrounds.map((bg, index) => (
           <div
             key={bg}
-            className="absolute inset-0 bg-cover bg-center transition-opacity duration-[1500ms] ease-in-out"
+            className="absolute inset-0 bg-cover bg-center bg-scroll lg:bg-fixed transition-opacity duration-[1500ms] ease-in-out"
             style={{ 
               backgroundImage: `url('${bg}')`,
-              backgroundAttachment: 'fixed', // Efecto parallax constante
               opacity: index === currentIndex ? 1 : 0,
             }}
           />
