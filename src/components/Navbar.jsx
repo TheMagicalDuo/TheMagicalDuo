@@ -130,7 +130,7 @@ export default function Navbar() {
             className="flex items-center group relative flex-shrink-0 z-10"
           >
             <Logo
-              className={`h-16 sm:h-20 w-auto transition-all duration-300 group-hover:scale-105 ${
+              className={`h-20 sm:h-24 w-auto transition-all duration-300 group-hover:scale-105 ${
                 isSolid ? 'text-bordeaux' : 'text-cream'
               }`}
             />
