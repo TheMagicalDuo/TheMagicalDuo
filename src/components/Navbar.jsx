@@ -11,6 +11,7 @@ const navLinks = [
   { 
     id: 'servicios', 
     label: 'Servicios', 
+    href: '/#servicios',
     dropdown: [
       { id: 'cruceros', label: 'Cruceros', href: '/servicios/cruceros', icon: Anchor },
       { id: 'tours', label: 'Tours en español', href: '/servicios/tours', icon: Map },
@@ -62,7 +63,7 @@ export default function Navbar() {
       const scrollY = window.scrollY
       let current = 'inicio'
       navLinks.forEach(link => {
-        if (!link.dropdown && link.href.startsWith('/#')) {
+        if (link.href && link.href.startsWith('/#')) {
           const id = link.href.split('#')[1]
           const el = document.getElementById(id)
           if (el) {
