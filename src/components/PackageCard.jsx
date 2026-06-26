@@ -103,7 +103,7 @@ export default function PackageCard({ pkg, imagePath }) {
       {/* MODAL */}
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+          <div className="fixed inset-0 z-[100] flex justify-center p-4 sm:p-6 overflow-y-auto hide-scrollbar">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -116,7 +116,7 @@ export default function PackageCard({ pkg, imagePath }) {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+              className="relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col my-auto"
             >
               {/* Close Button */}
               <button
@@ -127,7 +127,7 @@ export default function PackageCard({ pkg, imagePath }) {
               </button>
 
               {/* Header Image */}
-              <div className="h-48 sm:h-64 relative shrink-0">
+              <div className="h-40 sm:h-52 relative shrink-0">
                 <img src={imagePath} alt={pkg.title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent" />
                 
@@ -147,7 +147,7 @@ export default function PackageCard({ pkg, imagePath }) {
               </div>
 
               {/* Body */}
-              <div className="p-6 sm:p-8 overflow-y-auto hide-scrollbar flex-1 flex flex-col">
+              <div className="p-6 sm:p-8 flex-1 flex flex-col">
                 <p className="text-dark/70 text-base sm:text-lg font-medium leading-relaxed mb-8">
                   {pkg.subtitle}
                 </p>
