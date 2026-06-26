@@ -20,7 +20,7 @@ const navLinks = [
       { id: 'mas-servicios', label: 'Más Servicios', href: '/servicios/mas-servicios', icon: Package }
     ]
   },
-  { id: 'paquetes', label: 'Paquetes', targetId: 'paquetes' },
+  { id: 'paquetes', label: 'Paquetes', href: '/paquetes' },
 ]
 
 export default function Navbar() {
@@ -79,6 +79,10 @@ export default function Navbar() {
 
   const handleNavAction = (link) => {
     setMenuOpen(false)
+    if (link.href) {
+      navigate(link.href)
+      return
+    }
     if (link.targetId) {
       if (location.pathname === '/') {
         const el = document.getElementById(link.targetId)
@@ -271,7 +275,7 @@ export default function Navbar() {
                   targetId: 'servicios',
                   dropdown: navLinks.find(l => l.id === 'servicios').dropdown 
                 },
-                { id: 'paquetes', label: 'Paquetes', icon: Package, targetId: 'paquetes' }
+                { id: 'paquetes', label: 'Paquetes', icon: Package, href: '/paquetes' }
               ].map((link) => {
                 const isActive = activeSection === link.id || (link.id === 'servicios' && location.pathname.includes('/servicios'))
                 

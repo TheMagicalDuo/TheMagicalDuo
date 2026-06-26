@@ -7,6 +7,7 @@ import CustomCursor from './components/CustomCursor'
 // Pages
 import Home from './pages/Home'
 import ServicePage from './pages/ServicePage'
+import PackagesPage from './pages/PackagesPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -26,6 +27,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/servicios/:serviceId" element={<ServicePage />} />
+        <Route path="/paquetes" element={<PackagesPage />} />
       </Routes>
       
       <Footer />

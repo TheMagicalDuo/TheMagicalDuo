@@ -1,8 +1,6 @@
-import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Waves, Sparkles, Anchor, Sun, Zap } from 'lucide-react'
-import useEmblaCarousel from 'embla-carousel-react'
-import Autoplay from 'embla-carousel-autoplay'
+import { Link } from 'react-router-dom'
 
 const WhatsAppIcon = ({ size = 24, className }) => (
   <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -13,38 +11,11 @@ import packages from '../data/packages.json'
 
 const iconMap = { Waves, Sparkles, Anchor, Sun, Zap }
 
-const tabs = [
-  { id: 'todos', label: 'Todos los destinos' },
-  { id: 'disney', label: 'Disney & Universal' },
-  { id: 'cruceros', label: 'Cruceros' },
-  { id: 'caribe', label: 'Caribe y Playas' }
-]
-
-const getPackageImage = (pkg) => {
-  const title = pkg.title.toLowerCase()
-  const cat = pkg.category.toLowerCase()
-  if (title.includes('disney') || cat.includes('disney')) return '/destinations/disney.png'
-  if (title.includes('universal') || cat.includes('universal')) return '/destinations/universal.png'
-  if (title.includes('crucer') || cat.includes('cruise') || cat.includes('crucero')) return '/destinations/cruise.png'
-  return '/destinations/caribbean.png'
-}
-
 export default function Packages() {
-  const [activeTab, setActiveTab] = useState('todos')
-  const [emblaRef] = useEmblaCarousel({ loop: false, align: 'start' }, [Autoplay({ delay: 3500, stopOnInteraction: true })])
-
-  const filteredPackages = packages.filter(pkg => {
-    const title = pkg.title.toLowerCase()
-    const cat = pkg.category.toLowerCase()
-    if (activeTab === 'todos') return true
-    if (activeTab === 'disney') return cat.includes('disney') || cat.includes('universal') || title.includes('disney') || title.includes('universal')
-    if (activeTab === 'cruceros') return cat.includes('crucer') || cat.includes('cruise') || title.includes('crucer') || title.includes('cruise')
-    if (activeTab === 'caribe') return cat.includes('caribe') || cat.includes('méxico') || title.includes('cana') || title.includes('cancún')
-    return true
-  })
+  const displayPackages = packages.slice(0, 3)
 
   return (
-    <section id="paquetes" className="py-20 lg:py-28 bg-white relative">
+    <section className="py-20 lg:py-28 bg-white relative">
       {/* Decorative airplane trail */}
       <div className="absolute left-10 top-20 w-32 h-32 opacity-10 pointer-events-none hidden lg:block">
         <svg viewBox="0 0 100 100" className="w-full h-full text-terracota fill-none stroke-current" strokeWidth="1.5">
@@ -74,45 +45,25 @@ export default function Packages() {
           </p>
         </motion.div>
 
-        {/* Category Tabs */}
-        <div className="flex justify-start md:justify-center mb-12 overflow-x-auto pb-4 hide-scrollbar gap-2 sm:gap-4 snap-x -mx-6 px-6 lg:mx-0 lg:px-0">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`snap-center shrink-0 px-5 py-2.5 rounded-full text-[13px] sm:text-sm font-semibold whitespace-nowrap transition-all duration-300 ${
-                activeTab === tab.id
-                  ? 'bg-bordeaux text-white shadow-md shadow-bordeaux/15'
-                  : 'bg-neutral-50 border border-neutral-200/50 text-dark/70 hover:bg-neutral-100 hover:text-dark'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Grid of cards -> Carousel */}
+        {/* Grid of cards */}
         <motion.div
-          layout
-          className="overflow-hidden cursor-grab active:cursor-grabbing pb-8"
-          ref={emblaRef}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          <div className="flex touch-pan-y -ml-4 sm:-ml-6 lg:-ml-8">
-            <AnimatePresence mode="popLayout">
-              {filteredPackages.map((pkg, i) => {
-                const Icon = iconMap[pkg.iconName] ?? Anchor
-                const imagePath = getPackageImage(pkg)
-                return (
-                  <motion.div
+          <AnimatePresence mode="popLayout">
+            {displayPackages.map((pkg, i) => {
+              const Icon = iconMap[pkg.iconName] ?? Anchor
+              const imagePath = pkg.image || '/destinations/disney.png'
+              return (
+                <motion.div
                     layout
                     key={pkg.id}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4 }}
-                    className="flex-[0_0_85%] min-w-0 sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-4 sm:pl-6 lg:pl-8"
+                    className="h-full"
                   >
-                    <div className="bg-white rounded-3xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-[0_20px_40px_rgba(140,42,66,0.1)] hover:border-bordeaux/20 transition-all duration-500 flex flex-col group relative h-full">
+                  <div className="bg-white rounded-3xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-[0_20px_40px_rgba(140,42,66,0.1)] hover:border-bordeaux/20 transition-all duration-500 flex flex-col group relative h-full">
                   {/* Glare effect on hover */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 -translate-x-[150%] group-hover:translate-x-[150%] transition-all duration-[1200ms] ease-in-out pointer-events-none z-30 mix-blend-overlay" />
                   
@@ -163,12 +114,26 @@ export default function Packages() {
                       </a>
                     </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
               )
             })}
           </AnimatePresence>
-          </div>
+        </motion.div>
+
+        {/* Button to see all */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex justify-center mt-12"
+        >
+          <Link
+            to="/paquetes"
+            className="inline-flex items-center gap-2 bg-dark text-white px-8 py-4 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-dark/90 transition-all shadow-lg hover:-translate-y-1"
+          >
+            Ver todos los paquetes
+          </Link>
         </motion.div>
 
         {/* Personalized Trip CTA footer */}
