@@ -9,7 +9,8 @@ const tabs = [
   { id: 'todos', label: 'Todos los destinos' },
   { id: 'disney', label: 'Disney & Universal' },
   { id: 'cruceros', label: 'Cruceros' },
-  { id: 'caribe', label: 'Caribe y Playas' }
+  { id: 'caribe', label: 'Caribe y Playas' },
+  { id: 'tours', label: 'Tours Internacionales' }
 ]
 
 const getPackageImage = (pkg) => {
@@ -28,6 +29,7 @@ const checkMatch = (pkg, tabId) => {
   if (tabId === 'disney') return cat.includes('disney') || cat.includes('universal') || title.includes('disney') || title.includes('universal')
   if (tabId === 'cruceros') return cat.includes('crucer') || cat.includes('cruise') || title.includes('crucer') || title.includes('cruise')
   if (tabId === 'caribe') return cat.includes('caribe') || cat.includes('méxico') || title.includes('cana') || title.includes('cancún')
+  if (tabId === 'tours') return cat.includes('tour') || title.includes('tour')
   return false
 }
 
