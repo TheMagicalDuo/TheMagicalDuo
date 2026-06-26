@@ -1,7 +1,36 @@
 import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Check, Anchor, Map, Utensils, Building2, Car, HeartPulse } from 'lucide-react'
+import { Check, Anchor, Map, Utensils, Building2, Car, HeartPulse, Package } from 'lucide-react'
+
+const autosData = {
+  title: 'Alquiler de Autos',
+  subtitle: 'Recorré tu destino a tu propio ritmo',
+  desc: 'Las mejores alianzas con agencias de rent a car globales para darte seguridad, buen precio y los vehículos más cómodos.',
+  image: '/bg/airplane.png',
+  Icon: Car,
+  features: [
+    'Alianzas con Alamo, Hertz, Avis y más',
+    'Precios competitivos garantizados',
+    'Opciones de entrega en aeropuerto u hoteles',
+    'Asesoramiento total en coberturas y seguros'
+  ]
+}
+
+const asistenciaData = {
+  title: 'Assist Card',
+  subtitle: 'Viajá protegido ante cualquier imprevisto',
+  desc: 'Tu salud y tranquilidad son lo primero. Por eso somos agentes especializados de Assist Card, ofreciéndote las mejores coberturas.',
+  image: '/bg/castle_fireworks.png',
+  Icon: HeartPulse,
+  features: [
+    'Cobertura médica internacional de primer nivel',
+    'Asistencia de emergencia 24/7',
+    'Cobertura por cancelación y demora de vuelos',
+    'Planes para todas las edades y destinos',
+    'Promos exclusivas al contratar con nosotros'
+  ]
+}
 
 const servicesData = {
   'cruceros': {
@@ -59,32 +88,15 @@ const servicesData = {
       'Hoteles boutique y grandes cadenas internacionales'
     ]
   },
-  'autos': {
-    title: 'Alquiler de Autos',
-    subtitle: 'Recorré tu destino a tu propio ritmo',
-    desc: 'Las mejores alianzas con agencias de rent a car globales para darte seguridad, buen precio y los vehículos más cómodos.',
+  'autos': autosData,
+  'asistencia': asistenciaData,
+  'mas-servicios': {
+    isCombined: true,
+    title: 'Más Servicios',
+    subtitle: 'Todo lo extra que tu viaje necesita',
     image: '/bg/airplane.png',
-    Icon: Car,
-    features: [
-      'Alianzas con Alamo, Hertz, Avis y más',
-      'Precios competitivos garantizados',
-      'Opciones de entrega en aeropuerto u hoteles',
-      'Asesoramiento total en coberturas y seguros'
-    ]
-  },
-  'asistencia': {
-    title: 'Assist Card',
-    subtitle: 'Viajá protegido ante cualquier imprevisto',
-    desc: 'Tu salud y tranquilidad son lo primero. Por eso somos agentes especializados de Assist Card, ofreciéndote las mejores coberturas.',
-    image: '/bg/castle_fireworks.png',
-    Icon: HeartPulse,
-    features: [
-      'Cobertura médica internacional de primer nivel',
-      'Asistencia de emergencia 24/7',
-      'Cobertura por cancelación y demora de vuelos',
-      'Planes para todas las edades y destinos',
-      'Promos exclusivas al contratar con nosotros'
-    ]
+    Icon: Package,
+    subServices: [autosData, asistenciaData]
   }
 }
 
@@ -151,55 +163,112 @@ export default function ServicePage() {
       </div>
 
       {/* Content Section */}
-      <div className="max-w-5xl mx-auto px-6 py-20 lg:py-28">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="font-serif text-3xl md:text-4xl text-dark font-bold mb-6">
-              ¿Qué incluye nuestro servicio de <span className="italic text-bordeaux">{data.title}</span>?
-            </h2>
-            <p className="text-dark/70 text-lg leading-relaxed mb-8">
-              {data.desc}
-            </p>
-            
-            <a 
-              href={waLink}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center bg-bordeaux text-white px-8 py-4 rounded-full font-bold text-[0.95rem] hover:bg-bordeaux/90 transition-all shadow-md shadow-bordeaux/20 hover:shadow-lg hover:-translate-y-1"
-            >
-              Consultar cotización gratis
-            </a>
-          </motion.div>
+      <div className="max-w-5xl mx-auto px-6 py-20 lg:py-28 space-y-24">
+        
+        {data.isCombined ? (
+          data.subServices.map((sub, index) => (
+            <div key={sub.title} className={`grid md:grid-cols-2 gap-12 lg:gap-20 items-center ${index > 0 ? 'pt-16 border-t border-neutral-100' : ''}`}>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-bordeaux/5 text-bordeaux flex items-center justify-center">
+                    <sub.Icon size={24} />
+                  </div>
+                </div>
+                <h2 className="font-serif text-3xl md:text-4xl text-dark font-bold mb-6">
+                  {sub.title}
+                </h2>
+                <p className="text-dark/70 text-lg leading-relaxed mb-8">
+                  {sub.desc}
+                </p>
+                
+                <a 
+                  href={`https://wa.me/${whatsappNumber}?text=Hola!%20Quiero%20consultar%20sobre%20${encodeURIComponent(sub.title)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center bg-bordeaux text-white px-8 py-4 rounded-full font-bold text-[0.95rem] hover:bg-bordeaux/90 transition-all shadow-md shadow-bordeaux/20 hover:shadow-lg hover:-translate-y-1"
+                >
+                  Consultar sobre {sub.title}
+                </a>
+              </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-[#FBF8F3] rounded-3xl p-8 lg:p-10 border border-neutral-100 shadow-sm relative overflow-hidden"
-          >
-            {/* Decorative elements */}
-            <div className="absolute -right-10 -top-10 w-40 h-40 bg-bordeaux/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-terracota/5 rounded-full blur-3xl pointer-events-none" />
-            
-            <h3 className="font-serif text-xl font-bold text-dark mb-6 flex items-center gap-2 relative z-10">
-              <Check size={20} className="text-sage" />
-              Destacados del Servicio
-            </h3>
-            
-            <ul className="space-y-4 relative z-10">
-              {data.features.map((feature, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-bordeaux mt-2 shrink-0" />
-                  <span className="text-dark/80 text-[15px] font-medium leading-relaxed">{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-[#FBF8F3] rounded-3xl p-8 lg:p-10 border border-neutral-100 shadow-sm relative overflow-hidden"
+              >
+                <h3 className="font-serif text-xl font-bold text-dark mb-6 flex items-center gap-2 relative z-10">
+                  <Check size={20} className="text-sage" />
+                  Destacados
+                </h3>
+                
+                <ul className="space-y-4 relative z-10">
+                  {sub.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-bordeaux mt-2 shrink-0" />
+                      <span className="text-dark/80 text-[15px] font-medium leading-relaxed">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </div>
+          ))
+        ) : (
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="font-serif text-3xl md:text-4xl text-dark font-bold mb-6">
+                ¿Qué incluye nuestro servicio de <span className="italic text-bordeaux">{data.title}</span>?
+              </h2>
+              <p className="text-dark/70 text-lg leading-relaxed mb-8">
+                {data.desc}
+              </p>
+              
+              <a 
+                href={waLink}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center bg-bordeaux text-white px-8 py-4 rounded-full font-bold text-[0.95rem] hover:bg-bordeaux/90 transition-all shadow-md shadow-bordeaux/20 hover:shadow-lg hover:-translate-y-1"
+              >
+                Consultar cotización gratis
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-[#FBF8F3] rounded-3xl p-8 lg:p-10 border border-neutral-100 shadow-sm relative overflow-hidden"
+            >
+              {/* Decorative elements */}
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-bordeaux/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-terracota/5 rounded-full blur-3xl pointer-events-none" />
+              
+              <h3 className="font-serif text-xl font-bold text-dark mb-6 flex items-center gap-2 relative z-10">
+                <Check size={20} className="text-sage" />
+                Destacados del Servicio
+              </h3>
+              
+              <ul className="space-y-4 relative z-10">
+                {data.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-bordeaux mt-2 shrink-0" />
+                    <span className="text-dark/80 text-[15px] font-medium leading-relaxed">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        )}
       </div>
     </div>
   )

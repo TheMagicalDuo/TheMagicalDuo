@@ -17,16 +17,7 @@ const navLinks = [
       { id: 'tours', label: 'Tours en español', href: '/servicios/tours', icon: Map },
       { id: 'all-inclusive', label: 'All Inclusive Resorts', href: '/servicios/all-inclusive', icon: Utensils },
       { id: 'hoteles', label: 'Hoteles', href: '/servicios/hoteles', icon: Building2 },
-      { 
-        id: 'mas-servicios', 
-        label: 'Más Servicios', 
-        icon: PlusCircle,
-        isNested: true,
-        subItems: [
-          { id: 'autos', label: 'Alquiler de Autos', href: '/servicios/autos', icon: Car },
-          { id: 'asistencia', label: 'Assist Card', href: '/servicios/asistencia', icon: HeartPulse },
-        ]
-      }
+      { id: 'mas-servicios', label: 'Más Servicios', href: '/servicios/mas-servicios', icon: Package }
     ]
   },
   { id: 'paquetes', label: 'Paquetes', targetId: 'paquetes' },
@@ -37,7 +28,6 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
   const [servicesOpen, setServicesOpen] = useState(false)
-  const [nestedOpen, setNestedOpen] = useState(false) // Para el sub-menu "Mas Servicios" en mobile
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false)
   
   const location = useLocation()
@@ -189,56 +179,21 @@ export default function Navbar() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 10, scale: 0.95 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute top-[80%] left-1/2 -translate-x-1/2 w-64 bg-white rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] border border-neutral-100 overflow-visible py-3"
+                          className="absolute top-[80%] left-1/2 -translate-x-1/2 w-64 bg-white rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] border border-neutral-100 overflow-hidden py-3"
                         >
-                          {link.dropdown.map(dropItem => {
-                            if (dropItem.isNested) {
-                              return (
-                                <div key={dropItem.id} className="relative group/nested">
-                                  <div className="flex items-center justify-between px-5 py-3 hover:bg-neutral-50 transition-colors cursor-default">
-                                    <div className="flex items-center gap-3">
-                                      <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center group-hover/nested:bg-bordeaux/10 group-hover/nested:text-bordeaux transition-colors">
-                                        <dropItem.icon size={14} className="text-dark/60 group-hover/nested:text-bordeaux transition-colors" />
-                                      </div>
-                                      <span className="text-sm font-semibold text-dark/80 group-hover/nested:text-dark transition-colors">{dropItem.label}</span>
-                                    </div>
-                                    <ChevronDown size={14} className="text-dark/40 -rotate-90 group-hover/nested:text-dark" />
-                                  </div>
-                                  
-                                  {/* Sub-dropdown */}
-                                  <div className="absolute left-[98%] top-0 w-60 opacity-0 invisible group-hover/nested:opacity-100 group-hover/nested:visible bg-white rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] border border-neutral-100 overflow-hidden py-3 transition-all duration-200 translate-x-2 group-hover/nested:translate-x-0 z-50">
-                                    {dropItem.subItems.map(sub => (
-                                      <Link
-                                        key={sub.id}
-                                        to={sub.href}
-                                        onClick={() => { setDesktopDropdownOpen(false) }}
-                                        className="flex items-center gap-3 px-5 py-3 hover:bg-neutral-50 transition-colors group/item"
-                                      >
-                                        <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center group-hover/item:bg-bordeaux/10 group-hover/item:text-bordeaux transition-colors">
-                                          <sub.icon size={14} className="text-dark/60 group-hover/item:text-bordeaux transition-colors" />
-                                        </div>
-                                        <span className="text-sm font-semibold text-dark/80 group-hover/item:text-dark transition-colors">{sub.label}</span>
-                                      </Link>
-                                    ))}
-                                  </div>
-                                </div>
-                              )
-                            }
-
-                            return (
-                              <Link
-                                key={dropItem.id}
-                                to={dropItem.href}
-                                onClick={() => setDesktopDropdownOpen(false)}
-                                className="flex items-center gap-3 px-5 py-3 hover:bg-neutral-50 transition-colors group/item"
-                              >
-                                <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center group-hover/item:bg-bordeaux/10 group-hover/item:text-bordeaux transition-colors">
-                                  <dropItem.icon size={14} className="text-dark/60 group-hover/item:text-bordeaux transition-colors" />
-                                </div>
-                                <span className="text-sm font-semibold text-dark/80 group-hover/item:text-dark transition-colors">{dropItem.label}</span>
-                              </Link>
-                            )
-                          })}
+                          {link.dropdown.map(dropItem => (
+                            <Link
+                              key={dropItem.id}
+                              to={dropItem.href}
+                              onClick={() => setDesktopDropdownOpen(false)}
+                              className="flex items-center gap-3 px-5 py-3 hover:bg-neutral-50 transition-colors group/item"
+                            >
+                              <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center group-hover/item:bg-bordeaux/10 group-hover/item:text-bordeaux transition-colors">
+                                <dropItem.icon size={14} className="text-dark/60 group-hover/item:text-bordeaux transition-colors" />
+                              </div>
+                              <span className="text-sm font-semibold text-dark/80 group-hover/item:text-dark transition-colors">{dropItem.label}</span>
+                            </Link>
+                          ))}
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -345,58 +300,17 @@ export default function Navbar() {
                             exit={{ height: 0, opacity: 0 }}
                             className="overflow-hidden flex flex-col gap-1 mt-2 pl-4 border-l border-neutral-100 ml-6"
                           >
-                            {link.dropdown.map(dropItem => {
-                              if (dropItem.isNested) {
-                                return (
-                                  <div key={dropItem.id} className="flex flex-col w-full mt-1 mb-1">
-                                    <button
-                                      onClick={() => setNestedOpen(!nestedOpen)}
-                                      className="flex items-center justify-between py-2 px-4 rounded-xl hover:bg-neutral-50 transition-colors"
-                                    >
-                                      <div className="flex items-center gap-3">
-                                        <dropItem.icon size={14} className="text-dark/40" />
-                                        <span className="text-sm font-medium text-dark/70">{dropItem.label}</span>
-                                      </div>
-                                      <ChevronDown size={14} className={`text-dark/40 transition-transform duration-300 ${nestedOpen ? 'rotate-180' : ''}`} />
-                                    </button>
-                                    
-                                    <AnimatePresence>
-                                      {nestedOpen && (
-                                        <motion.div
-                                          initial={{ height: 0, opacity: 0 }}
-                                          animate={{ height: 'auto', opacity: 1 }}
-                                          exit={{ height: 0, opacity: 0 }}
-                                          className="overflow-hidden flex flex-col gap-1 mt-1 pl-6 border-l border-neutral-100 ml-3"
-                                        >
-                                          {dropItem.subItems.map(sub => (
-                                            <Link
-                                              key={sub.id}
-                                              to={sub.href}
-                                              onClick={() => setMenuOpen(false)}
-                                              className="flex items-center gap-3 py-2 px-4 rounded-xl hover:bg-neutral-50 transition-colors text-dark/70 hover:text-dark"
-                                            >
-                                              <sub.icon size={14} className="text-dark/40" />
-                                              <span className="text-sm font-medium">{sub.label}</span>
-                                            </Link>
-                                          ))}
-                                        </motion.div>
-                                      )}
-                                    </AnimatePresence>
-                                  </div>
-                                )
-                              }
-                              return (
-                                <Link
-                                  key={dropItem.id}
-                                  to={dropItem.href}
-                                  onClick={() => setMenuOpen(false)}
-                                  className="flex items-center gap-3 py-3 px-4 rounded-xl hover:bg-neutral-50 transition-colors text-dark/70 hover:text-dark"
-                                >
-                                  <dropItem.icon size={14} className="text-dark/40" />
-                                  <span className="text-sm font-medium">{dropItem.label}</span>
-                                </Link>
-                              )
-                            })}
+                            {link.dropdown.map(dropItem => (
+                              <Link
+                                key={dropItem.id}
+                                to={dropItem.href}
+                                onClick={() => setMenuOpen(false)}
+                                className="flex items-center gap-3 py-3 px-4 rounded-xl hover:bg-neutral-50 transition-colors text-dark/70 hover:text-dark"
+                              >
+                                <dropItem.icon size={14} className="text-dark/40" />
+                                <span className="text-sm font-medium">{dropItem.label}</span>
+                              </Link>
+                            ))}
                           </motion.div>
                         )}
                       </AnimatePresence>
