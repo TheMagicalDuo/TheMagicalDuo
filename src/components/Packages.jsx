@@ -114,7 +114,8 @@ export default function Packages() {
                       </a>
                     </div>
                   </div>
-                </motion.div>
+                </div>
+              </motion.div>
               )
             })}
           </AnimatePresence>
