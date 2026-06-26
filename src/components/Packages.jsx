@@ -153,7 +153,7 @@ export default function Packages() {
                       </div>
 
                       <a
-                        href={`https://wa.me/${pkg.whatsappNumber}?text=${encodeURIComponent(pkg.whatsappMessage)}`}
+                        href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(pkg.whatsappMessage)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center gap-2 w-full bg-bordeaux text-white py-3.5 rounded-2xl font-bold text-sm hover:bg-bordeaux/90 transition-colors duration-300 shadow-md shadow-bordeaux/15 hover:shadow-lg"
@@ -181,7 +181,7 @@ export default function Packages() {
         >
           ¿Tenés otro destino en mente o querés cambiar la cantidad de días?{' '}
           <a
-            href="https://wa.me/5491132996899?text=Hola!%20Quiero%20consultar%20por%20un%20viaje%20personalizado"
+            href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=Hola!%20Quiero%20consultar%20por%20un%20viaje%20personalizado`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-bordeaux font-bold underline underline-offset-4 hover:text-bordeaux/75 transition-colors"

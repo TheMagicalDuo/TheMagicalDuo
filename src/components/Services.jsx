@@ -205,7 +205,7 @@ export default function Services() {
 
                     <div className="shrink-0 text-terracota group-hover:text-bordeaux transition-colors flex items-center gap-1">
                       <a 
-                        href={`https://wa.me/5491132996899?text=Hola!%20Quiero%20consultar%20sobre%20${encodeURIComponent(c.name)}`} 
+                        href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=Hola!%20Quiero%20consultar%20sobre%20${encodeURIComponent(c.name)}`} 
                         target="_blank" 
                         rel="noreferrer" 
                         className="hidden sm:inline text-xs font-semibold"
@@ -345,7 +345,7 @@ export default function Services() {
                   {selectedCruise.desc}
                 </p>
                 <a
-                  href={`https://wa.me/5491132996899?text=Hola!%20Quiero%20consultar%20sobre%20${encodeURIComponent(selectedCruise.name)}`}
+                  href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=Hola!%20Quiero%20consultar%20sobre%20${encodeURIComponent(selectedCruise.name)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2 bg-bordeaux text-white py-3.5 rounded-2xl font-bold text-sm"

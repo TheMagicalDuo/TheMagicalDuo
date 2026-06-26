@@ -357,7 +357,8 @@ export default function ContactForm() {
       (form.presupuesto ? `💰 *Presupuesto:* ${form.presupuesto}%0A` : '') +
       (form.comentarios ? `💬 *Comentarios:* ${form.comentarios}` : '')
 
-    window.open(`https://wa.me/5491132996899?text=${msg}`, '_blank')
+    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER
+    window.open(`https://wa.me/${whatsappNumber}?text=${msg}`, '_blank')
 
     setTimeout(() => {
       setStatus('success')
