@@ -354,7 +354,7 @@ export default function ContactForm() {
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
       if (serviceId && templateId && publicKey) {
-        emailjs.init(publicKey)
+        emailjs.init({ publicKey })
         await emailjs.send(
           serviceId,
           templateId,
@@ -380,7 +380,7 @@ export default function ContactForm() {
               (form.presupuesto ? `- Presupuesto: ${form.presupuesto}\n` : '') +
               (form.comentarios ? `- Comentarios: ${form.comentarios}\n` : '')
           },
-          publicKey
+          { publicKey }
         )
       } else {
         console.warn('EmailJS credentials are not set in environment variables')
