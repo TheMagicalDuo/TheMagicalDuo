@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Check, Star, Sparkles, Globe, Zap } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 
@@ -79,6 +80,7 @@ const columns = [
 ]
 
 export default function DisneyUniversal() {
+  const navigate = useNavigate()
   const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start' }, [Autoplay({ delay: 4000, stopOnInteraction: true })])
 
   return (
@@ -193,12 +195,12 @@ export default function DisneyUniversal() {
           <p className="text-dark/80 text-base sm:text-lg leading-relaxed mb-8 max-w-3xl mx-auto">
             Podemos ofrecerte pagar tus paquetes en cuotas y acceder a precios oficiales garantizados. No vas a pagar ni un peso más de lo que encontrás por tu cuenta. ¡Y encima te asesoramos gratis!
           </p>
-          <a
-            href="#cotizar"
+          <button
+            onClick={() => navigate('/', { state: { scrollTo: 'cotizar' } })}
             className="inline-flex items-center gap-2.5 bg-bordeaux text-white px-8 py-4 rounded-full font-bold text-[0.95rem] hover:bg-bordeaux/90 transition-colors duration-300 shadow-md shadow-bordeaux/15 hover:shadow-lg"
           >
             Quiero una cotización gratis
-          </a>
+          </button>
         </motion.div>
       </div>
     </section>

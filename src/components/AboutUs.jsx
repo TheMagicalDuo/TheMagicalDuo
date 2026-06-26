@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { MapPin, Heart, Sparkles, Clock } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const destPhotos = [
   { image: '/destinations/disney.png', label: 'Magic Kingdom', angle: 'rotate-[1.5deg]' },
@@ -9,6 +10,7 @@ const destPhotos = [
 ]
 
 export default function AboutUs() {
+  const navigate = useNavigate()
   return (
     <section id="nosotros" className="py-20 lg:py-28 bg-[#FBF8F3]/60 relative border-t border-neutral-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -134,12 +136,12 @@ export default function AboutUs() {
               >
                 Seguinos en Instagram
               </a>
-              <a
-                href="#cotizar"
+              <button
+                onClick={() => navigate('/', { state: { scrollTo: 'cotizar' } })}
                 className="inline-flex items-center justify-center gap-2 bg-bordeaux text-white px-6 py-3.5 rounded-full font-bold text-sm hover:bg-bordeaux/90 transition-colors duration-300 shadow-md"
               >
                 Planificar mi viaje
-              </a>
+              </button>
             </div>
           </motion.div>
 

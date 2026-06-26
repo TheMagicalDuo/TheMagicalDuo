@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Home, Users, Sparkles, Package, Anchor, Map, Utensils, Building2, Car, HeartPulse, ChevronDown } from 'lucide-react'
+import { Menu, X, HomeIcon, Users, Sparkles, Package, Anchor, Map, Utensils, Building2, Car, HeartPulse, ChevronDown } from 'lucide-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Logo from './Logo'
 
 const navLinks = [
-  { id: 'inicio', label: 'Inicio', href: '/' },
-  { id: 'nosotros', label: 'Nosotros', href: '/#nosotros' },
-  { id: 'especialidad', label: 'Disney & Universal', href: '/#especialidad' },
+  { id: 'inicio', label: 'Inicio', targetId: 'inicio' },
+  { id: 'nosotros', label: 'Nosotros', targetId: 'nosotros' },
+  { id: 'especialidad', label: 'Disney & Universal', targetId: 'especialidad' },
   { 
     id: 'servicios', 
     label: 'Servicios', 
-    href: '/#servicios',
+    targetId: 'servicios',
     dropdown: [
       { id: 'cruceros', label: 'Cruceros', href: '/servicios/cruceros', icon: Anchor },
       { id: 'tours', label: 'Tours en español', href: '/servicios/tours', icon: Map },
@@ -21,37 +21,24 @@ const navLinks = [
       { id: 'asistencia', label: 'Assist Card', href: '/servicios/asistencia', icon: HeartPulse },
     ]
   },
-  { id: 'paquetes', label: 'Paquetes', href: '/#paquetes' },
+  { id: 'paquetes', label: 'Paquetes', targetId: 'paquetes' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
-  const [servicesOpen, setServicesOpen] = useState(false) // For mobile accordion
+  const [servicesOpen, setServicesOpen] = useState(false)
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false)
   
   const location = useLocation()
   const navigate = useNavigate()
 
-  // Detectar scroll para cambiar estilos
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
-  // Handle smooth scroll for hash links if already on home page
-  useEffect(() => {
-    if (location.pathname === '/' && location.hash) {
-      setTimeout(() => {
-        const el = document.querySelector(location.hash)
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
-      }, 100)
-    } else if (location.pathname === '/' && !location.hash) {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-  }, [location])
 
   // Spy Scroll Logic for Home Page Sections
   useEffect(() => {
@@ -63,9 +50,8 @@ export default function Navbar() {
       const scrollY = window.scrollY
       let current = 'inicio'
       navLinks.forEach(link => {
-        if (link.href && link.href.startsWith('/#')) {
-          const id = link.href.split('#')[1]
-          const el = document.getElementById(id)
+        if (link.targetId) {
+          const el = document.getElementById(link.targetId)
           if (el) {
             const offsetTop = el.offsetTop - 150
             if (scrollY >= offsetTop) {
@@ -82,14 +68,14 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScrollSpy)
   }, [location])
 
-  const handleLinkClick = (e, link) => {
+  const handleNavAction = (link) => {
     setMenuOpen(false)
-    if (link.href.startsWith('/#')) {
+    if (link.targetId) {
       if (location.pathname === '/') {
-        e.preventDefault()
-        const id = link.href.split('#')[1]
-        const el = document.getElementById(id)
+        const el = document.getElementById(link.targetId)
         if (el) el.scrollIntoView({ behavior: 'smooth' })
+      } else {
+        navigate('/', { state: { scrollTo: link.targetId } })
       }
     }
   }
@@ -109,13 +95,16 @@ export default function Navbar() {
       >
         
         {/* Logo */}
-        <Link to="/" onClick={() => { setMenuOpen(false); window.scrollTo(0, 0) }} className="flex items-center group relative flex-shrink-0 z-10">
+        <button 
+          onClick={() => { setMenuOpen(false); handleNavAction({ targetId: 'inicio' }) }} 
+          className="flex items-center group relative flex-shrink-0 z-10"
+        >
           <Logo
             className={`h-16 sm:h-20 w-auto transition-all duration-300 group-hover:scale-105 ${
               scrolled ? 'text-bordeaux' : 'text-cream'
             }`}
           />
-        </Link>
+        </button>
 
         {/* Mobile Current Section Indicator */}
         <div className={`absolute left-1/2 -translate-x-1/2 flex lg:hidden items-center justify-center text-[10px] uppercase font-bold tracking-[0.2em] transition-colors duration-500 z-0 ${
@@ -138,6 +127,7 @@ export default function Navbar() {
                   onMouseLeave={() => setDesktopDropdownOpen(false)}
                 >
                   <button
+                    onClick={() => handleNavAction(link)}
                     className={`relative py-6 flex items-center gap-1.5 text-xs font-bold tracking-[0.15em] uppercase transition-colors duration-300 ${
                       isActive 
                         ? (scrolled ? 'text-bordeaux' : 'text-white')
@@ -186,10 +176,9 @@ export default function Navbar() {
             }
 
             return (
-              <Link
+              <button
                 key={link.id}
-                to={link.href}
-                onClick={(e) => handleLinkClick(e, link)}
+                onClick={() => handleNavAction(link)}
                 className={`relative py-6 text-xs font-bold tracking-[0.15em] uppercase transition-colors duration-300 ${
                   isActive 
                     ? (scrolled ? 'text-bordeaux' : 'text-white')
@@ -204,16 +193,15 @@ export default function Navbar() {
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
-              </Link>
+              </button>
             )
           })}
         </div>
 
         {/* CTA & Mobile Toggle */}
         <div className="flex items-center gap-4 z-10">
-          <Link
-            to="/#cotizar"
-            onClick={(e) => handleLinkClick(e, { href: '/#cotizar' })}
+          <button
+            onClick={() => handleNavAction({ targetId: 'cotizar' })}
             className={`hidden sm:flex px-7 py-2.5 rounded-full border text-xs font-bold tracking-[0.15em] uppercase transition-all duration-300 ${
               scrolled 
                 ? 'bg-dark text-white border-dark hover:bg-white hover:text-dark'
@@ -221,7 +209,7 @@ export default function Navbar() {
             }`}
           >
             COTIZAR
-          </Link>
+          </button>
 
           {/* Mobile Menu Button */}
           <button
@@ -248,15 +236,16 @@ export default function Navbar() {
               className="bg-dark/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] rounded-3xl p-5 flex flex-col gap-2.5 max-h-[75vh] overflow-y-auto"
             >
               {[
-                { id: 'inicio', label: 'Inicio', icon: Home, href: '/' },
-                { id: 'nosotros', label: 'Nosotros', icon: Users, href: '/#nosotros' },
-                { id: 'especialidad', label: 'Disney & Universal', icon: Sparkles, href: '/#especialidad' },
+                { id: 'inicio', label: 'Inicio', icon: HomeIcon, targetId: 'inicio' },
+                { id: 'nosotros', label: 'Nosotros', icon: Users, targetId: 'nosotros' },
+                { id: 'especialidad', label: 'Disney & Universal', icon: Sparkles, targetId: 'especialidad' },
                 { 
                   id: 'servicios', 
                   label: 'Servicios', 
+                  targetId: 'servicios',
                   dropdown: navLinks.find(l => l.id === 'servicios').dropdown 
                 },
-                { id: 'paquetes', label: 'Paquetes', icon: Package, href: '/#paquetes' }
+                { id: 'paquetes', label: 'Paquetes', icon: Package, targetId: 'paquetes' }
               ].map((link) => {
                 const isActive = activeSection === link.id || (link.id === 'servicios' && location.pathname.includes('/servicios'))
                 
@@ -304,10 +293,9 @@ export default function Navbar() {
                 }
 
                 return (
-                  <Link
+                  <button
                     key={link.id}
-                    to={link.href}
-                    onClick={(e) => handleLinkClick(e, link)}
+                    onClick={() => handleNavAction(link)}
                     className={`w-full py-3.5 rounded-2xl text-left px-4 text-sm font-medium flex items-center gap-3 transition-all duration-200 ${
                       isActive 
                         ? 'bg-white/10 border-l-4 border-terracota text-terracota font-bold shadow-inner shadow-black/20' 
@@ -316,21 +304,20 @@ export default function Navbar() {
                   >
                     <link.icon className={`w-4 h-4 ${isActive ? 'text-terracota' : 'text-cream/50'}`} />
                     {link.label}
-                  </Link>
+                  </button>
                 )
               })}
               
               <hr className="border-white/10 my-2" />
               
-              <Link
-                to="/#cotizar"
-                onClick={(e) => handleLinkClick(e, { href: '/#cotizar' })}
+              <button
+                onClick={() => handleNavAction({ targetId: 'cotizar' })}
                 className="w-full inline-block"
               >
                 <div className="w-full bg-terracota text-white shadow-terracota/20 shadow-lg rounded-2xl py-3.5 text-sm font-semibold flex justify-center items-center hover:bg-terracota/90 transition-colors">
                   Reservar Turno
                 </div>
-              </Link>
+              </button>
             </motion.div>
           </div>
         )}

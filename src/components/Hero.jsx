@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const destinations = [
   { id: 0, title: 'DISNEY WORLD - ORLANDO', subtitle: 'La magia te espera', image: '/destinations/disney.png' },
@@ -10,6 +11,7 @@ const destinations = [
 ]
 
 export default function Hero() {
+  const navigate = useNavigate()
   const [active, setActive] = useState(0)
   
   // Parallax effect
@@ -177,9 +179,9 @@ export default function Hero() {
           transition={{ delay: 0.6 }}
           className="absolute bottom-8 sm:bottom-10 left-6 right-6 sm:left-auto sm:right-16 z-30"
         >
-          <a href="#cotizar" className="flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-[#E07A5F] text-white rounded-full font-bold text-sm tracking-widest hover:bg-[#D46B50] transition-all shadow-xl hover:-translate-y-1 min-h-[44px]">
+          <button onClick={() => navigate('/', { state: { scrollTo: 'cotizar' } })} className="flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-[#E07A5F] text-white rounded-full font-bold text-sm tracking-widest hover:bg-[#D46B50] transition-all shadow-xl hover:-translate-y-1 min-h-[44px]">
             COTIZAR VIAJE
-          </a>
+          </button>
         </motion.div>
 
       </div>

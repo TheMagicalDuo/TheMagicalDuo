@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, ArrowUpRight } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const InstagramIcon = ({ size = 24, className }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
@@ -10,6 +11,13 @@ const InstagramIcon = ({ size = 24, className }) => (
 )
 
 export default function Footer() {
+  const navigate = useNavigate()
+  
+  const handleScrollToCotizar = (e) => {
+    e.preventDefault()
+    navigate('/', { state: { scrollTo: 'cotizar' } })
+  }
+
   return (
     <div className="bg-[#FBF8F3] w-full flex flex-col items-center justify-center pb-8 pt-20 px-4 relative z-10 border-t border-neutral-100 overflow-hidden">
       
@@ -29,9 +37,9 @@ export default function Footer() {
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          <a href="#cotizar" className="inline-flex items-center gap-2 text-dark font-bold text-xs uppercase tracking-[0.2em] hover:text-terracota transition-colors group bg-white border border-neutral-200 px-6 py-3 rounded-full shadow-sm hover:shadow-md">
+          <button onClick={handleScrollToCotizar} className="inline-flex items-center gap-2 text-dark font-bold text-xs uppercase tracking-[0.2em] hover:text-terracota transition-colors group bg-white border border-neutral-200 px-6 py-3 rounded-full shadow-sm hover:shadow-md">
             Comenzar a planificar <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </a>
+          </button>
         </motion.div>
       </div>
 

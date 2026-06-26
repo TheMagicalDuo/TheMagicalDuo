@@ -8,9 +8,25 @@ import ContactForm from '../components/ContactForm'
 import WhyUs from '../components/WhyUs'
 import AboutUs from '../components/AboutUs'
 import Testimonials from '../components/Testimonials'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import DreamVision from '../components/DreamVision'
 
 export default function Home() {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.state && location.state.scrollTo) {
+      const el = document.getElementById(location.state.scrollTo)
+      if (el) {
+        // slight delay ensures the page is fully mounted when navigating back from another page
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100)
+      }
+      // Clean up the state so it doesn't re-scroll on refresh
+      window.history.replaceState({}, document.title)
+    }
+  }, [location])
+
   return (
     <>
       <Hero />

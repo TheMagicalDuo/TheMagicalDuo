@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FileText, ArrowRight, HelpCircle, Check, MessageCircle, Lightbulb, Calculator, Sliders, Ticket } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const WhatsAppIcon = ({ size = 24, className }) => (
   <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -50,6 +51,7 @@ const infoItems = [
 ]
 
 export default function Process() {
+  const navigate = useNavigate()
   const [activeStep, setActiveStep] = useState(0)
 
   useEffect(() => {
@@ -212,13 +214,13 @@ export default function Process() {
             </div>
 
             <div className="flex flex-col gap-3 relative z-10">
-              <a
-                href="#cotizar"
+              <button
+                onClick={() => navigate('/', { state: { scrollTo: 'cotizar' } })}
                 className="flex items-center justify-center gap-2 bg-bordeaux hover:bg-bordeaux/90 text-white py-3.5 rounded-2xl font-bold text-sm transition-all duration-300 shadow-md shadow-bordeaux/15 hover:shadow-lg"
               >
                 <FileText size={16} />
                 Completar formulario
-              </a>
+              </button>
               <a
                 href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=Hola!%20Quiero%20planificar%20un%20viaje`}
                 target="_blank"
