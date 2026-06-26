@@ -70,7 +70,7 @@ export default function Footer() {
         {/* Center Logo */}
         <div className="hidden md:block w-px h-10 bg-neutral-200"></div>
         <div className="flex items-center justify-center">
-          <img src="/logo/logo-vector-violeta.png" alt="The Magical Duo" className="h-12 w-auto" />
+          <img src="/logo/logo-vector-violeta.png" alt="The Magical Duo" className="h-16 w-auto" />
         </div>
         <div className="hidden md:block w-px h-10 bg-neutral-200"></div>
 

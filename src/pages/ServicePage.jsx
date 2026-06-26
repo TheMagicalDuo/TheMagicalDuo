@@ -164,7 +164,7 @@ export default function ServicePage() {
       </div>
 
       {/* Content Section */}
-      <div className="max-w-5xl mx-auto px-6 py-20 lg:py-28 space-y-24">
+      <div className="max-w-5xl mx-auto px-6 py-20 lg:py-28 space-y-16">
         
         {data.isCombined ? (
           data.subServices.map((sub, index) => (
@@ -270,6 +270,38 @@ export default function ServicePage() {
             </motion.div>
           </div>
         )}
+        {/* Photo gallery — only for cruceros */}
+        {serviceId === 'cruceros' && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="border-t border-neutral-100 pt-16"
+          >
+            <h3 className="font-serif text-2xl md:text-3xl font-bold text-dark mb-2">
+              Destinos y Navieras
+            </h3>
+            <p className="text-dark/60 mb-8">Una selección de los mejores itinerarios que podés elegir.</p>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="rounded-2xl overflow-hidden aspect-[4/3]">
+                <img
+                  src="/destinations/cruise.png"
+                  alt="Crucero"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="rounded-2xl overflow-hidden aspect-[4/3]">
+                <img
+                  src="/destinations/caribbean.png"
+                  alt="Caribe"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            </div>
+          </motion.div>
+        )}
+
       </div>
       </div>
     </PageTransition>
