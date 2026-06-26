@@ -36,7 +36,7 @@ const services = [
     title: 'Más Servicios',
     desc: 'Alquiler de autos y asistencia al viajero para tu tranquilidad.',
     Icon: Package,
-    image: '/destinations/autos.jpg',
+    image: '/destinations/more-services.jpg',
   }
 ]
 
@@ -73,7 +73,7 @@ export default function ServicesSummary() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className={i === services.length - 1 && services.length % 3 !== 0 ? 'sm:col-span-2 lg:col-span-1' : ''}
+              className={i === services.length - 1 && services.length % 3 !== 0 ? 'sm:col-span-2 lg:col-span-2' : ''}
             >
               <Link
                 to={`/servicios/${s.id}`}
