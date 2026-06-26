@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Waves, Sparkles, Anchor, Sun, Zap, X } from 'lucide-react'
 
@@ -110,9 +111,10 @@ export default function PackageCard({ pkg, imagePath }) {
       </motion.div>
 
       {/* MODAL */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <div className="fixed inset-0 z-[100]">
+      {createPortal(
+        <AnimatePresence>
+          {isModalOpen && (
+            <div className="fixed inset-0 z-[100]">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -209,7 +211,9 @@ export default function PackageCard({ pkg, imagePath }) {
         </div>
         </div>
         )}
-      </AnimatePresence>
+        </AnimatePresence>,
+        document.body
+      )}
     </>
   )
 }
