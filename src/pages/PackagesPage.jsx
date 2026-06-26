@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Waves, Sparkles, Anchor, Sun, Zap, Package } from 'lucide-react'
+import useEmblaCarousel from 'embla-carousel-react'
 import packages from '../data/packages.json'
 import PackageCard from '../components/PackageCard'
 
@@ -20,6 +21,34 @@ const getPackageImage = (pkg) => {
   return '/destinations/caribbean.png'
 }
 
+const checkMatch = (pkg, tabId) => {
+  const title = pkg.title.toLowerCase()
+  const cat = pkg.category.toLowerCase()
+  if (tabId === 'todos') return true
+  if (tabId === 'disney') return cat.includes('disney') || cat.includes('universal') || title.includes('disney') || title.includes('universal')
+  if (tabId === 'cruceros') return cat.includes('crucer') || cat.includes('cruise') || title.includes('crucer') || title.includes('cruise')
+  if (tabId === 'caribe') return cat.includes('caribe') || cat.includes('méxico') || title.includes('cana') || title.includes('cancún')
+  return false
+}
+
+function MobileCategoryCarousel({ categoryPackages }) {
+  const [emblaRef] = useEmblaCarousel({ loop: false, align: 'start' })
+  return (
+    <div className="overflow-hidden cursor-grab active:cursor-grabbing pb-4" ref={emblaRef}>
+      <div className="flex -ml-4 sm:-ml-6">
+        {categoryPackages.map((pkg) => {
+          const imagePath = getPackageImage(pkg)
+          return (
+            <div key={pkg.id} className="flex-[0_0_85%] min-w-0 pl-4 sm:pl-6">
+              <PackageCard pkg={pkg} imagePath={imagePath} />
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 export default function PackagesPage() {
   const [activeTab, setActiveTab] = useState('todos')
 
@@ -27,15 +56,11 @@ export default function PackagesPage() {
     window.scrollTo(0, 0)
   }, [])
 
-  const filteredPackages = packages.filter(pkg => {
-    const title = pkg.title.toLowerCase()
-    const cat = pkg.category.toLowerCase()
-    if (activeTab === 'todos') return true
-    if (activeTab === 'disney') return cat.includes('disney') || cat.includes('universal') || title.includes('disney') || title.includes('universal')
-    if (activeTab === 'cruceros') return cat.includes('crucer') || cat.includes('cruise') || title.includes('crucer') || title.includes('cruise')
-    if (activeTab === 'caribe') return cat.includes('caribe') || cat.includes('méxico') || title.includes('cana') || title.includes('cancún')
-    return true
-  })
+  const activeTabs = tabs.filter(tab => 
+    tab.id === 'todos' || packages.some(pkg => checkMatch(pkg, tab.id))
+  )
+
+  const filteredPackages = packages.filter(pkg => checkMatch(pkg, activeTab))
 
   return (
     <div className="min-h-screen bg-white">
@@ -81,34 +106,56 @@ export default function PackagesPage() {
       {/* Content Section */}
       <div className="max-w-7xl mx-auto px-6 py-20 lg:py-28">
         
-        {/* Category Tabs */}
-        <div className="flex justify-start md:justify-center mb-12 overflow-x-auto pb-4 hide-scrollbar gap-2 sm:gap-4 snap-x -mx-6 px-6 lg:mx-0 lg:px-0">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`snap-center shrink-0 px-5 py-2.5 rounded-full text-[13px] sm:text-sm font-semibold whitespace-nowrap transition-all duration-300 ${
-                activeTab === tab.id
-                  ? 'bg-bordeaux text-white shadow-md shadow-bordeaux/15'
-                  : 'bg-neutral-50 border border-neutral-200/50 text-dark/70 hover:bg-neutral-100 hover:text-dark'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+        {/* DESKTOP VIEW: Tabs and Grid */}
+        <div className="hidden md:block">
+          {/* Category Tabs */}
+          <div className="flex justify-center mb-12 gap-4">
+            {activeTabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  activeTab === tab.id
+                    ? 'bg-bordeaux text-white shadow-md shadow-bordeaux/15'
+                    : 'bg-neutral-50 border border-neutral-200/50 text-dark/70 hover:bg-neutral-100 hover:text-dark'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Grid of packages */}
+          <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <AnimatePresence mode="popLayout">
+              {filteredPackages.map((pkg) => {
+                const imagePath = getPackageImage(pkg)
+                return (
+                  <PackageCard key={pkg.id} pkg={pkg} imagePath={imagePath} />
+                )
+              })}
+            </AnimatePresence>
+          </motion.div>
         </div>
 
-        {/* Grid of packages */}
-        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence mode="popLayout">
-            {filteredPackages.map((pkg) => {
-              const imagePath = getPackageImage(pkg)
-              return (
-                <PackageCard key={pkg.id} pkg={pkg} imagePath={imagePath} />
-              )
-            })}
-          </AnimatePresence>
-        </motion.div>
+        {/* MOBILE VIEW: Separated Carousels by Category */}
+        <div className="block md:hidden">
+          {activeTabs.filter(t => t.id !== 'todos').map((tab) => {
+            const categoryPackages = packages.filter(pkg => checkMatch(pkg, tab.id))
+            if (categoryPackages.length === 0) return null
+
+            return (
+              <div key={tab.id} className="mb-14">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-px flex-1 bg-neutral-200" />
+                  <h3 className="font-serif text-2xl font-bold text-dark">{tab.label}</h3>
+                  <div className="h-px flex-1 bg-neutral-200" />
+                </div>
+                <MobileCategoryCarousel categoryPackages={categoryPackages} />
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   )
