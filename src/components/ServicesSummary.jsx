@@ -1,0 +1,119 @@
+import { motion } from 'framer-motion'
+import { Anchor, Map, Utensils, Building2, Car, HeartPulse, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
+
+const services = [
+  {
+    id: 'cruceros',
+    title: 'Cruceros',
+    desc: 'Las mejores navieras y rutas de todo el mundo.',
+    Icon: Anchor,
+    color: 'text-[#2E6B8A]',
+    bg: 'bg-[#2E6B8A]/10',
+    hover: 'group-hover:bg-[#2E6B8A] group-hover:text-white'
+  },
+  {
+    id: 'tours',
+    title: 'Tours en Español',
+    desc: 'Viajes organizados con guías expertos en tu idioma.',
+    Icon: Map,
+    color: 'text-sage',
+    bg: 'bg-sage/10',
+    hover: 'group-hover:bg-sage group-hover:text-white'
+  },
+  {
+    id: 'all-inclusive',
+    title: 'All Inclusive',
+    desc: 'Resorts de lujo en el Caribe y destinos paradisíacos.',
+    Icon: Utensils,
+    color: 'text-terracota',
+    bg: 'bg-terracota/10',
+    hover: 'group-hover:bg-terracota group-hover:text-white'
+  },
+  {
+    id: 'hoteles',
+    title: 'Hoteles',
+    desc: 'Alojamientos seleccionados al mejor precio garantizado.',
+    Icon: Building2,
+    color: 'text-bordeaux',
+    bg: 'bg-bordeaux/10',
+    hover: 'group-hover:bg-bordeaux group-hover:text-white'
+  },
+  {
+    id: 'autos',
+    title: 'Alquiler de Autos',
+    desc: 'Recorré tu destino con agencias internacionales.',
+    Icon: Car,
+    color: 'text-dark',
+    bg: 'bg-dark/10',
+    hover: 'group-hover:bg-dark group-hover:text-white'
+  },
+  {
+    id: 'asistencia',
+    title: 'Assist Card',
+    desc: 'Cobertura médica y asistencia de emergencia 24/7.',
+    Icon: HeartPulse,
+    color: 'text-terracota',
+    bg: 'bg-terracota/10',
+    hover: 'group-hover:bg-terracota group-hover:text-white'
+  }
+]
+
+export default function ServicesSummary() {
+  return (
+    <section id="servicios" className="py-20 lg:py-28 bg-[#FBF8F3]/50 relative">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 border border-sage/35 text-sage bg-sage/5 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-5">
+            <Anchor size={12} className="text-sage" />
+            Nuestros Servicios
+          </div>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-dark mb-6 leading-tight">
+            Todo lo que tu viaje necesita, <span className="italic font-normal text-bordeaux">en un solo lugar</span>
+          </h2>
+          <p className="text-dark/65 text-lg max-w-2xl mx-auto">
+            Planificamos cada detalle para que tu experiencia sea inolvidable. Hacé clic en el servicio que te interese para conocer todos los detalles.
+          </p>
+        </motion.div>
+
+        {/* Grid of Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((s, i) => (
+            <motion.div
+              key={s.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+            >
+              <Link 
+                to={`/servicios/${s.id}`}
+                className="group block bg-white rounded-3xl p-8 border border-neutral-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300 ${s.bg} ${s.color} ${s.hover}`}>
+                  <s.Icon size={24} />
+                </div>
+                
+                <h3 className="font-serif font-bold text-xl text-dark mb-3">{s.title}</h3>
+                <p className="text-dark/60 text-[0.95rem] leading-relaxed mb-6 h-12">
+                  {s.desc}
+                </p>
+                
+                <div className="flex items-center gap-2 text-sm font-bold text-bordeaux group-hover:text-dark transition-colors">
+                  Ver detalles <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

@@ -1,6 +1,7 @@
 import Hero from '../components/Hero'
 import TrustBar from '../components/TrustBar'
 import DisneyUniversal from '../components/DisneyUniversal'
+import ServicesSummary from '../components/ServicesSummary'
 import Packages from '../components/Packages'
 import Process from '../components/Process'
 import ContactForm from '../components/ContactForm'
@@ -16,6 +17,7 @@ export default function Home() {
       <TrustBar />
       <AboutUs />
       <DisneyUniversal />
+      <ServicesSummary />
       <Packages />
       <Testimonials />
       <Process />
