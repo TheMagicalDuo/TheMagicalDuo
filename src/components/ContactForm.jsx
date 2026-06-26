@@ -347,6 +347,48 @@ export default function ContactForm() {
 
     setStatus('sending')
 
+    // 1. Send email silently via EmailJS
+    try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+      if (serviceId && templateId && publicKey) {
+        await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            from_name: form.nombre,
+            from_email: form.email,
+            reply_to: form.email,
+            telefono: `${form.codigoPais} ${form.telefono}`,
+            destino: form.destino,
+            fechas: `${form.fechas} ${fechasFlexibles ? '(Flexible)' : ''}`,
+            pasajeros: form.pasajeros,
+            edades_chicos: hayChicos && edades ? edades : 'No aplica',
+            presupuesto: form.presupuesto || 'No especificado',
+            comentarios: form.comentarios || 'Sin comentarios',
+            message: `Nueva consulta de cotización:\n\n` +
+              `- Nombre: ${form.nombre}\n` +
+              `- Email: ${form.email}\n` +
+              `- Teléfono: ${form.codigoPais} ${form.telefono}\n` +
+              `- Destino: ${form.destino}\n` +
+              `- Mes de viaje: ${form.fechas} ${fechasFlexibles ? '(Flexible)' : ''}\n` +
+              `- Pasajeros: ${form.pasajeros}\n` +
+              (hayChicos && edades ? `- Edades de los chicos: ${edades}\n` : '') +
+              (form.presupuesto ? `- Presupuesto: ${form.presupuesto}\n` : '') +
+              (form.comentarios ? `- Comentarios: ${form.comentarios}\n` : '')
+          },
+          publicKey
+        )
+      } else {
+        console.warn('EmailJS credentials are not set in environment variables')
+      }
+    } catch (err) {
+      console.error('Failed to send email via EmailJS:', err)
+    }
+
+    // 2. Open WhatsApp window for user
     const msg = `Hola! Quiero solicitar una cotización:%0A%0A` +
       `👤 *Nombre:* ${form.nombre}%0A` +
       `📧 *Email:* ${form.email}%0A` +
@@ -358,13 +400,13 @@ export default function ContactForm() {
       (form.presupuesto ? `💰 *Presupuesto:* ${form.presupuesto}%0A` : '') +
       (form.comentarios ? `💬 *Comentarios:* ${form.comentarios}` : '')
 
-    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER
+    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5491132996899'
     window.open(`https://wa.me/${whatsappNumber}?text=${msg}`, '_blank')
 
     setTimeout(() => {
       setStatus('success')
       setStep(1)
-      setForm({ nombre: '', email: '', telefono: '', destino: '', fechas: '', pasajeros: '', presupuesto: '', comentarios: '' })
+      setForm({ nombre: '', email: '', telefono: '', codigoPais: '+54', destino: '', fechas: '', pasajeros: '', presupuesto: '', comentarios: '' })
       setHayChicos(false)
       setFechasFlexibles(false)
       setEdades('')
