@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, ArrowUpRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import Logo from './Logo'
 
 const InstagramIcon = ({ size = 24, className }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
@@ -54,8 +55,10 @@ export default function Footer() {
 
         {/* ── MOBILE layout ── */}
         <div className="flex flex-col items-center gap-6 md:hidden">
-          {/* Logo image */}
-          <img src="/logo/logo-redondo-sin-borde.png" alt="The Magical Duo" className="h-20 w-auto shrink-0" />
+          {/* Logo vector component */}
+          <div className="h-16 w-32 relative flex items-center justify-center shrink-0">
+            <Logo className="absolute h-36 w-auto text-bordeaux shrink-0" />
+          </div>
 
           {/* 3 contact icons in a row */}
           <div className="flex items-center justify-center gap-8 w-full border-t border-b border-neutral-100 py-5">
@@ -107,9 +110,9 @@ export default function Footer() {
 
           <div className="w-px h-10 bg-neutral-200 shrink-0" />
 
-          {/* Center logo image */}
-          <div className="flex items-center justify-center shrink-0">
-            <img src="/logo/logo-redondo-sin-borde.png" alt="The Magical Duo" className="h-12 w-auto shrink-0" />
+          {/* Center logo vector component */}
+          <div className="flex items-center justify-center shrink-0 h-10 w-24 relative">
+            <Logo className="absolute h-24 w-auto text-bordeaux shrink-0" />
           </div>
 
           <div className="w-px h-10 bg-neutral-200 shrink-0" />

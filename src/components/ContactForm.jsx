@@ -354,6 +354,7 @@ export default function ContactForm() {
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
       if (serviceId && templateId && publicKey) {
+        emailjs.init(publicKey)
         await emailjs.send(
           serviceId,
           templateId,
