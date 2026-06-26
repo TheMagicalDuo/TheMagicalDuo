@@ -49,9 +49,10 @@ export default function DreamVision() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl lg:text-7xl font-serif text-white mb-6 leading-tight drop-shadow-2xl"
+            className="text-4xl md:text-5xl lg:text-7xl font-serif text-white mb-6 leading-tight drop-shadow-2xl flex flex-wrap justify-center items-center gap-x-4 gap-y-2"
           >
-            Nosotros nos <span className="italic text-terracota">ocupamos</span>
+            <span>Nosotros nos</span>
+            <span className="italic bg-white text-terracota px-6 py-2 rounded-full shadow-lg">ocupamos</span>
           </motion.h2>
           
           <motion.p 
