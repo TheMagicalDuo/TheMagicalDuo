@@ -15,7 +15,7 @@ const services = [
     title: 'Tours en Español',
     desc: 'Viajes organizados con guías expertos en tu idioma.',
     Icon: Map,
-    image: '/destinations/caribbean.png',
+    image: '/destinations/tours.jpg',
   },
   {
     id: 'all-inclusive',
@@ -29,21 +29,21 @@ const services = [
     title: 'Hoteles',
     desc: 'Alojamientos seleccionados al mejor precio garantizado.',
     Icon: Building2,
-    image: '/destinations/couple.png',
+    image: '/destinations/hotels.jpg',
   },
   {
     id: 'autos',
     title: 'Alquiler de Autos',
     desc: 'Recorré tu destino con agencias internacionales.',
     Icon: Car,
-    image: '/destinations/hero_bg.png',
+    image: '/destinations/autos.jpg',
   },
   {
     id: 'asistencia',
     title: 'Assist Card',
     desc: 'Cobertura médica y asistencia de emergencia 24/7.',
     Icon: HeartPulse,
-    image: '/destinations/couple.png',
+    image: '/destinations/assist.jpg',
   }
 ]
 
@@ -90,7 +90,7 @@ export default function ServicesSummary() {
                   alt={s.title}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark/88 via-dark/25 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark/92 via-dark/55 to-dark/10" />
                 <div className="absolute bottom-6 left-6 right-6 text-white">
                   <div className="w-9 h-9 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center mb-3 border border-white/20">
                     <s.Icon size={16} className="text-white" />
