@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { BadgeCheck, Users, CreditCard, Shield } from 'lucide-react'
 
 const items = [
-  { icon: BadgeCheck, text: 'Agentes oficiales autorizados', color: 'text-bordeaux', bg: 'bg-bordeaux/5' },
+  { icon: BadgeCheck, text: 'Agentes especializados', color: 'text-bordeaux', bg: 'bg-bordeaux/5' },
   { icon: Users, text: 'Atención personalizada en español', color: 'text-terracota', bg: 'bg-terracota/5' },
   { icon: CreditCard, text: 'Pagos en cuotas sin interés', color: 'text-sage', bg: 'bg-sage/5' },
   { icon: Shield, text: 'Precios oficiales garantizados', color: 'text-bordeaux', bg: 'bg-bordeaux/5' },

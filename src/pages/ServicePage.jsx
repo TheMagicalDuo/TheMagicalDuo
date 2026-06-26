@@ -75,7 +75,7 @@ const servicesData = {
   'asistencia': {
     title: 'Assist Card',
     subtitle: 'Viajá protegido ante cualquier imprevisto',
-    desc: 'Tu salud y tranquilidad son lo primero. Por eso somos agentes oficiales de Assist Card, ofreciéndote las mejores coberturas.',
+    desc: 'Tu salud y tranquilidad son lo primero. Por eso somos agentes especializados de Assist Card, ofreciéndote las mejores coberturas.',
     image: '/bg/castle_fireworks.png',
     Icon: HeartPulse,
     features: [
