@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, ArrowUpRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import Logo from './Logo'
 
 const InstagramIcon = ({ size = 24, className }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width={size} height={size} className={className}>
@@ -22,15 +21,15 @@ export default function Footer() {
   const waHref = `https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=Hola!%20Quiero%20hacer%20una%20consulta`
 
   return (
-    <div className="bg-[#FBF8F3] w-full flex flex-col items-center justify-center pb-8 pt-20 px-4 relative z-10 border-t border-neutral-100 overflow-hidden">
+    <div className="bg-[#FBF8F3] w-full flex flex-col items-center justify-center pb-6 pt-10 px-4 relative z-10 border-t border-neutral-100 overflow-hidden">
 
       {/* Heading */}
-      <div className="text-center mb-10">
+      <div className="text-center mb-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-serif text-4xl sm:text-5xl md:text-6xl font-medium text-dark italic mb-6 leading-tight px-4"
+          className="font-serif text-4xl sm:text-5xl md:text-6xl font-medium text-dark italic mb-4 leading-tight px-4"
         >
           ¿Todo listo para <span className="text-bordeaux">soñar?</span>
         </motion.h2>
@@ -50,13 +49,13 @@ export default function Footer() {
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, type: 'spring', stiffness: 100, delay: 0.3 }}
-        className="w-full max-w-5xl bg-white/70 backdrop-blur-xl border border-white shadow-[0_20px_40px_rgba(0,0,0,0.04)] rounded-[2.5rem] md:rounded-full px-8 py-6 md:py-3 relative z-20"
+        className="w-full max-w-5xl bg-white/70 backdrop-blur-xl border border-white shadow-[0_20px_40px_rgba(0,0,0,0.04)] rounded-[2.5rem] md:rounded-full px-8 py-5 md:py-2.5 relative z-20"
       >
 
         {/* ── MOBILE layout ── */}
         <div className="flex flex-col items-center gap-6 md:hidden">
-          {/* Logo vector component */}
-          <Logo className="h-16 w-auto text-bordeaux shrink-0" />
+          {/* Logo image */}
+          <img src="/logo/logo-redondo-sin-borde.png" alt="The Magical Duo" className="h-20 w-auto shrink-0" />
 
           {/* 3 contact icons in a row */}
           <div className="flex items-center justify-center gap-8 w-full border-t border-b border-neutral-100 py-5">
@@ -108,9 +107,9 @@ export default function Footer() {
 
           <div className="w-px h-10 bg-neutral-200 shrink-0" />
 
-          {/* Center logo vector component */}
+          {/* Center logo image */}
           <div className="flex items-center justify-center shrink-0">
-            <Logo className="h-12 w-auto text-bordeaux shrink-0" />
+            <img src="/logo/logo-redondo-sin-borde.png" alt="The Magical Duo" className="h-12 w-auto shrink-0" />
           </div>
 
           <div className="w-px h-10 bg-neutral-200 shrink-0" />

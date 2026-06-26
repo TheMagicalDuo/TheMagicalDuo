@@ -93,7 +93,7 @@ export default function Logo({ className, animateDraw = false }) {
     <svg 
       version="1.0" 
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="1130 1150 1940 1100"
+      viewBox="0 0 4285.000000 4285.000000"
       preserveAspectRatio="xMidYMid meet"
       className={className}
     >
