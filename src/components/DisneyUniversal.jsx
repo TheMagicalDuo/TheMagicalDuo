@@ -1,5 +1,7 @@
-import { motion } from 'framer-motion'
-import { Check, Star, Sparkles, Globe, Zap } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Check, Star, Sparkles, Globe, Zap, X, ChevronRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
@@ -81,9 +83,20 @@ const columns = [
 
 export default function DisneyUniversal() {
   const navigate = useNavigate()
+  const [activeModal, setActiveModal] = useState(null)
   const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start' }, [Autoplay({ delay: 4000, stopOnInteraction: true })])
 
+  useEffect(() => {
+    if (activeModal) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => { document.body.style.overflow = 'unset' }
+  }, [activeModal])
+
   return (
+    <>
     <section id="especialidad" className="py-20 lg:py-28 bg-white relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
@@ -120,53 +133,33 @@ export default function DisneyUniversal() {
           <div className="flex touch-pan-y -ml-4 sm:-ml-6 lg:-ml-8">
             {columns.map((col, i) => (
               <div key={col.title} className="flex-[0_0_85%] min-w-0 sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-4 sm:pl-6 lg:pl-8">
-                <div className="bg-white border border-neutral-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-[0_20px_40px_rgba(140,42,66,0.1)] hover:border-bordeaux/20 transition-all duration-500 flex flex-col group relative h-full">
+                <div 
+                  onClick={() => setActiveModal(col)}
+                  className="bg-white border border-neutral-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-[0_20px_40px_rgba(140,42,66,0.1)] hover:border-bordeaux/20 transition-all duration-500 flex flex-col group relative h-[380px] sm:h-[420px] cursor-pointer"
+                >
                   {/* Glare effect on hover */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 -translate-x-[150%] group-hover:translate-x-[150%] transition-all duration-[1200ms] ease-in-out pointer-events-none z-30 mix-blend-overlay" />
                   
-                  {/* Card Photo Header */}
-                  <div className="h-44 relative overflow-hidden shrink-0">
+                  {/* Full Cover Card Photo */}
+                  <div className="absolute inset-0 relative overflow-hidden h-full">
                     <img
                       src={col.image}
                       alt={col.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/40 to-transparent" />
-                    <div className="absolute bottom-4 left-6 right-6 flex items-center justify-between text-white z-10">
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark/95 via-dark/40 to-transparent" />
+                    
+                    <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white z-10">
                       <div>
-                        <h3 className="font-serif font-bold text-2xl">{col.title}</h3>
-                        <p className="text-white/70 text-xs tracking-wide mt-0.5">{col.tagline}</p>
+                        <h3 className="font-serif font-bold text-3xl sm:text-4xl mb-1">{col.title}</h3>
+                        <p className="text-white/80 text-sm tracking-wide mb-5">{col.tagline}</p>
+                        <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider border border-white/30 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full group-hover:bg-white/20 transition-colors">
+                          Ver detalles <ChevronRight size={14} />
+                        </div>
                       </div>
-                      <div className="w-10 h-10 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/20">
-                        <col.Icon size={18} className="text-white" />
+                      <div className="w-12 h-12 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/20 shrink-0">
+                        <col.Icon size={20} className="text-white" />
                       </div>
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
-                    <div>
-                      <p className="text-[11px] font-semibold text-dark/40 uppercase tracking-wider mb-3">Destinos y servicios</p>
-                      <ul className="space-y-3 mb-6">
-                        {col.items.map(item => (
-                          <li key={item} className="flex items-start gap-2.5 text-sm text-dark/70">
-                            <div className={`w-1.5 h-1.5 rounded-full ${col.dotColor} mt-2 shrink-0`} />
-                            <span className="font-medium">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="border-t border-neutral-100 pt-5 mt-auto">
-                      <p className="text-[11px] font-semibold text-dark/40 uppercase tracking-wider mb-3">Tu viaje incluye</p>
-                      <ul className="space-y-2.5">
-                        {col.includes.map(item => (
-                          <li key={item} className="flex items-start gap-2.5 text-xs text-dark/65">
-                            <Check size={14} className="text-sage mt-0.5 shrink-0" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
                     </div>
                   </div>
                 </div>
@@ -204,5 +197,87 @@ export default function DisneyUniversal() {
         </motion.div>
       </div>
     </section>
+
+    {/* MODAL (React Portal) */}
+    {createPortal(
+      <AnimatePresence>
+        {activeModal && (
+          <div className="fixed inset-0 z-[100]">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveModal(null)}
+              className="absolute inset-0 bg-dark/60 backdrop-blur-sm"
+            />
+            
+            {/* Scrollable Container */}
+            <div className="absolute inset-0 overflow-y-auto hide-scrollbar pointer-events-none flex flex-col">
+              <div className="min-h-full flex items-center justify-center p-4 py-8 sm:p-6 pointer-events-none">
+                
+                {/* Modal Content */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                  className="relative w-full max-w-xl bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col pointer-events-auto"
+                >
+                  <button
+                    onClick={() => setActiveModal(null)}
+                    className="absolute top-4 right-4 z-50 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center transition-colors text-white"
+                  >
+                    <X size={20} />
+                  </button>
+
+                  <div className="h-40 sm:h-48 relative shrink-0">
+                    <img src={activeModal.image} alt={activeModal.title} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent" />
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white mb-1">{activeModal.title}</h2>
+                      <p className="text-white/80 text-sm tracking-wide">{activeModal.tagline}</p>
+                    </div>
+                  </div>
+
+                  <div className="p-6 sm:p-8 flex flex-col gap-8">
+                    <div>
+                      <h4 className="font-bold text-dark mb-4 flex items-center gap-2">
+                        <Globe size={18} className={activeModal.iconColor} />
+                        Destinos y servicios
+                      </h4>
+                      <ul className="space-y-3">
+                        {activeModal.items.map(item => (
+                          <li key={item} className="flex items-start gap-3 text-sm text-dark/70">
+                            <div className={`w-1.5 h-1.5 rounded-full ${activeModal.dotColor} mt-2 shrink-0`} />
+                            <span className="font-medium">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="bg-[#FBF8F3] border border-neutral-100 rounded-2xl p-6">
+                      <h4 className="font-bold text-dark mb-4 flex items-center gap-2">
+                        <Sparkles size={18} className="text-terracota" />
+                        Tu viaje incluye
+                      </h4>
+                      <ul className="space-y-3">
+                        {activeModal.includes.map(item => (
+                          <li key={item} className="flex items-start gap-3 text-sm text-dark/80">
+                            <Check size={16} className="text-sage mt-0.5 shrink-0" />
+                            <span className="font-medium">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>,
+      document.body
+    )}
+    </>
   )
 }
