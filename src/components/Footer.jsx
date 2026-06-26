@@ -50,13 +50,13 @@ export default function Footer() {
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, type: 'spring', stiffness: 100, delay: 0.3 }}
-        className="w-full max-w-5xl bg-white/70 backdrop-blur-xl border border-white shadow-[0_20px_40px_rgba(0,0,0,0.04)] rounded-[2.5rem] md:rounded-full px-8 py-8 md:py-4 relative z-20"
+        className="w-full max-w-5xl bg-white/70 backdrop-blur-xl border border-white shadow-[0_20px_40px_rgba(0,0,0,0.04)] rounded-[2.5rem] md:rounded-full px-8 py-6 md:py-3 relative z-20"
       >
 
         {/* ── MOBILE layout ── */}
         <div className="flex flex-col items-center gap-6 md:hidden">
           {/* Logo vector component */}
-          <Logo className="h-36 w-auto text-bordeaux shrink-0" />
+          <Logo className="h-16 w-auto text-bordeaux shrink-0" />
 
           {/* 3 contact icons in a row */}
           <div className="flex items-center justify-center gap-8 w-full border-t border-b border-neutral-100 py-5">
@@ -110,7 +110,7 @@ export default function Footer() {
 
           {/* Center logo vector component */}
           <div className="flex items-center justify-center shrink-0">
-            <Logo className="h-28 w-auto text-bordeaux shrink-0" />
+            <Logo className="h-12 w-auto text-bordeaux shrink-0" />
           </div>
 
           <div className="w-px h-10 bg-neutral-200 shrink-0" />

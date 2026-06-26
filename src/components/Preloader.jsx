@@ -19,8 +19,8 @@ export default function Preloader() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="flex flex-col items-center gap-4 relative z-10"
       >
-        <div className="relative -mb-10 sm:-mb-14 -mt-10 sm:-mt-14">
-          <Logo animateDraw={true} className="h-40 sm:h-56 text-bordeaux relative z-10" />
+        <div className="relative">
+          <Logo animateDraw={true} className="h-20 sm:h-28 text-bordeaux relative z-10" />
           
           {/* Subtle glow behind the logo */}
           <motion.div 
