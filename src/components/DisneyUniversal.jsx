@@ -102,7 +102,7 @@ export default function DisneyUniversal() {
             <span className="italic font-normal text-bordeaux">Disney & Universal</span>
           </h2>
           <p className="text-dark/65 text-lg max-w-2xl mx-auto leading-relaxed">
-            Como agentes oficiales, tenemos acceso a beneficios exclusivos que no encontrarás en ningún otro lado. Coordinamos todos los detalles sin costo extra.
+            Como Agentes Especializados, tenemos acceso a beneficios exclusivos que no encontrarás en ningún otro lado. Coordinamos todos los detalles sin costo extra.
           </p>
         </motion.div>
 
@@ -188,10 +188,10 @@ export default function DisneyUniversal() {
           </div>
           
           <h3 className="font-serif text-2xl sm:text-3xl font-bold text-dark mb-4">
-            Ventaja Exclusiva como Agentes Oficiales
+            Ventaja Exclusiva como Agentes Especializados
           </h3>
           <p className="text-dark/80 text-base sm:text-lg leading-relaxed mb-8 max-w-3xl mx-auto">
-            Podemos ofrecerte pagar tus vacaciones en cuotas y acceder a precios oficiales garantizados. No vas a pagar ni un peso más de lo que encontrás por tu cuenta. ¡Y encima te asesoramos gratis!
+            Podemos ofrecerte pagar tus paquetes en cuotas y acceder a precios oficiales garantizados. No vas a pagar ni un peso más de lo que encontrás por tu cuenta. ¡Y encima te asesoramos gratis!
           </p>
           <a
             href="#cotizar"

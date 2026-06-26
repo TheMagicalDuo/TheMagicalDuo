@@ -51,7 +51,7 @@ export default function DreamVision() {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl lg:text-7xl font-serif text-white mb-6 leading-tight drop-shadow-2xl"
           >
-            Imaginá despertar <span className="italic text-terracota">acá</span>...
+            Nosotros nos <span className="italic text-terracota">ocupamos</span>
           </motion.h2>
           
           <motion.p 
@@ -61,7 +61,7 @@ export default function DreamVision() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-white/95 max-w-2xl font-light drop-shadow-lg"
           >
-            Nosotros nos ocupamos de los boletos, los hoteles y el estrés. Vos solo preocupate por armar la valija y disfrutar la magia con tu familia.
+            Vos solo preocupate por armar la valija y disfrutar el viaje.
           </motion.p>
         </div>
       </div>
@@ -81,8 +81,8 @@ export default function DreamVision() {
               <Award className="w-6 h-6 text-bordeaux" strokeWidth={1.5} />
             </div>
             <div>
-              <h4 className="font-serif font-bold text-xl text-dark mb-2">Agentes Certificados</h4>
-              <p className="text-dark/60 text-[0.9rem] leading-relaxed font-medium">Graduados oficiales. Conocemos cada secreto, atajo y beneficio oculto para optimizar tu presupuesto.</p>
+              <h4 className="font-serif font-bold text-xl text-dark mb-2">Agentes Especializados</h4>
+              <p className="text-dark/60 text-[0.9rem] leading-relaxed font-medium">Conocemos cada secreto, atajo y beneficio oculto para optimizar tu presupuesto.</p>
             </div>
           </motion.div>
 
@@ -97,8 +97,8 @@ export default function DreamVision() {
               <Clock className="w-6 h-6 text-terracota" strokeWidth={1.5} />
             </div>
             <div>
-              <h4 className="font-serif font-bold text-xl text-dark mb-2">Soporte 24/7</h4>
-              <p className="text-dark/60 text-[0.9rem] leading-relaxed font-medium">No te dejamos solo al venderte. Estamos a un mensaje de distancia ante cualquier duda allá.</p>
+              <h4 className="font-serif font-bold text-xl text-dark mb-2">Soporte Continuo</h4>
+              <p className="text-dark/60 text-[0.9rem] leading-relaxed font-medium">Estamos a un mensaje de distancia ante cualquier duda, antes, durante y después de tu viaje.</p>
             </div>
           </motion.div>
 
@@ -114,7 +114,7 @@ export default function DreamVision() {
             </div>
             <div>
               <h4 className="font-serif font-bold text-xl text-dark mb-2">Itinerarios a Medida</h4>
-              <p className="text-dark/60 text-[0.9rem] leading-relaxed font-medium">No vendemos enlatados. Diseñamos un plan detallado día por día según los gustos de tu familia.</p>
+              <p className="text-dark/60 text-[0.9rem] leading-relaxed font-medium">Diseñamos un plan detallado día por día pensado exclusivamente en los gustos y tiempos de tu familia.</p>
             </div>
           </motion.div>
 

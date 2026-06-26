@@ -181,7 +181,7 @@ export default function Packages() {
         >
           ¿Tenés otro destino en mente o querés cambiar la cantidad de días?{' '}
           <a
-            href="https://wa.me/5491169591710?text=Hola!%20Quiero%20consultar%20por%20un%20viaje%20personalizado"
+            href="https://wa.me/5491132996899?text=Hola!%20Quiero%20consultar%20por%20un%20viaje%20personalizado"
             target="_blank"
             rel="noopener noreferrer"
             className="text-bordeaux font-bold underline underline-offset-4 hover:text-bordeaux/75 transition-colors"

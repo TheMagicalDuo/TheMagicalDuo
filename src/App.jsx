@@ -2,7 +2,6 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import TrustBar from './components/TrustBar'
 import DisneyUniversal from './components/DisneyUniversal'
-import Cruises from './components/Cruises'
 import Services from './components/Services'
 import Packages from './components/Packages'
 import Process from './components/Process'
@@ -23,7 +22,6 @@ export default function App() {
       <TrustBar />
       <AboutUs />
       <DisneyUniversal />
-      <Cruises />
       <Services />
       <Packages />
       <Testimonials />

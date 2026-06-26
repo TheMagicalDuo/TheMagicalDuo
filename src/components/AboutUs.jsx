@@ -84,12 +84,12 @@ export default function AboutUs() {
               <span className="italic font-normal text-bordeaux">Tobias & Abril</span>
             </h2>
             <p className="text-dark/50 font-bold text-xs uppercase tracking-[0.2em] mb-6">
-              Agentes de Viajes Certificados · Buenos Aires, Argentina
+              Agentes Especializados · Buenos Aires, Argentina
             </p>
             
             <div className="text-dark/70 text-sm leading-relaxed mb-10 space-y-4 pr-4">
               <p>Somos Tobias y Abril, una pareja argentina apasionada por los viajes y por hacer realidad los sueños de quienes confían en nosotros. Hace un año creamos The Magical Duo con una misión clara: brindar una atención 100% personalizada, honesta y cercana.</p>
-              <p>Estamos disponibles 24/7 para acompañarte en cada etapa de tu viaje, desde la primera consulta hasta que llegás a casa. Porque para nosotros, tu experiencia no termina cuando comprás el paquete.</p>
+              <p>Estamos disponibles para acompañarte en cada etapa de tu viaje, desde la primera consulta hasta que llegás a casa. Porque para nosotros, tu experiencia no termina cuando comprás el paquete.</p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-10">
@@ -119,7 +119,7 @@ export default function AboutUs() {
                   <Clock size={22} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-dark mb-1">Acompañamiento 24/7</h3>
+                  <h3 className="font-bold text-dark mb-1">Acompañamiento</h3>
                   <p className="text-dark/60 text-sm leading-relaxed">No nos borramos al vender. Estamos disponibles por WhatsApp antes, durante y después del viaje.</p>
                 </div>
               </div>

@@ -51,7 +51,7 @@ export default function Footer() {
             </div>
             themagicalduo.agentes@gmail.com
           </a>
-          <a href="#cotizar" className="flex items-center gap-2.5 text-dark/60 hover:text-bordeaux transition-colors text-sm font-medium group">
+          <a href="https://wa.me/5491132996899?text=Hola!%20Quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-dark/60 hover:text-bordeaux transition-colors text-sm font-medium group">
             <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center group-hover:bg-bordeaux/10 transition-colors">
               <Phone size={14} className="text-dark/40 group-hover:text-bordeaux" />
             </div>

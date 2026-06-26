@@ -1,68 +1,79 @@
 [
   {
     "id": 1,
-    "title": "Punta Cana All Inclusive",
-    "subtitle": "Grand Bavaro Princess · 7 noches",
-    "category": "Caribe · 7 noches",
-    "accentColor": "#3D6E5E",
-    "iconName": "Waves",
-    "price": "Desde USD 1.200",
-    "whatsappNumber": "5491169591710",
-    "whatsappMessage": "Hola! Quiero consultar por el paquete Punta Cana All Inclusive 7 noches en Grand Bavaro Princess"
+    "title": "Disney en Navidad",
+    "subtitle": "5 noches - 2 adultos y 2 menores (3 a 10 años) - Nov 2026 - All Star Music - 4 días de parque",
+    "category": "Disney · 5 Noches",
+    "accentColor": "#8C2A42",
+    "iconName": "Sparkles",
+    "price": "USD$4144 total",
+    "whatsappNumber": "5491132996899",
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Disney en Navidad"
   },
   {
     "id": 2,
-    "title": "Walt Disney World",
-    "subtitle": "Orlando · Paquete Clásico Magic Kingdom + Epcot",
-    "category": "Disney · 5 días",
+    "title": "Disney en Halloween",
+    "subtitle": "5 noches - 2 adultos y 2 menores (3 a 10 años) - Nov 2026 - All Star Music - 4 días de parque",
+    "category": "Disney · 5 Noches",
     "accentColor": "#8C2A42",
     "iconName": "Sparkles",
-    "price": "Desde USD 1.800",
-    "whatsappNumber": "5491169591710",
-    "whatsappMessage": "Hola! Quiero consultar por el paquete Disney World 5 días con Magic Kingdom y Epcot"
+    "price": "USD$3857 total",
+    "whatsappNumber": "5491132996899",
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Disney en Halloween"
   },
   {
     "id": 3,
-    "title": "Crucero Caribe",
-    "subtitle": "Royal Caribbean · Itinerario Caribe Este",
-    "category": "Crucero · 4 noches",
-    "accentColor": "#1A3A5C",
-    "iconName": "Anchor",
-    "price": "Desde USD 950",
-    "whatsappNumber": "5491153435751",
-    "whatsappMessage": "Hola! Quiero consultar por el paquete Crucero Caribe Royal Caribbean 4 noches"
+    "title": "Disney + Universal (6 cuotas)",
+    "subtitle": "9 noches - 2 adultos y 2 menores - Feb 2026 - 5 noches Disney, 4 noches Universal",
+    "category": "Disney & Universal",
+    "accentColor": "#B5694A",
+    "iconName": "Zap",
+    "price": "USD$2052 pp",
+    "whatsappNumber": "5491132996899",
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Disney + Universal en vacaciones"
   },
   {
     "id": 4,
-    "title": "Cancún All Inclusive",
-    "subtitle": "Hotel Zona Hotelera · 6 noches",
-    "category": "México · 6 noches",
+    "title": "Super Promo Universal",
+    "subtitle": "5 noches - 2 adultos y 2 menores - Oct 2026 - Universal Aventura Hotel - 3 días parque + 2 DÍAS DE REGALO!",
+    "category": "Universal · 5 Noches",
     "accentColor": "#B5694A",
-    "iconName": "Sun",
-    "price": "Desde USD 1.100",
-    "whatsappNumber": "5491169591710",
-    "whatsappMessage": "Hola! Quiero consultar por el paquete Cancún All Inclusive 6 noches"
+    "iconName": "Zap",
+    "price": "USD$3365 total",
+    "whatsappNumber": "5491132996899",
+    "whatsappMessage": "Hola! Quiero consultar por la Super Promo Universal"
   },
   {
     "id": 5,
-    "title": "Universal Orlando",
-    "subtitle": "Universal Studios + Islands of Adventure",
-    "category": "Universal · 4 días",
-    "accentColor": "#B5694A",
-    "iconName": "Zap",
-    "price": "Desde USD 1.400",
-    "whatsappNumber": "5491153435751",
-    "whatsappMessage": "Hola! Quiero consultar por el paquete Universal Orlando 4 días"
+    "title": "Costa Mujeres Solo Adultos",
+    "subtitle": "8 noches - 2 adultos - Dic 2026 - Hotel Riu Latino (Adults Only) - All Inclusive",
+    "category": "Caribe · 8 Noches",
+    "accentColor": "#3D6E5E",
+    "iconName": "Sun",
+    "price": "USD$2375 total",
+    "whatsappNumber": "5491132996899",
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Costa Mujeres Solo Adultos"
   },
   {
     "id": 6,
-    "title": "Disney Cruise Line",
-    "subtitle": "La magia de Disney en altamar · Caribe",
-    "category": "Disney Cruise · 7 noches",
-    "accentColor": "#2E2620",
+    "title": "Punta Cana Familiar",
+    "subtitle": "8 noches - 2 adultos y 2 niños - Dic 2026 - Princess Family Club Bavaro - All Inclusive",
+    "category": "Caribe · 8 Noches",
+    "accentColor": "#3D6E5E",
+    "iconName": "Sun",
+    "price": "USD$3535 total",
+    "whatsappNumber": "5491132996899",
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Punta Cana Familiar"
+  },
+  {
+    "id": 7,
+    "title": "Tour Japón y China 2027",
+    "subtitle": "15 noches - Marzo 2027 - Hoteles 4/5 estrellas - Desayuno, 9 almuerzos, 3 cenas - Guía en español",
+    "category": "Tours · 15 Noches",
+    "accentColor": "#1A3A5C",
     "iconName": "Anchor",
-    "price": "Desde USD 2.200",
-    "whatsappNumber": "5491169591710",
-    "whatsappMessage": "Hola! Quiero consultar por el paquete Disney Cruise Line 7 noches"
+    "price": "USD$5200 pp",
+    "whatsappNumber": "5491132996899",
+    "whatsappMessage": "Hola! Quiero consultar por el Tour por Japón y China"
   }
 ]

@@ -7,7 +7,7 @@ const navLinks = [
   { id: 'inicio', label: 'Inicio', href: '#inicio' },
   { id: 'nosotros', label: 'Nosotros', href: '#nosotros' },
   { id: 'especialidad', label: 'Disney & Universal', href: '#especialidad' },
-  { id: 'cruceros', label: 'Cruceros', href: '#cruceros' },
+  { id: 'servicios', label: 'Servicios', href: '#servicios' },
   { id: 'paquetes', label: 'Paquetes', href: '#paquetes' },
 ]
 
@@ -167,7 +167,7 @@ export default function Navbar() {
                 { id: 'inicio', label: 'Inicio', icon: Home },
                 { id: 'nosotros', label: 'Nosotros', icon: Users },
                 { id: 'especialidad', label: 'Disney & Universal', icon: Sparkles },
-                { id: 'cruceros', label: 'Cruceros', icon: Ship },
+                { id: 'servicios', label: 'Servicios', icon: Ship },
                 { id: 'paquetes', label: 'Paquetes', icon: Package }
               ].map((link) => {
                 const isActive = activeSection === link.id
