@@ -95,7 +95,7 @@ export default function ServicesSummary() {
             >
               <Link 
                 to={`/servicios/${s.id}`}
-                className="group block bg-white rounded-3xl p-8 border border-neutral-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="group block bg-white hover:bg-white rounded-3xl p-8 border border-neutral-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300 ${s.bg} ${s.color} ${s.hover}`}>
                   <s.Icon size={24} />
