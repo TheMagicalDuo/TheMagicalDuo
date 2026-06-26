@@ -112,7 +112,8 @@ export default function PackageCard({ pkg, imagePath }) {
       {/* MODAL */}
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-[100] flex justify-center p-4 sm:p-6 overflow-y-auto hide-scrollbar">
+          <div className="fixed inset-0 z-[100]">
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -121,12 +122,17 @@ export default function PackageCard({ pkg, imagePath }) {
               className="absolute inset-0 bg-dark/60 backdrop-blur-sm"
             />
             
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col my-auto"
-            >
+            {/* Scrollable Container */}
+            <div className="absolute inset-0 overflow-y-auto hide-scrollbar pointer-events-none flex flex-col">
+              <div className="min-h-full flex items-center justify-center p-4 py-8 sm:p-6 pointer-events-none">
+                
+                {/* Modal Content */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                  className="relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col pointer-events-auto"
+                >
               {/* Close Button */}
               <button
                 onClick={() => setIsModalOpen(false)}
@@ -200,6 +206,8 @@ export default function PackageCard({ pkg, imagePath }) {
               </div>
             </motion.div>
           </div>
+        </div>
+        </div>
         )}
       </AnimatePresence>
     </>
