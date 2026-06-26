@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Check, Anchor, Map, Utensils, Building2, Car, HeartPulse, Package } from 'lucide-react'
+import PageTransition from '../components/PageTransition'
 
 const autosData = {
   title: 'Alquiler de Autos',
@@ -121,8 +122,9 @@ export default function ServicePage() {
   const waLink = `https://wa.me/${whatsappNumber}?text=Hola!%20Quiero%20consultar%20sobre%20${encodeURIComponent(data.title)}`
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Banner */}
+    <PageTransition>
+      <div className="min-h-screen bg-white">
+        {/* Hero Banner */}
       <div className="relative w-full h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-dark">
           <img 
@@ -269,6 +271,7 @@ export default function ServicePage() {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </PageTransition>
   )
 }

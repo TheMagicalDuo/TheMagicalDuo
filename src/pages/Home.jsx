@@ -11,6 +11,8 @@ import Testimonials from '../components/Testimonials'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import DreamVision from '../components/DreamVision'
+import FAQ from '../components/FAQ'
+import PageTransition from '../components/PageTransition'
 
 export default function Home() {
   const location = useLocation()
@@ -28,7 +30,7 @@ export default function Home() {
   }, [location])
 
   return (
-    <>
+    <PageTransition>
       <Hero />
       <TrustBar />
       <AboutUs />
@@ -39,7 +41,8 @@ export default function Home() {
       <Process />
       <DreamVision />
       <ContactForm />
+      <FAQ />
       <WhyUs />
-    </>
+    </PageTransition>
   )
 }

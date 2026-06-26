@@ -93,9 +93,14 @@ export default function Navbar() {
     }
   }
 
-  const activeLabel = location.pathname.includes('/servicios') 
-    ? 'Servicios' 
-    : navLinks.find(l => l.id === activeSection)?.label || 'Inicio'
+  let activeLabel = 'Inicio'
+  if (location.pathname.includes('/servicios')) {
+    activeLabel = 'Servicios'
+  } else if (location.pathname.includes('/paquetes')) {
+    activeLabel = 'Paquetes'
+  } else {
+    activeLabel = navLinks.find(l => l.id === activeSection)?.label || 'Inicio'
+  }
 
   // El nav se ve forzosamente blanco si el menu mobile esta abierto
   const isSolid = scrolled || menuOpen
