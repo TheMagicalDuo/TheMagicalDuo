@@ -20,7 +20,7 @@ const navLinks = [
       { id: 'mas-servicios', label: 'Más Servicios', href: '/servicios/mas-servicios', icon: Package }
     ]
   },
-  { id: 'paquetes', label: 'Paquetes', href: '/paquetes' },
+  { id: 'paquetes', label: 'Paquetes', targetId: 'paquetes', href: '/paquetes' },
 ]
 
 export default function Navbar() {

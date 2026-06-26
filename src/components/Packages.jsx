@@ -14,7 +14,7 @@ export default function Packages() {
   const displayPackages = packages.slice(0, 3)
 
   return (
-    <section className="py-20 lg:py-28 bg-white relative">
+    <section id="paquetes" className="py-20 lg:py-28 bg-white relative">
       {/* Decorative airplane trail */}
       <div className="absolute left-10 top-20 w-32 h-32 opacity-10 pointer-events-none hidden lg:block">
         <svg viewBox="0 0 100 100" className="w-full h-full text-terracota fill-none stroke-current" strokeWidth="1.5">
