@@ -56,7 +56,7 @@ export default function Footer() {
         {/* ── MOBILE layout ── */}
         <div className="flex flex-col items-center gap-6 md:hidden">
           {/* Logo vector component */}
-          <Logo className="h-24 w-auto text-bordeaux shrink-0" />
+          <Logo className="h-36 w-auto text-bordeaux shrink-0" />
 
           {/* 3 contact icons in a row */}
           <div className="flex items-center justify-center gap-8 w-full border-t border-b border-neutral-100 py-5">
@@ -110,7 +110,7 @@ export default function Footer() {
 
           {/* Center logo vector component */}
           <div className="flex items-center justify-center shrink-0">
-            <Logo className="h-16 w-auto text-bordeaux shrink-0" />
+            <Logo className="h-28 w-auto text-bordeaux shrink-0" />
           </div>
 
           <div className="w-px h-10 bg-neutral-200 shrink-0" />
