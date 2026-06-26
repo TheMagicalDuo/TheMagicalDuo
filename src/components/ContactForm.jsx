@@ -390,19 +390,19 @@ export default function ContactForm() {
     }
 
     // 2. Open WhatsApp window for user
-    const msg = `Hola! Quiero solicitar una cotización:%0A%0A` +
-      `👤 *Nombre:* ${form.nombre}%0A` +
-      `📧 *Email:* ${form.email}%0A` +
-      `📱 *Teléfono:* ${form.codigoPais} ${form.telefono}%0A` +
-      `✈️ *Destino:* ${form.destino}%0A` +
-      `📅 *Mes de viaje:* ${form.fechas} ${fechasFlexibles ? '(Tengo flexibilidad)' : ''}%0A` +
-      `👥 *Pasajeros:* ${form.pasajeros}%0A` +
-      (hayChicos && edades ? `🎂 *Edades chicos:* ${edades}%0A` : '') +
-      (form.presupuesto ? `💰 *Presupuesto:* ${form.presupuesto}%0A` : '') +
-      (form.comentarios ? `💬 *Comentarios:* ${form.comentarios}` : '')
+    const msg = `Hola! Quiero solicitar una cotización:\n\n` +
+      `\u{1F464} *Nombre:* ${form.nombre}\n` +
+      `\u{1F4E7} *Email:* ${form.email}\n` +
+      `\u{1F4F1} *Teléfono:* ${form.codigoPais} ${form.telefono}\n` +
+      `\u{2708}\u{FE0F} *Destino:* ${form.destino}\n` +
+      `\u{1F4C5} *Mes de viaje:* ${form.fechas} ${fechasFlexibles ? '(Tengo flexibilidad)' : ''}\n` +
+      `\u{1F465} *Pasajeros:* ${form.pasajeros}\n` +
+      (hayChicos && edades ? `\u{1F382} *Edades chicos:* ${edades}\n` : '') +
+      (form.presupuesto ? `\u{1F4B0} *Presupuesto:* ${form.presupuesto}\n` : '') +
+      (form.comentarios ? `\u{1F4AC} *Comentarios:* ${form.comentarios}` : '')
 
     const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5491132996899'
-    window.open(`https://wa.me/${whatsappNumber}?text=${msg}`, '_blank')
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank')
 
     setTimeout(() => {
       setStatus('success')
