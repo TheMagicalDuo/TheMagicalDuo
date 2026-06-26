@@ -132,8 +132,6 @@ const servicesData = {
       'Mejor precio garantizado',
     ],
   },
-  autos: autosData,
-  asistencia: asistenciaData,
   'mas-servicios': {
     isCombined: true,
     title: 'Más Servicios',

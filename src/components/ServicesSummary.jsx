@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Anchor, Map, Utensils, Building2, Car, HeartPulse, ArrowRight } from 'lucide-react'
+import { Anchor, Map, Utensils, Building2, Package, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const services = [
@@ -32,18 +32,11 @@ const services = [
     image: '/destinations/hotels.jpg',
   },
   {
-    id: 'autos',
-    title: 'Alquiler de Autos',
-    desc: 'Recorré tu destino con agencias internacionales.',
-    Icon: Car,
+    id: 'mas-servicios',
+    title: 'Más Servicios',
+    desc: 'Alquiler de autos y asistencia al viajero para tu tranquilidad.',
+    Icon: Package,
     image: '/destinations/autos.jpg',
-  },
-  {
-    id: 'asistencia',
-    title: 'Assist Card',
-    desc: 'Cobertura médica y asistencia de emergencia 24/7.',
-    Icon: HeartPulse,
-    image: '/destinations/assist.jpg',
   }
 ]
 
@@ -80,6 +73,7 @@ export default function ServicesSummary() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
+              className={i === services.length - 1 && services.length % 3 !== 0 ? 'sm:col-span-2 lg:col-span-1' : ''}
             >
               <Link
                 to={`/servicios/${s.id}`}
