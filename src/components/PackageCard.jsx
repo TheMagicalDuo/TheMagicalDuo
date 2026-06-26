@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react'
-import { createPortal } from 'react-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Waves, Sparkles, Anchor, Sun, Zap, X } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Waves, Sparkles, Anchor, Sun, Zap } from 'lucide-react'
 
 const WhatsAppIcon = ({ size = 24, className }) => (
   <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -12,208 +10,112 @@ const WhatsAppIcon = ({ size = 24, className }) => (
 const iconMap = { Waves, Sparkles, Anchor, Sun, Zap }
 
 export default function PackageCard({ pkg, imagePath }) {
-  const [isModalOpen, setIsModalOpen] = useState(false)
   const Icon = iconMap[pkg.iconName] ?? Anchor
   const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5491132996899'
   const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(pkg.whatsappMessage)}`
 
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-    return () => { document.body.style.overflow = 'unset' }
-  }, [isModalOpen])
+  // The first detail is always the date (e.g. "Noviembre 2026"), which is already in the subtitle.
+  // We slice it to prevent redundancy and keep the card compact.
+  const displayDetails = pkg.details ? pkg.details.slice(1) : []
 
   return (
-    <>
-      <motion.div
-        layout
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={{ duration: 0.4 }}
-        className="h-full"
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.4 }}
+      className="h-full"
+    >
+      <div 
+        className="bg-white rounded-3xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-[0_20px_40px_rgba(140,42,66,0.1)] hover:border-bordeaux/20 transition-all duration-500 flex flex-col group relative h-full cursor-default"
       >
-        <div 
-          onClick={() => setIsModalOpen(true)}
-          className="bg-white rounded-3xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-[0_20px_40px_rgba(140,42,66,0.1)] hover:border-bordeaux/20 transition-all duration-500 flex flex-col group relative h-full cursor-pointer"
-        >
-          {/* Glare effect on hover */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 -translate-x-[150%] group-hover:translate-x-[150%] transition-all duration-[1200ms] ease-in-out pointer-events-none z-30 mix-blend-overlay" />
+        {/* Glare effect on hover */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 -translate-x-[150%] group-hover:translate-x-[150%] transition-all duration-[1200ms] ease-in-out pointer-events-none z-30 mix-blend-overlay" />
+        
+        {/* Photo Header */}
+        <div className="h-40 relative overflow-hidden shrink-0">
+          <img
+            src={imagePath}
+            alt={pkg.title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent" />
           
-          {/* Photo Header */}
-          <div className="h-48 relative overflow-hidden shrink-0">
-            <img
-              src={imagePath}
-              alt={pkg.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent" />
-            
-            {/* Floating Category Tag */}
-            <div className="absolute top-4 left-4 flex flex-col gap-2">
-              <div className="bg-white/90 backdrop-blur-md border border-neutral-100 text-dark text-[11px] font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full shadow-sm w-fit">
-                {pkg.category}
-              </div>
-            </div>
-
-            {/* Accent Icon Tag */}
-            <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/20">
-              <Icon size={16} className="text-white" />
+          {/* Floating Category Tag */}
+          <div className="absolute top-3.5 left-3.5 flex flex-col gap-2">
+            <div className="bg-white/90 backdrop-blur-md border border-neutral-100 text-dark text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm w-fit">
+              {pkg.category}
             </div>
           </div>
 
-          {/* Body Content */}
-          <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between">
-            <div>
-              <div className="flex flex-wrap gap-2 mb-3">
-                <div className="inline-flex items-center bg-sage/10 text-sage text-[10px] font-bold uppercase px-3 py-1.5 rounded-full">
-                  Asesoría Gratis
-                </div>
-                {pkg.installments && (
-                  <div className="inline-flex items-center bg-sage text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full shadow-sm">
-                    {pkg.installments}
-                  </div>
-                )}
-              </div>
-              <h3 className="font-serif font-bold text-dark text-xl mb-3">{pkg.title}</h3>
-              <p className="text-dark/70 text-sm mb-6 leading-relaxed line-clamp-3">{pkg.subtitle}</p>
-            </div>
-
-            <div className="border-t border-neutral-100 pt-5 mt-auto">
-              <div className="mb-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
-                <div>
-                  <p className="text-[11px] text-dark/40 font-semibold uppercase tracking-wider mb-1">Precio estimado</p>
-                  <p className="text-bordeaux font-bold text-2xl sm:text-3xl font-serif">{pkg.price}</p>
-                </div>
-                <button
-                  className="text-[11px] text-bordeaux font-bold uppercase tracking-wider underline underline-offset-2 hover:text-bordeaux/70 transition-colors shrink-0"
-                >
-                  Ver detalles
-                </button>
-              </div>
-
-              <a
-                href={waLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="flex items-center justify-center gap-2 w-full bg-bordeaux text-white py-3.5 rounded-2xl font-bold text-sm hover:bg-bordeaux/90 transition-colors duration-300 shadow-md shadow-bordeaux/15 hover:shadow-lg"
-              >
-                <WhatsAppIcon size={16} />
-                Reservar por WhatsApp
-              </a>
-            </div>
+          {/* Accent Icon Tag */}
+          <div className="absolute top-3.5 right-3.5 w-8.5 h-8.5 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/20">
+            <Icon size={14} className="text-white" />
           </div>
         </div>
-      </motion.div>
 
-      {/* MODAL */}
-      {createPortal(
-        <AnimatePresence>
-          {isModalOpen && (
-            <div className="fixed inset-0 z-[100]">
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsModalOpen(false)}
-              className="absolute inset-0 bg-dark/60 backdrop-blur-sm"
-            />
-            
-            {/* Scrollable Container */}
-            <div className="absolute inset-0 overflow-y-auto hide-scrollbar pointer-events-none flex flex-col">
-              <div className="min-h-full flex items-center justify-center p-4 py-8 sm:p-6 pointer-events-none">
-                
-                {/* Modal Content */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                  className="relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col pointer-events-auto"
-                >
-              {/* Close Button */}
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="absolute top-4 right-4 z-50 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center transition-colors text-white"
-              >
-                <X size={20} />
-              </button>
-
-              {/* Header Image */}
-              <div className="h-40 sm:h-52 relative shrink-0">
-                <img src={imagePath} alt={pkg.title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent" />
-                
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="flex gap-2 mb-3">
-                    <div className="bg-white/20 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full">
-                      {pkg.category}
-                    </div>
-                    {pkg.installments && (
-                      <div className="bg-sage text-white text-[11px] font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full shadow-lg">
-                        {pkg.installments}
-                      </div>
-                    )}
-                  </div>
-                  <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white mb-2">{pkg.title}</h2>
-                </div>
+        {/* Body Content */}
+        <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
+          <div>
+            <div className="flex flex-wrap gap-1.5 mb-2.5">
+              <div className="inline-flex items-center bg-sage/10 text-sage text-[9px] font-bold uppercase px-2.5 py-1 rounded-full">
+                Asesoría Gratis
               </div>
+              {pkg.installments && (
+                <div className="inline-flex items-center bg-sage text-white text-[9px] font-bold uppercase px-2.5 py-0.5 rounded-full shadow-sm">
+                  {pkg.installments}
+                </div>
+              )}
+            </div>
+            <h3 className="font-serif font-bold text-dark text-lg mb-1">{pkg.title}</h3>
+            <p className="text-dark/50 text-[11px] mb-3 font-medium leading-relaxed">{pkg.subtitle}</p>
 
-              {/* Body */}
-              <div className="p-6 sm:p-8 flex-1 flex flex-col">
-                <p className="text-dark/70 text-base sm:text-lg font-medium leading-relaxed mb-8">
-                  {pkg.subtitle}
+            {/* Inclusions list */}
+            {displayDetails.length > 0 && (
+              <div className="mb-4 bg-[#FBF8F3] border border-neutral-100 rounded-2xl p-3">
+                <p className="text-[9px] text-dark/45 font-bold uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                  <Sparkles size={10} className="text-terracota" />
+                  Incluye
                 </p>
-
-                <div className="bg-[#FBF8F3] border border-neutral-100 rounded-2xl p-6 mb-8 flex-1">
-                  <h4 className="font-bold text-dark mb-4 flex items-center gap-2">
-                    <Sparkles size={18} className="text-terracota" />
-                    ¿Qué incluye?
-                  </h4>
-                  <ul className="space-y-3">
-                    {pkg.details?.map((detail, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-bordeaux mt-2 shrink-0" />
-                        <span className="text-dark/80 text-sm font-medium leading-relaxed">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-center gap-6 pt-6 border-t border-neutral-100">
-                  <div className="w-full sm:w-1/2 flex flex-col justify-center">
-                    <p className="text-[11px] text-dark/40 font-semibold uppercase tracking-wider mb-1">Precio total estimado</p>
-                    <p className="text-bordeaux font-bold text-3xl sm:text-4xl font-serif mb-2">{pkg.price}</p>
-                    <p className="text-[10px] text-dark/40 uppercase leading-relaxed font-semibold">
-                      {pkg.disclaimer}
-                    </p>
-                  </div>
-                  
-                  <div className="w-full sm:w-1/2">
-                    <a
-                      href={waLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 w-full bg-bordeaux text-white py-4 rounded-2xl font-bold text-sm hover:bg-bordeaux/90 transition-colors duration-300 shadow-md shadow-bordeaux/15 hover:shadow-lg"
-                    >
-                      <WhatsAppIcon size={18} />
-                      Consultar este paquete
-                    </a>
-                  </div>
-                </div>
+                <ul className="space-y-1.5">
+                  {displayDetails.map((detail, idx) => (
+                    <li key={idx} className="flex items-start gap-1.5 text-[11px] text-dark/75">
+                      <svg className="w-3 h-3 text-sage mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="leading-tight font-medium">{detail}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </motion.div>
+            )}
+          </div>
+
+          <div className="border-t border-neutral-100 pt-4 mt-auto">
+            <div className="mb-3">
+              <p className="text-[10px] text-dark/40 font-semibold uppercase tracking-wider mb-0.5">Precio estimado</p>
+              <p className="text-bordeaux font-bold text-2xl font-serif">{pkg.price}</p>
+            </div>
+
+            {pkg.disclaimer && (
+              <p className="text-[9px] text-dark/45 leading-relaxed font-medium mb-4 italic">
+                {pkg.disclaimer}
+              </p>
+            )}
+
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full bg-bordeaux text-white py-3 rounded-xl font-bold text-xs hover:bg-bordeaux/90 transition-colors duration-300 shadow-md shadow-bordeaux/15 hover:shadow-lg"
+            >
+              <WhatsAppIcon size={14} />
+              Consultar por WhatsApp
+            </a>
           </div>
         </div>
-        </div>
-        )}
-        </AnimatePresence>,
-        document.body
-      )}
-    </>
+      </div>
+    </motion.div>
   )
 }

@@ -29,7 +29,7 @@ export default function Footer() {
           viewport={{ once: true }}
           className="font-serif text-4xl sm:text-5xl md:text-6xl font-medium text-dark italic mb-6 leading-tight px-4"
         >
-          ¿Todo listo para <span className="text-terracota">soñar?</span>
+          ¿Todo listo para <span className="text-bordeaux">soñar?</span>
         </motion.h2>
         <motion.div
           initial={{ opacity: 0 }}
@@ -70,7 +70,7 @@ export default function Footer() {
         {/* Center Logo */}
         <div className="hidden md:block w-px h-10 bg-neutral-200"></div>
         <div className="flex items-center justify-center">
-          <span className="font-serif text-2xl italic font-black text-dark whitespace-nowrap">The Magical Duo</span>
+          <img src="/logo/logo-vector-violeta.png" alt="The Magical Duo" className="h-12 w-auto" />
         </div>
         <div className="hidden md:block w-px h-10 bg-neutral-200"></div>
 
