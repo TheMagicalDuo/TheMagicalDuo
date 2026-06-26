@@ -258,9 +258,10 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.98 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-[calc(100%+0.5rem)] left-0 right-0 z-50 lg:hidden bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] border border-neutral-100 rounded-3xl p-5 flex flex-col gap-2 max-h-[75vh] overflow-y-auto"
+              className="absolute top-[calc(100%+0.5rem)] left-0 right-0 z-50 lg:hidden bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] border border-neutral-100 rounded-3xl flex flex-col max-h-[75vh] overflow-hidden"
             >
-              {[
+              <div className="p-5 overflow-y-auto flex-1 flex flex-col gap-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+                {[
                 { id: 'inicio', label: 'Inicio', icon: HomeIcon, targetId: 'inicio' },
                 { id: 'nosotros', label: 'Nosotros', icon: Users, targetId: 'nosotros' },
                 { id: 'especialidad', label: 'Disney & Universal', icon: Sparkles, targetId: 'especialidad' },
@@ -333,17 +334,18 @@ export default function Navbar() {
                   </button>
                 )
               })}
+              </div>
               
-              <hr className="border-neutral-100 my-2" />
-              
-              <button
-                onClick={() => handleNavAction({ targetId: 'cotizar' })}
-                className="w-full inline-block"
-              >
-                <div className="w-full bg-terracota text-white shadow-terracota/20 shadow-lg rounded-2xl py-3.5 text-sm font-semibold flex justify-center items-center hover:bg-terracota/90 transition-colors">
-                  Reservar Turno
-                </div>
-              </button>
+              <div className="p-5 pt-3 border-t border-neutral-100 bg-white z-10 shrink-0">
+                <button
+                  onClick={() => handleNavAction({ targetId: 'cotizar' })}
+                  className="w-full inline-block"
+                >
+                  <div className="w-full bg-terracota text-white shadow-terracota/20 shadow-lg rounded-2xl py-3.5 text-sm font-semibold flex justify-center items-center hover:bg-terracota/90 transition-colors">
+                    Reservar Turno
+                  </div>
+                </button>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
