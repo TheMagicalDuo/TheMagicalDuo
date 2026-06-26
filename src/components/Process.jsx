@@ -85,7 +85,7 @@ export default function Process() {
         </motion.div>
 
         {/* Animated Auto-passing Cards */}
-        <div className="relative mb-28 max-w-4xl mx-auto h-[320px] sm:h-[260px] lg:h-[240px]">
+        <div className="relative mb-28 max-w-4xl mx-auto h-[380px] sm:h-[320px] lg:h-[320px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
@@ -113,7 +113,7 @@ export default function Process() {
                   })()}
                 </div>
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-dark mb-4">{steps[activeStep].title}</h3>
-                <p className="text-dark/70 text-base sm:text-lg leading-relaxed max-w-lg">{steps[activeStep].desc}</p>
+                <p className="text-dark/70 text-base sm:text-lg leading-relaxed max-w-2xl pr-12 sm:pr-0">{steps[activeStep].desc}</p>
               </div>
               
               {/* Tap indicator for mobile */}
