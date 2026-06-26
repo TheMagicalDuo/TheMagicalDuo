@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Waves, Sparkles, Anchor, Sun, Zap, X } from 'lucide-react'
 
@@ -15,6 +15,15 @@ export default function PackageCard({ pkg, imagePath }) {
   const Icon = iconMap[pkg.iconName] ?? Anchor
   const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5491132996899'
   const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(pkg.whatsappMessage)}`
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => { document.body.style.overflow = 'unset' }
+  }, [isModalOpen])
 
   return (
     <>
