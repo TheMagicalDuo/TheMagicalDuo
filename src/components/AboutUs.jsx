@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { MapPin, Heart, Sparkles, Clock } from 'lucide-react'
+import { MapPin, Heart, Sparkles, Clock, ShieldCheck, Wallet, CheckCircle } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 const destPhotos = [
@@ -91,17 +91,21 @@ export default function AboutUs() {
             
             <div className="text-dark/70 text-sm leading-relaxed mb-10 space-y-4 pr-4">
               <p>Somos Tobias y Abril, una pareja argentina apasionada por los viajes y por hacer realidad los sueños de quienes confían en nosotros. Hace un año creamos The Magical Duo con una misión clara: brindar una atención 100% personalizada, honesta y cercana.</p>
-              <p>Estamos disponibles para acompañarte en cada etapa de tu viaje, desde la primera consulta hasta que llegás a casa. Porque para nosotros, tu experiencia no termina cuando comprás el paquete.</p>
+              <p>Estamos disponibles 24/7 para acompañarte en cada etapa de tu viaje, desde la primera consulta hasta que llegás a casa. Porque para nosotros, tu experiencia no termina cuando comprás el paquete.</p>
             </div>
 
+            <h3 className="font-serif text-2xl font-bold text-dark mb-6 flex items-center gap-2">
+              <Sparkles size={24} className="text-bordeaux" /> ¿Por qué elegirnos?
+            </h3>
+            
             <div className="grid sm:grid-cols-2 gap-4 mb-10">
               <div className="bg-white p-5 rounded-3xl border border-neutral-100 shadow-sm flex flex-col gap-3 hover:shadow-md transition-shadow">
                 <div className="w-10 h-10 rounded-full bg-bordeaux/10 text-bordeaux flex items-center justify-center">
-                  <Sparkles size={18} />
+                  <CheckCircle size={18} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-dark mb-1">Viajes a Medida</h3>
-                  <p className="text-dark/60 text-sm leading-relaxed">Itinerarios únicos diseñados a la medida de tu familia. Cero plantillas automáticas.</p>
+                  <h3 className="font-bold text-dark mb-1">Precios Oficiales</h3>
+                  <p className="text-dark/60 text-sm leading-relaxed">Trabajamos exclusivamente con precios oficiales. No vas a pagar ninguna diferencia respecto a lo que encontrás por tu cuenta. ¡Y además te asesoramos sin cargo!</p>
                 </div>
               </div>
 
@@ -110,19 +114,48 @@ export default function AboutUs() {
                   <Heart size={18} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-dark mb-1">Honestidad Real</h3>
-                  <p className="text-dark/60 text-sm leading-relaxed">Te compartimos atajos, secretos y cuidamos tu presupuesto para que aproveches al máximo.</p>
+                  <h3 className="font-bold text-dark mb-1">Atención Personalizada</h3>
+                  <p className="text-dark/60 text-sm leading-relaxed">Cada viaje es único. No somos un portal de reservas: somos personas reales que se involucran con tu viaje y te acompañan en cada paso.</p>
+                </div>
+              </div>
+              
+              <div className="bg-white p-5 rounded-3xl border border-neutral-100 shadow-sm flex flex-col gap-3 hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-full bg-sage/10 text-sage flex items-center justify-center">
+                  <Clock size={18} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-dark mb-1">Siempre Disponibles</h3>
+                  <p className="text-dark/60 text-sm leading-relaxed">Tanto antes, durante y después de tu viaje, estamos disponibles para responder tus dudas, resolver imprevistos o simplemente compartir tu emoción.</p>
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-3xl border border-neutral-100 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:col-span-2 relative overflow-hidden hover:shadow-md transition-shadow">
-                <div className="absolute right-0 top-0 w-32 h-32 bg-sage/5 rounded-full blur-3xl pointer-events-none" />
-                <div className="w-12 h-12 rounded-full bg-sage/10 text-sage flex items-center justify-center shrink-0">
-                  <Clock size={22} />
+              <div className="bg-white p-5 rounded-3xl border border-neutral-100 shadow-sm flex flex-col gap-3 hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-full bg-bordeaux/10 text-bordeaux flex items-center justify-center">
+                  <Wallet size={18} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-dark mb-1">Acompañamiento</h3>
-                  <p className="text-dark/60 text-sm leading-relaxed">No nos borramos al vender. Estamos disponibles por WhatsApp antes, durante y después del viaje.</p>
+                  <h3 className="font-bold text-dark mb-1">Pagos en Cuotas</h3>
+                  <p className="text-dark/60 text-sm leading-relaxed">Para Disney y Universal, podemos gestionar el pago de tu paquete en cómodas cuotas, haciendo que tu sueño sea mucho más accesible.</p>
+                </div>
+              </div>
+
+              <div className="bg-white p-5 rounded-3xl border border-neutral-100 shadow-sm flex flex-col gap-3 hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-full bg-terracota/10 text-terracota flex items-center justify-center">
+                  <MapPin size={18} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-dark mb-1">Experiencia Propia</h3>
+                  <p className="text-dark/60 text-sm leading-relaxed">Somos viajeros antes que agentes. Conocemos de primera mano los destinos que vendemos, y esa experiencia la ponemos al servicio de tu viaje.</p>
+                </div>
+              </div>
+
+              <div className="bg-white p-5 rounded-3xl border border-neutral-100 shadow-sm flex flex-col gap-3 hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-full bg-sage/10 text-sage flex items-center justify-center">
+                  <ShieldCheck size={18} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-dark mb-1">Pagos 100% Seguros</h3>
+                  <p className="text-dark/60 text-sm leading-relaxed">Todos los pagos se realizan directamente al proveedor. Tu dinero nunca pasa por nosotros. Total transparencia y seguridad garantizada.</p>
                 </div>
               </div>
             </div>

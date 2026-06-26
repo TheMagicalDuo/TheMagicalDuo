@@ -8,8 +8,7 @@ const WhatsAppIcon = ({ size = 24, className }) => (
   </svg>
 )
 import packages from '../data/packages.json'
-
-const iconMap = { Waves, Sparkles, Anchor, Sun, Zap }
+import PackageCard from './PackageCard'
 
 export default function Packages() {
   const displayPackages = packages.slice(0, 3)
@@ -51,71 +50,9 @@ export default function Packages() {
         >
           <AnimatePresence mode="popLayout">
             {displayPackages.map((pkg, i) => {
-              const Icon = iconMap[pkg.iconName] ?? Anchor
               const imagePath = pkg.image || '/destinations/disney.png'
               return (
-                <motion.div
-                    layout
-                    key={pkg.id}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.4 }}
-                    className="h-full"
-                  >
-                  <div className="bg-white rounded-3xl overflow-hidden border border-neutral-100 shadow-sm hover:shadow-[0_20px_40px_rgba(140,42,66,0.1)] hover:border-bordeaux/20 transition-all duration-500 flex flex-col group relative h-full">
-                  {/* Glare effect on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 -translate-x-[150%] group-hover:translate-x-[150%] transition-all duration-[1200ms] ease-in-out pointer-events-none z-30 mix-blend-overlay" />
-                  
-                  {/* Photo Header */}
-                  <div className="h-48 relative overflow-hidden">
-                    <img
-                      src={imagePath}
-                      alt={pkg.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent" />
-                    
-                    {/* Floating Category Tag */}
-                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md border border-neutral-100 text-dark text-[11px] font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full shadow-sm">
-                      {pkg.category}
-                    </div>
-
-                    {/* Accent Icon Tag */}
-                    <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                      <Icon size={16} className="text-white" />
-                    </div>
-                  </div>
-
-                  {/* Body Content */}
-                  <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between">
-                    <div>
-                      <div className="inline-flex items-center bg-sage/10 text-sage text-[10px] font-bold uppercase px-3 py-1 rounded-full mb-3">
-                        Asesoría Gratis
-                      </div>
-                      <h3 className="font-serif font-bold text-dark text-xl mb-2">{pkg.title}</h3>
-                      <p className="text-dark/60 text-sm mb-6 leading-relaxed">{pkg.subtitle}</p>
-                    </div>
-
-                    <div className="border-t border-neutral-100 pt-5">
-                      <div className="mb-5">
-                        <p className="text-[11px] text-dark/40 font-semibold uppercase tracking-wider mb-1">Precio estimado</p>
-                        <p className="text-bordeaux font-bold text-2xl font-serif">{pkg.price}</p>
-                      </div>
-
-                      <a
-                        href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=${encodeURIComponent(pkg.whatsappMessage)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 w-full bg-bordeaux text-white py-3.5 rounded-2xl font-bold text-sm hover:bg-bordeaux/90 transition-colors duration-300 shadow-md shadow-bordeaux/15 hover:shadow-lg"
-                      >
-                        <WhatsAppIcon size={16} />
-                        Reservar por WhatsApp
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+                <PackageCard key={pkg.id} pkg={pkg} imagePath={imagePath} />
               )
             })}
           </AnimatePresence>

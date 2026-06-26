@@ -2,78 +2,125 @@
   {
     "id": 1,
     "title": "Disney en Navidad",
-    "subtitle": "5 noches - 2 adultos y 2 menores (3 a 10 años) - Nov 2026 - All Star Music - 4 días de parque",
+    "subtitle": "5 noches - 2 adultos y 2 menores (3 a 10 años) - Nov 2026",
     "category": "Disney · 5 Noches",
     "accentColor": "#8C2A42",
     "iconName": "Sparkles",
     "price": "USD$4144 total",
     "whatsappNumber": "5491132996899",
-    "whatsappMessage": "Hola! Quiero consultar por el paquete Disney en Navidad"
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Disney en Navidad",
+    "details": [
+      "Noviembre 2026",
+      "Disney All Star Music Resort",
+      "4 días de parque, un parque por día"
+    ],
+    "disclaimer": "*valor total del paquete, los vuelos no están incluidos. VALOR SUJETO A MODIFICACIONES."
   },
   {
     "id": 2,
     "title": "Disney en Halloween",
-    "subtitle": "5 noches - 2 adultos y 2 menores (3 a 10 años) - Nov 2026 - All Star Music - 4 días de parque",
+    "subtitle": "5 noches - 2 adultos y 2 menores (3 a 10 años) - Nov 2026",
     "category": "Disney · 5 Noches",
     "accentColor": "#8C2A42",
     "iconName": "Sparkles",
     "price": "USD$3857 total",
     "whatsappNumber": "5491132996899",
-    "whatsappMessage": "Hola! Quiero consultar por el paquete Disney en Halloween"
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Disney en Halloween",
+    "details": [
+      "Noviembre 2026",
+      "Disney All Star Music Resort",
+      "4 días de parque, un parque por día"
+    ],
+    "disclaimer": "*valor total del paquete, los vuelos no están incluidos. VALOR SUJETO A MODIFICACIONES."
   },
   {
     "id": 3,
-    "title": "Disney + Universal (6 cuotas)",
-    "subtitle": "9 noches - 2 adultos y 2 menores - Feb 2026 - 5 noches Disney, 4 noches Universal",
+    "title": "Disney + Universal en vacaciones",
+    "subtitle": "9 noches - 2 adultos y 2 menores (3 a 10 años) - Feb 2026",
     "category": "Disney & Universal",
     "accentColor": "#B5694A",
     "iconName": "Zap",
     "price": "USD$2052 pp",
+    "installments": "6 cuotas",
     "whatsappNumber": "5491132996899",
-    "whatsappMessage": "Hola! Quiero consultar por el paquete Disney + Universal en vacaciones"
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Disney + Universal en vacaciones",
+    "details": [
+      "Febrero 2026",
+      "5 noches en Disney All Star Sports Resort",
+      "4 días de parque, un parque por día",
+      "4 noches en Universal Endless Summer Surfside Inn and Suites Resorts",
+      "3 días de parque, ticket park to park"
+    ],
+    "disclaimer": "*valor total del paquete USD$8.204, los vuelos no están incluidos. VALOR SUJETO A MODIFICACIONES."
   },
   {
     "id": 4,
     "title": "Super Promo Universal",
-    "subtitle": "5 noches - 2 adultos y 2 menores - Oct 2026 - Universal Aventura Hotel - 3 días parque + 2 DÍAS DE REGALO!",
+    "subtitle": "5 noches - 2 adultos y 2 menores (3 a 10 años) - Oct 2026",
     "category": "Universal · 5 Noches",
     "accentColor": "#B5694A",
     "iconName": "Zap",
     "price": "USD$3365 total",
     "whatsappNumber": "5491132996899",
-    "whatsappMessage": "Hola! Quiero consultar por la Super Promo Universal"
+    "whatsappMessage": "Hola! Quiero consultar por la Super Promo Universal",
+    "details": [
+      "Octubre 2026",
+      "Universal Aventura Hotel",
+      "3 dias de parque, ticket park to park + 2 DÍAS DE REGALO!"
+    ],
+    "disclaimer": "*valor total del paquete, los vuelos no están incluidos. VALOR SUJETO A MODIFICACIONES."
   },
   {
     "id": 5,
     "title": "Costa Mujeres Solo Adultos",
-    "subtitle": "8 noches - 2 adultos - Dic 2026 - Hotel Riu Latino (Adults Only) - All Inclusive",
+    "subtitle": "8 noches - 2 adultos - Dic 2026",
     "category": "Caribe · 8 Noches",
     "accentColor": "#3D6E5E",
     "iconName": "Sun",
     "price": "USD$2375 total",
     "whatsappNumber": "5491132996899",
-    "whatsappMessage": "Hola! Quiero consultar por el paquete Costa Mujeres Solo Adultos"
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Costa Mujeres Solo Adultos",
+    "details": [
+      "Diciembre 2026",
+      "Hotel Riu Latino - Adults Only",
+      "All Inclusive"
+    ],
+    "disclaimer": "*valor total del paquete, los vuelos no están incluidos. VALOR SUJETO A MODIFICACIONES."
   },
   {
     "id": 6,
     "title": "Punta Cana Familiar",
-    "subtitle": "8 noches - 2 adultos y 2 niños - Dic 2026 - Princess Family Club Bavaro - All Inclusive",
+    "subtitle": "8 noches - 2 adultos y 2 niños - Dic 2026",
     "category": "Caribe · 8 Noches",
     "accentColor": "#3D6E5E",
     "iconName": "Sun",
     "price": "USD$3535 total",
     "whatsappNumber": "5491132996899",
-    "whatsappMessage": "Hola! Quiero consultar por el paquete Punta Cana Familiar"
+    "whatsappMessage": "Hola! Quiero consultar por el paquete Punta Cana Familiar",
+    "details": [
+      "Diciembre 2026",
+      "Princess Family Club Bavaro",
+      "All Inclusive"
+    ],
+    "disclaimer": "*valor total del paquete, los vuelos no están incluidos. VALOR SUJETO A MODIFICACIONES."
   },
   {
     "id": 7,
-    "title": "Tour Japón y China 2027",
-    "subtitle": "15 noches - Marzo 2027 - Hoteles 4/5 estrellas - Desayuno, 9 almuerzos, 3 cenas - Guía en español",
+    "title": "Tour por Japón y China",
+    "subtitle": "15 noches, base doble - Marzo 2027",
     "category": "Tours · 15 Noches",
     "accentColor": "#1A3A5C",
     "iconName": "Anchor",
     "price": "USD$5200 pp",
     "whatsappNumber": "5491132996899",
-    "whatsappMessage": "Hola! Quiero consultar por el Tour por Japón y China"
+    "whatsappMessage": "Hola! Quiero consultar por el Tour por Japón y China",
+    "details": [
+      "Marzo 2027",
+      "Hoteles 4 y 5 estrellas con desayuno",
+      "Traslado de llegada y dentro del tour incluidos",
+      "Guia en español",
+      "9 almuerzos + 3 cenas"
+    ],
+    "disclaimer": "*valor total del tour por persona, los vuelos no están incluidos. VALOR SUJETO A MODIFICACIONES."
   }
 ]

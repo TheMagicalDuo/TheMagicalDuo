@@ -10,10 +10,10 @@ const autosData = {
   image: '/bg/airplane.png',
   Icon: Car,
   features: [
-    'Alianzas con Alamo, Hertz, Avis y más',
     'Precios competitivos garantizados',
-    'Opciones de entrega en aeropuerto u hoteles',
-    'Asesoramiento total en coberturas y seguros'
+    'Entrega en aeropuerto y hoteles',
+    'Las mejores agencias internacionales',
+    'Asesoramiento en coberturas y seguros'
   ]
 }
 
@@ -24,11 +24,11 @@ const asistenciaData = {
   image: '/bg/castle_fireworks.png',
   Icon: HeartPulse,
   features: [
-    'Cobertura médica internacional de primer nivel',
+    'Cobertura médica internacional',
     'Asistencia de emergencia 24/7',
-    'Cobertura por cancelación y demora de vuelos',
+    'Cancelación y demora de vuelos',
     'Planes para todas las edades y destinos',
-    'Promos exclusivas al contratar con nosotros'
+    'Promos exclusivas'
   ]
 }
 
@@ -40,12 +40,13 @@ const servicesData = {
     image: '/destinations/cruise.png',
     Icon: Anchor,
     features: [
-      'Disney Cruise Line',
-      'Royal Caribbean',
-      'MSC Cruceros',
-      'Celebrity Cruises',
-      'Carnival Cruise Line',
-      'Norwegian Cruise Line'
+      'Royal Caribbean: La naviera más grande del mundo. Itinerarios por el Caribe, Europa, Asia y más. Barcos de última generación con todas las comodidades.',
+      'Disney Cruise Line: La magia de Disney en altamar. Entretenimiento exclusivo, personajes y destinos únicos. Ideal para familias.',
+      'MSC Cruceros: Estilo mediterráneo y elegancia. Gran variedad de itinerarios y categorías para todos los presupuestos.',
+      'Celebrity Cruises: Lujo moderno para adultos. Gastronomía de autor, spas premium y destinos exclusivos alrededor del mundo.',
+      'Carnival Cruise Line: La naviera favorita de las familias americanas. Precios accesibles y mucho entretenimiento. Diversión garantizada.',
+      'Norwegian Cruise Line: Concepto de libertad sin horarios ni códigos de vestimenta rígidos. Entretenimiento estilo Broadway, pistas de carreras exclusivas y camarotes ideales para viajeros solitarios.',
+      'Y muchas más líneas disponibles · Consultanos por tu destino ideal'
     ]
   },
   'tours': {
@@ -55,9 +56,9 @@ const servicesData = {
     image: '/destinations/caribbean.png',
     Icon: Map,
     features: [
-      'Guías especializados en español',
-      'Grupos reducidos y atención personalizada',
       'Europa clásica, Japón, Emiratos y más',
+      'Grupos reducidos y atención personalizada',
+      'Guías especializados en español',
       'Itinerarios flexibles y a medida'
     ]
   },
@@ -68,11 +69,9 @@ const servicesData = {
     image: '/destinations/disney.png',
     Icon: Utensils,
     features: [
-      'Sandals & Beaches Resorts',
-      'Karisma Hotels & Resorts',
-      'Palladium y RIU',
-      'Excellence Group y Club Med',
-      'Destinos en Caribe, Bahamas, Maldivas y más'
+      'Sandals & Beaches, Karisma, Club Med',
+      'Palladium, RIU, Excellence Group',
+      'Caribe, Bahamas y más'
     ]
   },
   'hoteles': {
@@ -82,10 +81,10 @@ const servicesData = {
     image: '/destinations/universal.png',
     Icon: Building2,
     features: [
+      'Habitaciones familiares y suites',
+      'Hoteles boutique y cadenas internacionales',
       'Reservas en cualquier destino del mundo',
-      'Mejor precio garantizado',
-      'Habitaciones familiares y suites de lujo',
-      'Hoteles boutique y grandes cadenas internacionales'
+      'Mejor precio garantizado'
     ]
   },
   'autos': autosData,
