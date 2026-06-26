@@ -59,7 +59,7 @@ export default function PackageCard({ pkg, imagePath }) {
           <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between">
             <div>
               <div className="flex flex-wrap gap-2 mb-3">
-                <div className="inline-flex items-center bg-sage/10 text-sage text-[10px] font-bold uppercase px-3 py-1 rounded-full">
+                <div className="inline-flex items-center bg-sage/10 text-sage text-[10px] font-bold uppercase px-3 py-1.5 rounded-full">
                   Asesoría Gratis
                 </div>
                 {pkg.installments && (
@@ -68,18 +68,18 @@ export default function PackageCard({ pkg, imagePath }) {
                   </div>
                 )}
               </div>
-              <h3 className="font-serif font-bold text-dark text-xl mb-2">{pkg.title}</h3>
-              <p className="text-dark/60 text-sm mb-6 leading-relaxed line-clamp-3">{pkg.subtitle}</p>
+              <h3 className="font-serif font-bold text-dark text-xl mb-3">{pkg.title}</h3>
+              <p className="text-dark/70 text-sm mb-6 leading-relaxed line-clamp-3">{pkg.subtitle}</p>
             </div>
 
-            <div className="border-t border-neutral-100 pt-5">
-              <div className="mb-5 flex items-end justify-between">
+            <div className="border-t border-neutral-100 pt-5 mt-auto">
+              <div className="mb-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
                 <div>
                   <p className="text-[11px] text-dark/40 font-semibold uppercase tracking-wider mb-1">Precio estimado</p>
-                  <p className="text-bordeaux font-bold text-2xl font-serif">{pkg.price}</p>
+                  <p className="text-bordeaux font-bold text-2xl sm:text-3xl font-serif">{pkg.price}</p>
                 </div>
                 <button
-                  className="text-[11px] text-bordeaux font-bold uppercase tracking-wider underline underline-offset-2 hover:text-bordeaux/70 transition-colors"
+                  className="text-[11px] text-bordeaux font-bold uppercase tracking-wider underline underline-offset-2 hover:text-bordeaux/70 transition-colors shrink-0"
                 >
                   Ver detalles
                 </button>
