@@ -77,7 +77,7 @@ const columns = [
       'Pase de estacionamiento y comidas',
       'Asistencia personalizada en español',
     ],
-    image: '/destinations/caribbean.png',
+    image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782746851/allinclusive_gnt4uz.jpg',
   },
 ]
 
