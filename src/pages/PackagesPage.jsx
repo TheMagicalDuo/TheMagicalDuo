@@ -73,8 +73,8 @@ export default function PackagesPage() {
         <div className="relative w-full h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 bg-dark">
             <img 
-              src="/destinations/disney.png" 
-              alt="Paquetes de Viaje" 
+              src="https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782777186/EUA_BUSH_GARDEN_tbqt73.jpg"
+              alt="Paquetes de Viaje"
               className="w-full h-full object-cover opacity-60"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/40 to-dark/40" />
