@@ -3,10 +3,10 @@ import { MapPin, Heart, Sparkles, Clock } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 const destPhotos = [
-  { image: '/destinations/disney.png', label: 'Magic Kingdom', angle: 'rotate-[1.5deg]' },
-  { image: '/destinations/caribbean.png', label: 'Bávaro, Punta Cana', angle: '-rotate-[2deg]' },
-  { image: '/destinations/cruise.png', label: 'Disney Cruise Line', angle: 'rotate-[-1.5deg]' },
-  { image: '/destinations/universal.png', label: 'Universal Studios', angle: 'rotate-[2deg]' },
+  { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746853/about2_wfh6gd.jpg', label: 'Tobías & Abril', angle: 'rotate-[1.5deg]' },
+  { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746848/about4_t7zlim.jpg', label: 'En viaje', angle: '-rotate-[2deg]' },
+  { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746849/allinclusive_yjmz3s.jpg', label: 'Caribe', angle: 'rotate-[-1.5deg]' },
+  { image: '/destinations/disney.png', label: 'Magic Kingdom', angle: 'rotate-[2deg]' },
 ]
 
 export default function AboutUs() {
@@ -34,7 +34,7 @@ export default function AboutUs() {
                 <div className="washi-tape-terracota" />
                 <div className="w-full aspect-[2.1/1] overflow-hidden bg-neutral-100">
                   <img
-                    src="/destinations/couple.png"
+                    src="https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_900/v1782746848/about1_mdf4qx.jpg"
                     alt="Tobías & Abril"
                     className="w-full h-full object-cover object-[center_30%]"
                   />
