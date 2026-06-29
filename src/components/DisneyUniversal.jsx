@@ -62,7 +62,7 @@ const columns = [
     dotColor: 'bg-terracota',
     items: universalItems,
     includes: universalIncludes,
-    image: '/destinations/universal.png',
+    image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782746863/universal_sej97t.jpg',
   },
   {
     Icon: Globe,
