@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const destPhotos = [
   { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746853/about2_wfh6gd.jpg', label: 'Tobías & Abril', angle: 'rotate-[1.5deg]' },
   { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746848/about4_t7zlim.jpg', label: 'En viaje', angle: '-rotate-[2deg]' },
-  { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746849/allinclusive_yjmz3s.jpg', label: 'Caribe', angle: 'rotate-[-1.5deg]' },
+  { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746848/about1_mdf4qx.jpg', label: 'Buenos Aires', angle: 'rotate-[-1.5deg]' },
   { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746853/disney_nvtfsh.jpg', label: 'Disney', angle: 'rotate-[2deg]' },
 ]
 
@@ -34,9 +34,9 @@ export default function AboutUs() {
                 <div className="washi-tape-terracota" />
                 <div className="w-full aspect-[2.1/1] overflow-hidden bg-neutral-100">
                   <img
-                    src="https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_900/v1782746848/about1_mdf4qx.jpg"
+                    src="https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_900/v1782746849/allinclusive_yjmz3s.jpg"
                     alt="Tobías & Abril"
-                    className="w-full h-full object-cover object-[center_30%]"
+                    className="w-full h-full object-cover object-center"
                   />
                 </div>
                 <div className="mt-3 flex items-center justify-between px-1">
