@@ -41,13 +41,13 @@ export default function PackageCard({ pkg, imagePath }) {
                 src={imagePath}
                 alt={pkg.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                style={{ clipPath: 'polygon(0 0, 62% 0, 38% 100%, 0 100%)' }}
+                style={{ WebkitMaskImage: 'linear-gradient(to right, black 35%, transparent 68%)', maskImage: 'linear-gradient(to right, black 35%, transparent 68%)' }}
               />
               <img
                 src={pkg.image2}
                 alt={pkg.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                style={{ clipPath: 'polygon(62% 0, 100% 0, 100% 100%, 38% 100%)' }}
+                style={{ WebkitMaskImage: 'linear-gradient(to left, black 35%, transparent 68%)', maskImage: 'linear-gradient(to left, black 35%, transparent 68%)' }}
               />
             </>
           ) : (

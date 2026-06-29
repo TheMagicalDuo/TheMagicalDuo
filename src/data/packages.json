@@ -37,8 +37,8 @@
   },
   {
     "id": 3,
-    "image": "https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782746853/disney3_h26may.jpg",
-    "image2": "https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782746863/universal_sej97t.jpg",
+    "image": "/destinations/disney.png",
+    "image2": "/destinations/universal.png",
     "title": "Disney + Universal en vacaciones",
     "subtitle": "9 noches - 2 adultos y 2 menores (3 a 10 años) - Feb 2026",
     "category": "Disney & Universal",
@@ -94,7 +94,7 @@
   },
   {
     "id": 6,
-    "image": "https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782746849/allinclusive_yjmz3s.jpg",
+    "image": "https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782748840/download_3_r344yg.jpg",
     "title": "Punta Cana Familiar",
     "subtitle": "8 noches - 2 adultos y 2 niños - Dic 2026",
     "category": "Caribe · 8 Noches",
