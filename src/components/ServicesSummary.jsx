@@ -8,7 +8,7 @@ const services = [
     title: 'Cruceros',
     desc: 'Las mejores navieras y rutas de todo el mundo.',
     Icon: Anchor,
-    image: '/destinations/cruise.png',
+    image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782767510/AdobeStock_449451821_Editorial_Use_Only_e547mi.jpg',
   },
   {
     id: 'tours',

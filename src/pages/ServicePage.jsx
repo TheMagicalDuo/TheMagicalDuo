@@ -90,7 +90,7 @@ const servicesData = {
     title: 'Cruceros',
     subtitle: 'Navegá el mundo con las mejores navieras',
     desc: 'De lujo, familiares, de aventura o relax — tenemos el itinerario y la naviera ideal para vos. Conocemos cada barco al detalle y coordinamos todo sin costo extra.',
-    image: '/destinations/cruise.png',
+    image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1200/v1782767510/AdobeStock_449451821_Editorial_Use_Only_e547mi.jpg',
     Icon: Anchor,
     navieras,
   },
