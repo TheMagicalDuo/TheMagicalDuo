@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import emailjs from '@emailjs/browser'
 import { Castle, Ticket, Clapperboard, Ship, Palmtree, Landmark, Map, Compass, Sparkles, CheckCircle, ChevronDown, ChevronLeft, ChevronRight, Calendar } from 'lucide-react'
 
 // SVG Icon de WhatsApp
@@ -347,46 +346,32 @@ export default function ContactForm() {
 
     setStatus('sending')
 
-    // 1. Send email silently via EmailJS
+    // 1. Send email via Web3Forms
     try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-
-      if (serviceId && templateId && publicKey) {
-        emailjs.init({ publicKey })
-        await emailjs.send(
-          serviceId,
-          templateId,
-          {
+      const accessKey = import.meta.env.VITE_WEB3FORMS_KEY
+      if (accessKey) {
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: accessKey,
+            subject: `Nueva consulta de cotización - ${form.destino}`,
             from_name: form.nombre,
-            from_email: form.email,
             reply_to: form.email,
+            nombre: form.nombre,
+            email: form.email,
             telefono: `${form.codigoPais} ${form.telefono}`,
             destino: form.destino,
-            fechas: `${form.fechas} ${fechasFlexibles ? '(Flexible)' : ''}`,
+            'mes de viaje': `${form.fechas}${fechasFlexibles ? ' (Flexible)' : ''}`,
             pasajeros: form.pasajeros,
-            edades_chicos: hayChicos && edades ? edades : 'No aplica',
-            presupuesto: form.presupuesto || 'No especificado',
-            comentarios: form.comentarios || 'Sin comentarios',
-            message: `Nueva consulta de cotización:\n\n` +
-              `- Nombre: ${form.nombre}\n` +
-              `- Email: ${form.email}\n` +
-              `- Teléfono: ${form.codigoPais} ${form.telefono}\n` +
-              `- Destino: ${form.destino}\n` +
-              `- Mes de viaje: ${form.fechas} ${fechasFlexibles ? '(Flexible)' : ''}\n` +
-              `- Pasajeros: ${form.pasajeros}\n` +
-              (hayChicos && edades ? `- Edades de los chicos: ${edades}\n` : '') +
-              (form.presupuesto ? `- Presupuesto: ${form.presupuesto}\n` : '') +
-              (form.comentarios ? `- Comentarios: ${form.comentarios}\n` : '')
-          },
-          { publicKey }
-        )
-      } else {
-        console.warn('EmailJS credentials are not set in environment variables')
+            ...(hayChicos && edades ? { 'edades chicos': edades } : {}),
+            ...(form.presupuesto ? { presupuesto: form.presupuesto } : {}),
+            ...(form.comentarios ? { comentarios: form.comentarios } : {}),
+          }),
+        })
       }
     } catch (err) {
-      console.error('Failed to send email via EmailJS:', err)
+      console.error('Failed to send email via Web3Forms:', err)
     }
 
     // 2. Open WhatsApp window for user
