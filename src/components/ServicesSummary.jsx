@@ -22,14 +22,14 @@ const services = [
     title: 'All Inclusive',
     desc: 'Resorts de lujo en el Caribe y destinos paradisíacos.',
     Icon: Utensils,
-    image: '/destinations/caribbean.png',
+    image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782748840/download_3_r344yg.jpg',
   },
   {
     id: 'hoteles',
     title: 'Hoteles',
     desc: 'Alojamientos seleccionados al mejor precio garantizado.',
     Icon: Building2,
-    image: '/destinations/hotels.jpg',
+    image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782767551/IMG_1134_r29ehk.jpg',
   },
   {
     id: 'mas-servicios',
