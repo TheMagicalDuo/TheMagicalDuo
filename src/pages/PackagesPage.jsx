@@ -15,6 +15,7 @@ const tabs = [
 ]
 
 const getPackageImage = (pkg) => {
+  if (pkg.image) return pkg.image
   const title = pkg.title.toLowerCase()
   const cat = pkg.category.toLowerCase()
   if (title.includes('disney') || cat.includes('disney')) return '/destinations/disney.png'

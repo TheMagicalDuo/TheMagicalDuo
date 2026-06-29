@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "image": "https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782748046/Disney_Christmas_%EF%B8%8F_wrmhxn.jpg",
     "title": "Disney en Navidad",
     "subtitle": "5 noches - 2 adultos y 2 menores (3 a 10 años) - Nov 2026",
     "category": "Disney · 5 Noches",
@@ -18,6 +19,7 @@
   },
   {
     "id": 2,
+    "image": "https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782747812/Halloweentime_t5xwkx.jpg",
     "title": "Disney en Halloween",
     "subtitle": "5 noches - 2 adultos y 2 menores (3 a 10 años) - Nov 2026",
     "category": "Disney · 5 Noches",
