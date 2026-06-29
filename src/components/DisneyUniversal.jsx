@@ -52,7 +52,7 @@ const columns = [
     dotColor: 'bg-bordeaux',
     items: disneyItems,
     includes: disneyIncludes,
-    image: '/destinations/disney.png',
+    image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782746853/disney3_h26may.jpg',
   },
   {
     Icon: Zap,
