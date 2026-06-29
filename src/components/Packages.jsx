@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+﻿import { motion, AnimatePresence } from 'framer-motion'
 import { Waves, Sparkles, Anchor, Sun, Zap } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import useEmblaCarousel from 'embla-carousel-react'
@@ -100,3 +100,4 @@ export default function Packages() {
     </section>
   )
 }
+

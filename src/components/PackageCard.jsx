@@ -35,11 +35,28 @@ export default function PackageCard({ pkg, imagePath }) {
         
         {/* Photo Header */}
         <div className="h-40 relative overflow-hidden shrink-0">
-          <img
-            src={imagePath}
-            alt={pkg.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          {pkg.image2 ? (
+            <>
+              <img
+                src={imagePath}
+                alt={pkg.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                style={{ clipPath: 'polygon(0 0, 62% 0, 38% 100%, 0 100%)' }}
+              />
+              <img
+                src={pkg.image2}
+                alt={pkg.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                style={{ clipPath: 'polygon(62% 0, 100% 0, 100% 100%, 38% 100%)' }}
+              />
+            </>
+          ) : (
+            <img
+              src={imagePath}
+              alt={pkg.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent" />
           
           {/* Floating Category Tag */}
