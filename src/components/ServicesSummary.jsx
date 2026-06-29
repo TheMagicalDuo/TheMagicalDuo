@@ -36,7 +36,7 @@ const services = [
     title: 'Más Servicios',
     desc: 'Alquiler de autos y asistencia al viajero para tu tranquilidad.',
     Icon: Package,
-    image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782769802/Features_tn0evo.jpg',
+    image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782775657/Autovakanties_op_maat___Ontdek_Europa_met_Selectair_tckle9.jpg',
   }
 ]
 
