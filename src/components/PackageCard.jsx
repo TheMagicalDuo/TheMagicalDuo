@@ -37,18 +37,22 @@ export default function PackageCard({ pkg, imagePath }) {
         <div className="h-40 relative overflow-hidden shrink-0">
           {pkg.image2 ? (
             <>
-              <img
-                src={imagePath}
-                alt={pkg.title}
-                className="absolute inset-0 w-full h-full object-cover object-left transition-transform duration-500 group-hover:scale-105"
-                style={{ WebkitMaskImage: 'linear-gradient(to right, black 35%, transparent 68%)', maskImage: 'linear-gradient(to right, black 35%, transparent 68%)' }}
-              />
-              <img
-                src={pkg.image2}
-                alt={pkg.title}
-                className="absolute inset-0 w-full h-full object-cover object-right transition-transform duration-500 group-hover:scale-105"
-                style={{ WebkitMaskImage: 'linear-gradient(to left, black 35%, transparent 68%)', maskImage: 'linear-gradient(to left, black 35%, transparent 68%)' }}
-              />
+              {/* Disney - left half */}
+              <div className="absolute inset-y-0 left-0 w-1/2 overflow-hidden">
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                  style={{ backgroundImage: `url(${imagePath})` }}
+                />
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, transparent 50%, rgba(0,0,0,0.95) 100%)' }} />
+              </div>
+              {/* Universal - right half */}
+              <div className="absolute inset-y-0 right-0 w-1/2 overflow-hidden">
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                  style={{ backgroundImage: `url(${pkg.image2})` }}
+                />
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to left, transparent 50%, rgba(0,0,0,0.95) 100%)' }} />
+              </div>
             </>
           ) : (
             <img
