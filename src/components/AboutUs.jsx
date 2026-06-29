@@ -3,10 +3,10 @@ import { MapPin, Heart, Sparkles, Clock } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 const destPhotos = [
-  { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746853/about2_wfh6gd.jpg', label: 'Tobías & Abril', angle: 'rotate-[1.5deg]' },
-  { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746848/about4_t7zlim.jpg', label: 'En viaje', angle: '-rotate-[2deg]' },
-  { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746848/about1_mdf4qx.jpg', label: 'Buenos Aires', angle: 'rotate-[-1.5deg]' },
-  { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746853/disney_nvtfsh.jpg', label: 'Disney', angle: 'rotate-[2deg]' },
+  { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782772685/IMG_6726_qn3f0f.jpg', label: 'New York', angle: 'rotate-[1.5deg]' },
+  { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746848/about4_t7zlim.jpg', label: 'Costa Mujeres', angle: '-rotate-[2deg]' },
+  { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746853/about2_wfh6gd.jpg', label: 'Animal Kingdom', angle: 'rotate-[-1.5deg]' },
+  { image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_600/v1782746853/otros4_y3lg8t.jpg', label: 'Ibiza', angle: 'rotate-[2deg]' },
 ]
 
 export default function AboutUs() {
