@@ -15,7 +15,7 @@ const services = [
     title: 'Tours en Español',
     desc: 'Viajes organizados con guías expertos en tu idioma.',
     Icon: Map,
-    image: '/destinations/tours.jpg',
+    image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782769810/download_4_drltjh.jpg',
   },
   {
     id: 'all-inclusive',
@@ -36,7 +36,7 @@ const services = [
     title: 'Más Servicios',
     desc: 'Alquiler de autos y asistencia al viajero para tu tranquilidad.',
     Icon: Package,
-    image: '/destinations/more-services.jpg',
+    image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782769802/Features_tn0evo.jpg',
   }
 ]
 

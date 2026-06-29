@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Award, Clock, Sparkles } from 'lucide-react'
 
-// Usamos imágenes de Unsplash en alta resolución (4K/2K) como placeholders.
-// La clienta puede reemplazarlas luego por sus fotos reales, pero esto garantiza que no se pixele.
 const backgrounds = [
-  '/bg/castle_fireworks.png', // Castillo con fuegos artificiales
-  '/bg/airplane.png',         // Vista desde el avión
-  '/bg/cruise.png',           // Crucero de lujo
+  'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782767542/IMG_0763_lmpfon.jpg',
+  'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782770512/copy_of_img_0561_brlgav.jpg',
+  'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782767541/IMG_0585_kshgka.jpg',
+  'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782770614/IMG_0535_gk4egx.jpg',
+  'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782770754/IMG_0542_xsr9q1.jpg',
+  'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782771627/IMG_1684_spdsha.jpg',
+  'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782771679/IMG_1134_wbrk8q.jpg',
+  'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782770675/FullSizeRender_ygmupe.jpg',
 ]
 
 export default function DreamVision() {
@@ -25,13 +28,13 @@ export default function DreamVision() {
     <section className="relative bg-white pt-10">
       
       {/* Immersive Fading Banner */}
-      <div className="relative h-[65vh] min-h-[500px] overflow-hidden bg-dark">
+      <div className="relative h-[80vh] min-h-[600px] overflow-hidden bg-dark">
         
         {/* Carousel de fondos */}
         {backgrounds.map((bg, index) => (
           <div
             key={bg}
-            className="absolute inset-0 bg-cover bg-center bg-scroll lg:bg-fixed transition-opacity duration-[1500ms] ease-in-out"
+            className="absolute inset-0 bg-cover bg-center transition-opacity duration-[1500ms] ease-in-out"
             style={{ 
               backgroundImage: `url('${bg}')`,
               opacity: index === currentIndex ? 1 : 0,
