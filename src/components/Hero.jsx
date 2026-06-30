@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const destinations = [
   { id: 0, title: 'DISNEY WORLD - ORLANDO', subtitle: 'La magia te espera', image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782746858/disney2_ycun91.jpg' },
-  { id: 1, title: 'UNIVERSAL - STUDIOS', subtitle: 'Acción y aventura sin límites', image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782746863/universal_sej97t.jpg' },
+  { id: 1, title: 'UNIVERSAL - STUDIOS', subtitle: 'Acción y aventura sin límites', image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782778173/WhatsApp_Image_2026-06-29_at_21.07.15_fi8nkt.jpg' },
   { id: 2, title: 'CRUCEROS', subtitle: 'Lujo y relax en alta mar', image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782767510/AdobeStock_449451821_Editorial_Use_Only_e547mi.jpg' },
   { id: 3, title: 'PLAYAS - ALL INCLUSIVE', subtitle: 'Un pedazo de cielo', image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782746851/allinclusive_gnt4uz.jpg' },
 ]
