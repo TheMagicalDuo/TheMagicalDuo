@@ -8,6 +8,8 @@ const destinations = [
   { id: 1, title: 'UNIVERSAL - STUDIOS', subtitle: 'Acción y aventura sin límites', image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782778173/WhatsApp_Image_2026-06-29_at_21.07.15_fi8nkt.jpg' },
   { id: 2, title: 'CRUCEROS', subtitle: 'Lujo y relax en alta mar', image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782767510/AdobeStock_449451821_Editorial_Use_Only_e547mi.jpg' },
   { id: 3, title: 'PLAYAS - ALL INCLUSIVE', subtitle: 'Un pedazo de cielo', image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782746851/allinclusive_gnt4uz.jpg' },
+  { id: 4, title: 'TOURS', subtitle: 'Experiencias únicas alrededor del mundo', image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782778469/WhatsApp_Image_2026-06-29_at_21.09.46_yo4mto.jpg' },
+  { id: 5, title: 'HOTELES - EN TODO EL MUNDO', subtitle: 'Confort y elegancia en cada destino', image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_1920/v1782778509/WhatsApp_Image_2026-06-29_at_21.14.59_v7umqb.jpg' },
 ]
 
 export default function Hero() {
