@@ -77,7 +77,7 @@ const columns = [
       'Pase de estacionamiento y comidas',
       'Asistencia personalizada en español',
     ],
-    image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782746851/allinclusive_gnt4uz.jpg',
+    image: 'https://res.cloudinary.com/ucmstzfv/image/upload/f_auto,q_auto,w_800/v1782777628/AdobeStock_297987083_1_wyvy0l.jpg',
   },
 ]
 
