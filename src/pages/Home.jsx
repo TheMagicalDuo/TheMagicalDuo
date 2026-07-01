@@ -7,7 +7,7 @@ import Process from '../components/Process'
 import ContactForm from '../components/ContactForm'
 import WhyUs from '../components/WhyUs'
 import AboutUs from '../components/AboutUs'
-import Testimonials from '../components/Testimonials'
+// import Testimonials from '../components/Testimonials'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import DreamVision from '../components/DreamVision'
@@ -37,7 +37,7 @@ export default function Home() {
       <DisneyUniversal />
       <ServicesSummary />
       <Packages />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Process />
       <DreamVision />
       <ContactForm />
